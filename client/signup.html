@@ -1,46 +1,48 @@
 <!DOCTYPE html>    
 <html>    
-<head>    
-    <title>Registration Page</title>    
-    <link rel="stylesheet" type="text/css" href="style.css">    
-</head>    
-<body> 
-    <h1> Sports Mania Header</h1>
-<body style = "background-color: whitesmoke
-">
-   <h2>Lets get started</h2>   
-    <div class="registration">    
-    <form id="registration" method="get" action="registration.php">    
-       
-        <p><label><b>Username</b></label><br>    
-        <input type="text" name="Uname" id="Uname" placeholder="desired username" required>    
-        </p>
-
-        <p><label><b>Password</b></label><br>
-        <input type="password" name="Pw" id="Pw" placeholder="password" required>    
-        <input type="password" name="PwConfirm" id="PwConfirm" placeholder="confirm password" required>    
-        </p>
-
-        <p>
-        <label><b>Name</b></label><br>  
-        <input type="text" name="Fname" id="Fname" placeholder="first name" required>
-        <input type="text" name="Lname" id="Lname" placeholder="last name" required>
-        </p>   
+    <head>    
+        <title>Registration Page</title>    
+        <link rel="stylesheet" type="text/css" href="style.css">    
+    </head>    
+    <body onload="keeplive()"> 
+        <h1> Sports Mania Header</h1>
+        <body style = "background-color: white">
+        <h2>Lets get started</h2>   
+        <div class="registration">    
+        <form id="registration">    
         
-        <p>
-        <label><b>Email</b></label><br>
-        <input type="text" name="Email" id="Email" placeholder="enter account email" required>
-        </p>
+            <p><label><b>Username</b></label><br>    
+            <input type="text" name="Uname" id="Uname" placeholder="desired username" required>    
+            </p>
+
+            <p><label><b>Password</b></label><br>
+            <input type="password" name="Pw" id="Pw" placeholder="password" required>    
+            <input type="password" name="PwConfirm" id="PwConfirm" placeholder="confirm password" required>    
+            </p>
+
+            <p>
+            <label><b>Name</b></label><br>  
+            <input type="text" name="Fname" id="Fname" placeholder="first name" required>
+            <input type="text" name="Lname" id="Lname" placeholder="last name" required>
+            </p>   
             
+            <p>
+            <label><b>Email</b></label><br>
+            <input type="text" name="Email" id="Email" placeholder="enter account email" required>
+            </p>
+                
+            
+
+            <p><input onClick="register()" type="submit" class="submitbtn" value="Complete Registration">  
+            </p>     
+
+            <p>By signing up you agree to our <a href="#">Terms & Privacy Policy</a></p>
         
-
-        <p><input type="submit" class="submitbtn" value="Complete Registration">  
-        </p>     
-
-        <p>By signing up you agree to our <a href="#">Terms & Privacy Policy</a></p>
-    
-        <p>Have an account? <a href="#">Login Now</a></p>
-    </form>     
-</div>    
-</body>    
+            <p>Have an account? <a href="login.html">Login Now</a></p>
+        </form>     
+    </div>
+    <script src="https://unpkg.com/axios@1.0.0/dist/axios.min.js"></script>
+    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+    <script src="signup.js"></script>
+    </body>    
 </html>

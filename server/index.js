@@ -17,7 +17,7 @@ const bodyParser = require('body-parser')
 const db = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: ' ',
+    password: 'D@ntheman444',
     database: 'sports',
 })
 
@@ -39,14 +39,14 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.post('/api/login', (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
-    const sqlGetUser = "SELECT * FROM users WHERE user = ? AND pass = ?";
+    const sqlGetUser = "SELECT * FROM users WHERE username = ? AND password = ?";
     db.query(sqlGetUser, [username, password], (err, result)=>{
         // if (err) {
         //     console.log("error")
         //     res.send({err:err})
         // }
         if(result.length > 0){
-            console.log("logging in");
+            console.log("Logged In");
             res.send({loggedIn: true})
         }
         else{
@@ -60,15 +60,20 @@ app.post('/api/login', (req, res) => {
 app.post('/api/register', (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
-    const sqlGetUser = "SELECT * FROM users WHERE user = ?";
+    const email = req.body.email;
+    const first = req.body.first;
+    const last = req.body.last
+    const sqlGetUser = "SELECT * FROM users WHERE username = ?";
     db.query(sqlGetUser, [username], (err, result)=>{
         // if (err) {
         //     console.log("error")
         //     res.send({err:err})
         // }
+        console.log(result)
+        console.log(result.length)
         if(result.length==0){
-            const sqlNewUser = "INSERT INTO users (user, pass) VALUES (?, ?)";
-            db.query(sqlNewUser, [username, password], (err, result)=>{
+            const sqlNewUser = "INSERT INTO users (username, password, email, first, last) VALUES (?, ?, ?, ?, ?)";
+            db.query(sqlNewUser, [username, password, email, first, last], (err, result)=>{
                 console.log("account created")
                 res.send({newaccount: true})
             });

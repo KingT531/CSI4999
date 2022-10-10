@@ -1,34 +1,33 @@
 <!DOCTYPE html>    
 <html>    
-<head>    
-    <title>Login Page</title>    
-    <link rel="stylesheet" type="text/css" href="style.css">    
-</head>    
-<body> 
-    <h1> Sports Mania Header</h1>
-<body style = "background-color: white
-">
-   <h2>Log In</h2>   
-    <div class="login">    
-    <form id="login" method="get" action="login.php">    
-        <p><label><b>Username</b></label>   
-        <input type="text" name="Uname" id="Uname" placeholder="username" required>    
-        </p>
+    <head>    
+        <title>Login Page</title>    
+        <link rel="stylesheet" type="text/css" href="style.css">    
+    </head>    
+    <body onload="keeplive()"> 
+        <h1> Sports Mania Header</h1>
+        <body style = "background-color: white">
+        <h2>Log In</h2>   
+        <div class="login">    
+        <form id="login">    
+            <p><label><b>Username</b></label>   
+            <input type="text" name="Uname" id="Uname" placeholder="username" required>    
+            </p>
 
-        <p><label><b>Password</b></label>   
-        <input type="password" name="Pw" id="Pw" placeholder="password" required>
-        </p>    
-        
-        <p><input type="checkbox" id="check">    
-        <span>Remember Me</span>  
-        </p>
+            <p><label><b>Password</b></label>   
+            <input type="password" name="Pw" id="Pw" placeholder="password" required>
+            </p>    
+            
+            <p><input type="checkbox" id="check">    
+            <span>Remember Me</span>  
+            </p>
 
-       <p><input type="submit" class="submitbtn" value="Enter the Sports World!"> </p>
-       <p><a href="#">Forgot Password?</a> </p>
-       <p>New Here?  <a href="#">Register Now</a>  </p>   
-        
-        
-    </form>     
-</div>    
-</body>    
+        <p><input onClick="login()" type="submit" class="submitbtn" value="Enter the Sports World!"> </p>
+        <p><a href="#">Forgot Password?</a> </p>
+        <p>New Here?  <a href="signup.html">Register Now</a>  </p>      
+    </div>
+    <script src="https://unpkg.com/axios@1.0.0/dist/axios.min.js"></script>  
+    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+    <script src="login.js"></script>  
+    </body>    
 </html>
