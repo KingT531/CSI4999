@@ -1,0 +1,42 @@
+body {
+  
+}
+
+.login, .registration {
+	display: flex;
+	justify-content: center;
+  	align-items: center;
+	color: black;
+	padding: 10px;
+  	background-color: rgb(216, 213, 213);
+	opacity: 1;
+}
+
+::placeholder {
+	color: rgb(183, 177, 177)
+}
+
+input[type=text], input[type=password] {
+	border: none;
+	width: 100%;
+	padding: 10px;
+	margin: 5px 0 22px 0;
+	display: inline-block;
+	border: none;
+	background: #ffffff;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+
+}
+
+.submitbtn {
+	background-color: #a33838;
+	color: white;
+	padding: 16px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+	opacity: 0.9;
+  }

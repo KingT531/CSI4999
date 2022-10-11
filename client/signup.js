@@ -1,7 +1,23 @@
-// function keeplive(){
-//     user = window.localStorage.getItem('user');
-//     document.getElementById('status').innerHTML = "Logged In as " + user;
-// }
+function keeplive(){
+    user = window.localStorage.getItem('user');
+    if(user != ""){
+        document.getElementById('status').innerHTML = "Logged In as " + user;
+        document.getElementById("logoutbutton").style.visibility  = "visible";
+        document.getElementById("status").style.visibility  = "visible";
+    }
+    else{
+        document.getElementById("logoutbutton").style.visibility  = "hidden";
+        document.getElementById("status").style.visibility  = "hidden";
+        document.getElementById('status').innerHTML = "";
+    }
+}
+
+function logout(){
+    empty = "";
+    window.localStorage.setItem('user', empty);
+    document.getElementById('status').innerHTML = "";
+    document.getElementById("logoutbutton").style.visibility  = "hidden";
+}
 
 function register() {
     const formuser = document.getElementById('Uname').value;
@@ -26,6 +42,7 @@ function register() {
         }).then(function(response){
             if (response.data.newaccount){
                 console.log("Account Created")
+                window.location.href = "login.html";
                 //document.getElementById('logstatus').innerHTML = "account created: " + userval;
             }
             else if (!response.data.newaccount){

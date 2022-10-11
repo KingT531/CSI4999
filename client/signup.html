@@ -5,11 +5,11 @@
         <link rel="stylesheet" type="text/css" href="style.css">    
     </head>    
     <body onload="keeplive()"> 
-        <h1> Sports Mania Header</h1>
+        <h1> Sports Mania</h1>
         <body style = "background-color: white">
         <h2>Lets get started</h2>   
         <div class="registration">    
-        <form id="registration">    
+        <div id="registration">    
         
             <p><label><b>Username</b></label><br>    
             <input type="text" name="Uname" id="Uname" placeholder="desired username" required>    
@@ -39,7 +39,9 @@
             <p>By signing up you agree to our <a href="#">Terms & Privacy Policy</a></p>
         
             <p>Have an account? <a href="login.html">Login Now</a></p>
-        </form>     
+            <p id="status" style="visibility:hidden"></p>
+            <button onClick="logout()" id="logoutbutton" style="visibility:hidden">Log Out</button>
+        </div>   
     </div>
     <script src="https://unpkg.com/axios@1.0.0/dist/axios.min.js"></script>
     <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
