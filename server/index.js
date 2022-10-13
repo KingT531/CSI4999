@@ -3,6 +3,8 @@ const app = express()
 const mysql = require('mysql')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const bcrypt = require('bcrypt')
+const saltRounds = 10
 
 // details for connecting to database on heroku server
 // mysql://bfee47454279c4:3ecfcc52@us-cdbr-east-06.cleardb.net/heroku_89e000a1510f6d5?reconnect=true
@@ -37,17 +39,27 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 // Login 
 app.post('/api/login', (req, res) => {
+
     const username = req.body.username;
     const password = req.body.password;
-    const sqlGetUser = "SELECT * FROM users WHERE username = ? AND password = ?";
-    db.query(sqlGetUser, [username, password], (err, result)=>{
+    const sqlGetUser = "SELECT * FROM users WHERE username = ?";
+
+    db.query(sqlGetUser, [username], (err, result)=>{
         // if (err) {
         //     console.log("error")
         //     res.send({err:err})
         // }
         if(result.length > 0){
-            console.log("Logged In");
-            res.send({loggedIn: true})
+            bcrypt.compare(password, result[0].password, (error, response) =>{
+                if(response){
+                    console.log("Logged In");
+                     res.send({loggedIn: true})
+                }
+                else{
+                    console.log("failed to login")
+                    res.send({loggedIn: false})
+                }
+            })
         }
         else{
             console.log("failed to login")
@@ -58,31 +70,33 @@ app.post('/api/login', (req, res) => {
 
 // register new account
 app.post('/api/register', (req, res) => {
+
     const username = req.body.username;
     const password = req.body.password;
     const email = req.body.email;
     const first = req.body.first;
     const last = req.body.last
     const sqlGetUser = "SELECT * FROM users WHERE username = ?";
-    db.query(sqlGetUser, [username], (err, result)=>{
-        // if (err) {
-        //     console.log("error")
-        //     res.send({err:err})
-        // }
-        console.log(result)
-        console.log(result.length)
-        if(result.length==0){
-            const sqlNewUser = "INSERT INTO users (username, password, email, first, last) VALUES (?, ?, ?, ?, ?)";
-            db.query(sqlNewUser, [username, password, email, first, last], (err, result)=>{
-                console.log("account created")
-                res.send({newaccount: true})
-            });
-        }
-        else{
-            console.log("user already exists")
-            res.send({newaccount: false})
-        }
-    });
+
+    bcrypt.hash(password, saltRounds, (err, hash) => {
+        db.query(sqlGetUser, [username], (err, result)=>{
+            // if (err) {
+            //     console.log("error")
+            //     res.send({err:err})
+            // }
+            if(result.length==0){
+                const sqlNewUser = "INSERT INTO users (username, password, email, first, last) VALUES (?, ?, ?, ?, ?)";
+                db.query(sqlNewUser, [username, hash, email, first, last], (err, result)=>{
+                    console.log("account created")
+                    res.send({newaccount: true})
+                });
+            }
+            else{
+                console.log("user already exists")
+                res.send({newaccount: false})
+            }
+        });
+    })
 });
 
 // listening to port for online hosting
