@@ -51,6 +51,7 @@ function register() {
         console.log("Invalid first or last name format")
     }
     else{
+        //axios.post("https://csi4999-server.herokuapp.com/api/register", {
         axios.post("http://localhost:3001/api/register", {   
             username: formuser, 
             password: formpass,

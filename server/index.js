@@ -3,16 +3,16 @@ const app = express()
 const mysql = require('mysql')
 const cors = require('cors')
 const bodyParser = require('body-parser')
-const bcrypt = require('bcrypt')
-const saltRounds = 10
+const bcrypt = require('bcryptjs')
+const saltRounds = 10;
 
 // details for connecting to database on heroku server
-// mysql://bfee47454279c4:3ecfcc52@us-cdbr-east-06.cleardb.net/heroku_89e000a1510f6d5?reconnect=true
+// mysql://b4baa5583f6588:f55feaaf@us-cdbr-east-06.cleardb.net/heroku_6790ad1ab9e7025?reconnect=true
 // const db = mysql.createPool({
 //     host: 'us-cdbr-east-06.cleardb.net',
-//     user: 'bfee47454279c4',
-//     password: '3ecfcc52',
-//     database: 'heroku_89e000a1510f6d5',
+//     user: 'b4baa5583f6588',
+//     password: 'f55feaaf',
+//     database: 'heroku_6790ad1ab9e7025'
 // })
 
 // database connection information - must change to connect to database locally
@@ -26,7 +26,7 @@ const db = mysql.createPool({
 // used for online hosting otherwise may get error connecting
 // app.use(cors({
 //     //origin: ["http://localhost:3000"],
-//     //origin: ["https://illustrious-dragon-21681f.netlify.app"],
+//     //origin: ["https://starlit-scone-d78c67.netlify.app"],
 //     origin: ["http://127.0.0.1:5500/index.html"],
 //     methods: ["GET", "POST"],
 //     credentials: true
