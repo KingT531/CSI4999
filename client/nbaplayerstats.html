@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head> </head>
+  <body onload="keeplive()">
+    <p id="playername">Player Name</p>
+    <img src="" id="playerpic" alt="player img" />
+    <p>2021 Season Stats:</p>
+    <p id="playerstatGP">Games Played</p>
+    <p id="playerstatPTS">PTS</p>
+    <p id="playerstatMIN">MIN</p>
+    <p id="playerstatFG">FG%</p>
+    <p id="playerstat3P">3p%</p>
+    <p id="playerstatFT">FT%</p>
+    <p id="playerstatREB">REB</p>
+    <p id="playerstatAST">AST</p>
+    <p id="playerstatBLK">BLK</p>
+    <p id="playerstatSTL">STL</p>
+    <p id="playerstatPF">PF</p>
+    <p id="playerstatTO">TO</p>
+    <p>Stats of Last Five Seasons:</p>
+    <canvas id="ChartPTS" style="width: 100%; max-width: 700px"></canvas>
+    <canvas id="ChartMIN" style="width: 100%; max-width: 700px"></canvas>
+    <canvas id="ChartFG" style="width: 100%; max-width: 700px"></canvas>
+    <canvas id="Chart3P" style="width: 100%; max-width: 700px"></canvas>
+    <canvas id="ChartFT" style="width: 100%; max-width: 700px"></canvas>
+    <canvas id="ChartREB" style="width: 100%; max-width: 700px"></canvas>
+    <canvas id="ChartAST" style="width: 100%; max-width: 700px"></canvas>
+    <canvas id="ChartBLK" style="width: 100%; max-width: 700px"></canvas>
+    <canvas id="ChartSTL" style="width: 100%; max-width: 700px"></canvas>
+    <canvas id="ChartPF" style="width: 100%; max-width: 700px"></canvas>
+    <canvas id="ChartTO" style="width: 100%; max-width: 700px"></canvas>
+
+    <script src="https://unpkg.com/axios@1.0.0/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="nbaplayerstats.js"></script>
+  </body>
+</html>
