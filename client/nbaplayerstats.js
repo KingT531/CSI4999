@@ -16,13 +16,16 @@ async function keeplive(){
 
 
         //get localstorage data
-    //window.localStorage.setItem('NbaPlayerId', 237);
+    window.localStorage.setItem('NbaPlayerId', 237);
     playerid = [window.localStorage.getItem('NbaPlayerId')]
-    //window.localStorage.setItem('NbaPlayerFirst', "Kevin");
+    window.localStorage.setItem('NbaPlayerFirst', "Kevin");
     playerfirst = [window.localStorage.getItem('NbaPlayerFirst')]
-    //window.localStorage.setItem('NbaPlayerLast', "Durant");
+    window.localStorage.setItem('NbaPlayerLast', "Durant");
     playerlast = [window.localStorage.getItem('NbaPlayerLast')]
     playername = `${playerfirst} ${playerlast}`
+    window.localStorage.setItem('NbaPlayerTeam', "placeholder team");
+    playerteam = window.localStorage.getItem('NbaPlayerTeam')
+    document.getElementById('teamname').innerHTML = playerteam
     document.getElementById('playername').innerHTML = playername
 
 
@@ -91,7 +94,7 @@ async function keeplive(){
 
     axios.request(getseasonaverage).then(function (response) {
     if(response.data.data.length != 0){
-        console.log(response)
+        //console.log(response)
         gp[0] = response.data.data[0].games_played
         pts[0] = response.data.data[0].pts
         min[0] = response.data.data[0].min
@@ -371,4 +374,27 @@ async function keeplive(){
     }).catch(function (error) {
         console.error(error);
     });
+}
+
+async function favorite(){
+    window.localStorage.setItem('user', 'daw');
+    username = window.localStorage.getItem('user');
+    fav = `1${playerid}`
+    //axios.post("https://csi4999-server.herokuapp.com/api/favoriteplayer", {
+    axios.post("http://localhost:3001/api/favoriteplayer", {    
+        username: username,
+        favorite: fav,
+    }).then(function(response){
+        if (response.data.favoriteRes){
+            console.log("succeeded to add favorite")
+        }
+        else if (!response.data.favoriteRes){
+            document.getElementById('favmessage').innerHTML = "Favorites List is full!"
+            console.log("Failed to add favorite")
+        }
+        else{
+            document.getElementById('favmessage').innerHTML = "Not Logged In!"
+            console.log("error");
+        }
+    })
 }

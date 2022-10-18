@@ -99,6 +99,115 @@ app.post('/api/register', (req, res) => {
     })
 });
 
+app.post('/api/favoriteplayer', (req, res) => {
+
+    const username = req.body.username;
+    const favorite = req.body.favorite
+    const sqlGetFavorites = "SELECT * FROM favorites WHERE username = ?";
+
+    db.query(sqlGetFavorites, [username], (err, result)=>{
+        // if (err) {
+        //     console.log("error")
+        //     res.send({err:err})
+        // }
+        if(result.length > 0){
+
+            pfav1 = result[0].playerfav1
+            pfav2 = result[0].playerfav2
+            pfav3 = result[0].playerfav3
+            pfav4 = result[0].playerfav4
+            pfav5 = result[0].playerfav5
+  
+            if(pfav1 == null){
+                const sqlInsertFavorite = "UPDATE favorites SET playerfav1 = ? WHERE username = ?";
+                db.query(sqlInsertFavorite, [favorite, username], (err, result)=>{
+                    if (err) {
+                        console.log(err)
+                        res.send({err:err})
+                    }
+                    else{
+                        res.send({favoriteRes: true})
+                    }  
+                });
+            }
+            else if(pfav2 == null){
+                const sqlInsertFavorite = "UPDATE favorites SET playerfav2 = ? WHERE username = ?";
+                db.query(sqlInsertFavorite, [favorite, username], (err, result)=>{
+                    if (err) {
+                        console.log(err)
+                        res.send({err:err})
+                    }
+                    else{
+                        res.send({favoriteRes: true})
+                    }  
+                });
+            }
+
+            else if(pfav3 == null){
+                const sqlInsertFavorite = "UPDATE favorites SET playerfav3 = ? WHERE username = ?";
+                db.query(sqlInsertFavorite, [favorite, username], (err, result)=>{
+                    if (err) {
+                        console.log(err)
+                        res.send({err:err})
+                    }
+                    else{
+                        res.send({favoriteRes: true})
+                    }  
+                });
+            }
+            else if(pfav4 == null){
+                const sqlInsertFavorite = "UPDATE favorites SET playerfav4 = ? WHERE username = ?";
+                db.query(sqlInsertFavorite, [favorite, username], (err, result)=>{
+                    if (err) {
+                        console.log(err)
+                        res.send({err:err})
+                    }
+                    else{
+                        res.send({favoriteRes: true})
+                    }  
+                });
+            }
+            else if(pfav5 == null){
+                const sqlInsertFavorite = "UPDATE favorites SET playerfav5 = ? WHERE username = ?";
+                db.query(sqlInsertFavorite, [favorite, username], (err, result)=>{
+                    if (err) {
+                        console.log(err)
+                        res.send({err:err})
+                    }
+                    else{
+                        res.send({favoriteRes: true})
+                    }  
+                });
+            }
+            else{
+                res.send({favoriteRes: false})
+            }
+        }
+        else{
+            res.send({favoriteRes: false})
+        }
+    });
+});
+
+app.post('/api/favoriteteam', (req, res) => {
+
+    const username = req.body.username;
+    const sqlGetUser = "SELECT * FROM users WHERE username = ?";
+  
+    db.query(sqlGetUser, [username], (err, result)=>{
+        // if (err) {
+        //     console.log("error")
+        //     res.send({err:err})
+        // }
+        if(result.length==0){
+            const sqlNewUser = "INSERT INTO users (username, password, email, first, last) VALUES (?, ?, ?, ?, ?)";
+        }
+        else{
+            res.send({favorite: false})
+        }
+    });
+});
+
 // listening to port for online hosting
 // app.listen(process.env.PORT || PORT, () => {
 //     console.log('running on port ${PORT}');
