@@ -15,8 +15,6 @@ function keeplive(){
 function logout(){
     empty = "";
     window.localStorage.setItem('user', empty);
-    document.getElementById('status').innerHTML = "";
-    document.getElementById("logoutbutton").style.visibility  = "hidden";
 }
 
 function login() {
@@ -42,8 +40,7 @@ function login() {
             if (response.data.loggedIn){
                 console.log("Logged In")
                 window.localStorage.setItem('user', formuser);
-                document.getElementById('status').innerHTML = "Logged In as " + formuser;
-                window.location.href = "login.html";
+                window.location.href = "index.html";
             }
             else if (!response.data.loggedIn){
                 console.log("Failed to Log In")
