@@ -1,40 +1,30 @@
 async function keeplive(){
 
 
-        //load user login information
-    // user = window.localStorage.getItem('user');
-    // if(user != ""){
-    //     document.getElementById('status').innerHTML = "Logged In as " + user;
-    //     document.getElementById("logoutbutton").style.visibility  = "visible";
-    //     document.getElementById("status").style.visibility  = "visible";
-    // }
-    // else{
-    //     document.getElementById("logoutbutton").style.visibility  = "hidden";
-    //     document.getElementById("status").style.visibility  = "hidden";
-    //     document.getElementById('status').innerHTML = "";
-    // }
+         //load user login information
+    user = window.localStorage.getItem('user');
+    var userelement = document.getElementById('loginstatus');
+    if(user != ""){
+        document.getElementById('loginstatus').innerHTML = user;
+        userelement.setAttribute('href', 'profile.html');
+    }
+    else{
+    }
 
-
-        //get localstorage data
-    window.localStorage.setItem('NbaPlayerId', 237);
-    playerid = [window.localStorage.getItem('NbaPlayerId')]
-    window.localStorage.setItem('NbaPlayerFirst', "Kevin");
-    playerfirst = [window.localStorage.getItem('NbaPlayerFirst')]
-    window.localStorage.setItem('NbaPlayerLast', "Durant");
-    playerlast = [window.localStorage.getItem('NbaPlayerLast')]
+        //get localstorage data for player, team, and ID
+    playerid = [window.localStorage.getItem('nbaplayerID')]
+    playerfirst = [window.localStorage.getItem('nbaplayerFN')]
+    playerlast = [window.localStorage.getItem('nbaplayerLN')]
     playername = `${playerfirst} ${playerlast}`
-    window.localStorage.setItem('NbaPlayerTeam', "placeholder team");
-    playerteam = window.localStorage.getItem('NbaPlayerTeam')
+    playerteam = window.localStorage.getItem('nbaplayerTeam')
     document.getElementById('teamname').innerHTML = playerteam
     document.getElementById('playername').innerHTML = playername
-
 
         //find player image
     const searchpic = {
         method: 'GET',
         url: 'http://data.nba.net/data/10s/prod/v1/2021/players.json',
     };
-
     axios.request(searchpic).then(function (response) {
         firstname = playerfirst
         lastname = playerlast

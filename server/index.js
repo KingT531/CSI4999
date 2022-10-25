@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 const bcrypt = require('bcryptjs')
 const saltRounds = 10;
 
-// details for connecting to database on heroku server
+    // details for connecting to database on heroku server
 // mysql://b4baa5583f6588:f55feaaf@us-cdbr-east-06.cleardb.net/heroku_6790ad1ab9e7025?reconnect=true
 // const db = mysql.createPool({
 //     host: 'us-cdbr-east-06.cleardb.net',
@@ -15,7 +15,7 @@ const saltRounds = 10;
 //     database: 'heroku_6790ad1ab9e7025'
 // })
 
-// database connection information - must change to connect to database locally
+    // database connection information - must change to connect to database locally
 const db = mysql.createPool({
     host: 'localhost',
     user: 'root',
@@ -23,7 +23,7 @@ const db = mysql.createPool({
     database: 'sports',
 })
 
-// used for online hosting otherwise may get error connecting
+    // used for online hosting otherwise may get error connecting
 // app.use(cors({
 //     //origin: ["http://localhost:3000"],
 //     //origin: ["https://starlit-scone-d78c67.netlify.app"],
@@ -32,12 +32,12 @@ const db = mysql.createPool({
 //     credentials: true
 // }));
 
+    //required
 app.use(cors());
-
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-// Login 
+    // Login 
 app.post('/api/login', (req, res) => {
 
     const username = req.body.username;
@@ -68,7 +68,7 @@ app.post('/api/login', (req, res) => {
     });
 });
 
-// register new account
+    // register new account
 app.post('/api/register', (req, res) => {
 
     const username = req.body.username;
@@ -99,6 +99,7 @@ app.post('/api/register', (req, res) => {
     })
 });
 
+    //add player favorite to user
 app.post('/api/favoriteplayer', (req, res) => {
 
     const username = req.body.username;
@@ -189,6 +190,7 @@ app.post('/api/favoriteplayer', (req, res) => {
     });
 });
 
+    //add team favorite to user
 app.post('/api/favoriteteam', (req, res) => {
 
     const username = req.body.username;

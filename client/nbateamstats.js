@@ -1,17 +1,14 @@
 async function keeplive(){
 
-    //load user login information
-// user = window.localStorage.getItem('user');
-// if(user != ""){
-//     document.getElementById('status').innerHTML = "Logged In as " + user;
-//     document.getElementById("logoutbutton").style.visibility  = "visible";
-//     document.getElementById("status").style.visibility  = "visible";
-// }
-// else{
-//     document.getElementById("logoutbutton").style.visibility  = "hidden";
-//     document.getElementById("status").style.visibility  = "hidden";
-//     document.getElementById('status').innerHTML = "";
-// }
+     //load user login information
+     user = window.localStorage.getItem('user');
+     var userelement = document.getElementById('loginstatus');
+     if(user != ""){
+         document.getElementById('loginstatus').innerHTML = user;
+         userelement.setAttribute('href', 'profile.html');
+     }
+     else{
+     }
 
 const teamsearch = {
     method: 'GET',
