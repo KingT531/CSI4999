@@ -23,7 +23,7 @@ async function keeplive(){
         //find player image
     const searchpic = {
         method: 'GET',
-        url: 'http://data.nba.net/data/10s/prod/v1/2021/players.json',
+        url: 'http://data.nba.net/data/10s/prod/v1/2022/players.json',
     };
     axios.request(searchpic).then(function (response) {
         firstname = playerfirst
@@ -47,7 +47,7 @@ async function keeplive(){
 
 
         //find player stats
-    const season = 2021
+    const season = 2022
     //const searchreq = document.getElementById('searchstat').value
     const getseasonaverage = {
         method: 'GET',
@@ -87,7 +87,7 @@ async function keeplive(){
         //console.log(response)
         gp[0] = response.data.data[0].games_played
         pts[0] = response.data.data[0].pts
-        min[0] = response.data.data[0].min
+        min[0] = response.data.data[0].min.replace(/:/g, ".");
         fg[0] = response.data.data[0].fg_pct
         p3[0] = response.data.data[0].fg3_pct
         ft[0] = response.data.data[0].ft_pct
@@ -138,10 +138,10 @@ async function keeplive(){
         document.getElementById('playerstatTO').innerHTML = ""
         
     }
-    seasons = [2020,2019,2018,2017]
+    seasons = [2021,2020,2019,2018,2017]
     index = 0
     end = 0
-    while(index < 4){
+    while(index < seasons.length){
         index = index + 1
         const getseasonaverage = {
             method: 'GET',
@@ -153,7 +153,7 @@ async function keeplive(){
 
                 iseason = seasons[end]
                 ipoints = response.data.data[0].pts
-                imin = response.data.data[0].min
+                imin = response.data.data[0].min.replace(/:/g, ".");
                 ifg = response.data.data[0].fg_pct
                 ip3 = response.data.data[0].fg3_pct
                 ift = response.data.data[0].ft_pct
@@ -178,7 +178,8 @@ async function keeplive(){
             }
             seasoni = seasons[end]
             end = end + 1
-            if(end == 4){
+            if(end == seasons.length){
+                console.log(xyMIN)
                 new Chart("ChartPTS", {
                 type: "scatter",
                 data: {
@@ -367,24 +368,25 @@ async function keeplive(){
 }
 
 async function favorite(){
-    window.localStorage.setItem('user', 'daw');
     username = window.localStorage.getItem('user');
-    fav = `1${playerid}`
-    //axios.post("https://csi4999-server.herokuapp.com/api/favoriteplayer", {
-    axios.post("http://localhost:3001/api/favoriteplayer", {    
-        username: username,
-        favorite: fav,
-    }).then(function(response){
-        if (response.data.favoriteRes){
-            console.log("succeeded to add favorite")
-        }
-        else if (!response.data.favoriteRes){
-            document.getElementById('favmessage').innerHTML = "Favorites List is full!"
-            console.log("Failed to add favorite")
-        }
-        else{
-            document.getElementById('favmessage').innerHTML = "Not Logged In!"
-            console.log("error");
-        }
-    })
+    if(username != ""){
+        fav = `1${playerid}`
+        //axios.post("https://csi4999-server.herokuapp.com/api/favoriteplayer", {
+        axios.post("http://localhost:3001/api/favoriteplayer", {    
+            username: username,
+            favorite: fav,
+        }).then(function(response){
+            if (response.data.favoriteRes){
+                console.log("succeeded to add favorite")
+            }
+            else if (!response.data.favoriteRes){
+                document.getElementById('favmessage').innerHTML = "Favorites List is full!"
+                console.log("Failed to add favorite")
+            }
+            else{
+                document.getElementById('favmessage').innerHTML = "Not Logged In!"
+                console.log("error");
+            }
+        })
+    }
 }

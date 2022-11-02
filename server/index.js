@@ -87,8 +87,11 @@ app.post('/api/register', (req, res) => {
             if(result.length==0){
                 const sqlNewUser = "INSERT INTO users (username, password, email, first, last) VALUES (?, ?, ?, ?, ?)";
                 db.query(sqlNewUser, [username, hash, email, first, last], (err, result)=>{
-                    console.log("account created")
-                    res.send({newaccount: true})
+                    const sqlNewUserFav = "INSERT INTO favorites (username) VALUES (?)";
+                    db.query(sqlNewUserFav, [username], (err, result)=>{
+                        console.log("account created")
+                        res.send({newaccount: true})
+                    });
                 });
             }
             else{

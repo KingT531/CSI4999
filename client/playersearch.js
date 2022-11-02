@@ -59,10 +59,10 @@ async function searchplayers(){
         const searchcurrentplayers = {
             method: 'GET',
             url: 'https://www.balldontlie.io/api/v1/season_averages',
-            params: {player_ids: allPlayersID, season: 2021, per_page: 100},
+            params: {player_ids: allPlayersID, season: 2022, per_page: 100},
         };
 
-            //get ID's of players who have 2021 season data and combine with previous results
+            //get ID's of players who have 2022 season data and combine with previous results
         axios.request(searchcurrentplayers).then(function (response) {
             console.log(response)
             index = 0
@@ -123,7 +123,7 @@ async function searchplayers(){
                 //search for player pics
             const searchpic = {
                 method: 'GET',
-                url: 'http://data.nba.net/data/10s/prod/v1/2021/players.json',
+                url: 'http://data.nba.net/data/10s/prod/v1/2022/players.json',
             };
     
             axios.request(searchpic).then(function (response) {
