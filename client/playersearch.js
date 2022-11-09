@@ -27,132 +27,171 @@ async function searchplayers(){
         //get input search box text
     const searchreq = document.getElementById('search').value
 
-        //search for players using input name
-    const searchplayers = {
-        method: 'GET',
-        url: 'https://free-nba.p.rapidapi.com/players',
-        //url: 'https://www.balldontlie.io/api/v1/players',
-        params: {search: searchreq, per_page: 100},
-        headers: {
-            'X-RapidAPI-Key': '9c4416de73msha577cfcfd547904p12fe47jsn52713b65c4ce',
-            'X-RapidAPI-Host': 'free-nba.p.rapidapi.com'
-        }
-    };
 
-    axios.request(searchplayers).then(function (response) {
-
-            //get list of players id's using input search
-        console.log(response)
-        index = 0
-        allPlayersID = []
-        allPlayersFN = []
-        allPlayersLN = []
-        allPlayersTeam = []
-        while(response.data.data[index] != null){
-            allPlayersID.push(response.data.data[index].id)
-            allPlayersFN.push(response.data.data[index].first_name)
-            allPlayersLN.push(response.data.data[index].last_name)
-            allPlayersTeam.push(response.data.data[index].team.full_name)
-            index = index + 1
-        }
-            //get 2021 data from all players in allPlayersID
-        const searchcurrentplayers = {
+        //API and logic for nba player search
+    nba = true;
+    mlb = false;
+    nfl = false;
+    if(nba){
+            //search for players using input name
+        const searchplayers = {
             method: 'GET',
-            url: 'https://www.balldontlie.io/api/v1/season_averages',
-            params: {player_ids: allPlayersID, season: 2022, per_page: 100},
+            url: 'https://free-nba.p.rapidapi.com/players',
+            //url: 'https://www.balldontlie.io/api/v1/players',
+            params: {search: searchreq, per_page: 100},
+            headers: {
+                'X-RapidAPI-Key': '9c4416de73msha577cfcfd547904p12fe47jsn52713b65c4ce',
+                'X-RapidAPI-Host': 'free-nba.p.rapidapi.com'
+            }
         };
 
-            //get ID's of players who have 2022 season data and combine with previous results
-        axios.request(searchcurrentplayers).then(function (response) {
+        axios.request(searchplayers).then(function (response) {
+
+                //get list of players id's using input search
             console.log(response)
             index = 0
-            playersID = []
-                //avg pts
-            stat1 = []
-                //reb
-            stat2 = []
-                //assists
-            stat3 = []
-                //3pts
-            stat4 = []
-            playersFullname = [null, null, null, null, null, null, null, null]
-            playersTeams = [null, null, null, null, null, null, null, null]
-            playersFirstName = [null, null, null, null, null, null, null, null]
-            playersLastName = [null, null, null, null, null, null, null, null]
-            while(index < 8 && response.data.data[index] != null){
-                playersID.push(response.data.data[index].player_id)
-                stat1.push(response.data.data[index].pts)
-                stat2.push(response.data.data[index].reb)
-                stat3.push(response.data.data[index].ast)
-                stat4.push(response.data.data[index].fg3_pct)
+            allPlayersID = []
+            allPlayersFN = []
+            allPlayersLN = []
+            allPlayersTeam = []
+            while(response.data.data[index] != null){
+                allPlayersID.push(response.data.data[index].id)
+                allPlayersFN.push(response.data.data[index].first_name)
+                allPlayersLN.push(response.data.data[index].last_name)
+                allPlayersTeam.push(response.data.data[index].team.full_name)
                 index = index + 1
             }
-            for (let i = 0; i < playersID.length; i++) {
-                found = false
+                //get 2021 data from all players in allPlayersID
+            const searchcurrentplayers = {
+                method: 'GET',
+                url: 'https://www.balldontlie.io/api/v1/season_averages',
+                params: {player_ids: allPlayersID, season: 2022, per_page: 100},
+            };
+
+                //get ID's of players who have 2022 season data and combine with previous results
+            axios.request(searchcurrentplayers).then(function (response) {
+                console.log(response)
                 index = 0
-                while(!found){
-                    if(playersID[i] == allPlayersID[index]){
-                        playersFirstName[i] = allPlayersFN[index]
-                        playersLastName[i] = allPlayersLN[index]
-                        playersFullname[i] = `${playersFirstName[i]} ${playersLastName[i]}`
-                        playersTeams[i] = allPlayersTeam[index]
-                        document.getElementById(playerhtml[i]).innerHTML = playersFullname[i]
-                        document.getElementById(playerhtml[i]).style.visibility = "visible";
-                        document.getElementById(teamhtml[i]).innerHTML = playersTeams[i]
-                        document.getElementById(teamhtml[i]).style.visibility = "visible";
-                        document.getElementById(buttonhtml[i]).style.visibility = "visible";
-                        document.getElementById(pichtml[i]).style.visibility = "visible";
-                        document.getElementById(stat1html[i]).innerHTML = stat1[i]
-                        document.getElementById(stat1html[i]).style.visibility = "visible";
-                        document.getElementById(stat2html[i]).innerHTML = stat2[i]
-                        document.getElementById(stat2html[i]).style.visibility = "visible";
-                        document.getElementById(stat3html[i]).innerHTML = stat3[i]
-                        document.getElementById(stat3html[i]).style.visibility = "visible";
-                        document.getElementById(stat4html[i]).innerHTML = stat4[i]
-                        document.getElementById(stat4html[i]).style.visibility = "visible";
-                        searchprofileID[i] = playersID[i]
-                        searchprofileFN[i] = playersFirstName[i]
-                        searchprofileLN[i] = playersLastName[i]
-                        searchprofileTeam[i] =  playersTeams[i]
-                        found = true
-                    }
+                playersID = []
+                    //avg pts
+                stat1 = []
+                    //reb
+                stat2 = []
+                    //assists
+                stat3 = []
+                    //3pts
+                stat4 = []
+                playersFullname = [null, null, null, null, null, null, null, null]
+                playersTeams = [null, null, null, null, null, null, null, null]
+                playersFirstName = [null, null, null, null, null, null, null, null]
+                playersLastName = [null, null, null, null, null, null, null, null]
+                while(index < 8 && response.data.data[index] != null){
+                    playersID.push(response.data.data[index].player_id)
+                    stat1.push(response.data.data[index].pts)
+                    stat2.push(response.data.data[index].reb)
+                    stat3.push(response.data.data[index].ast)
+                    stat4.push(response.data.data[index].fg3_pct)
                     index = index + 1
                 }
-            }
-
-                //search for player pics
-            const searchpic = {
-                method: 'GET',
-                url: 'http://data.nba.net/data/10s/prod/v1/2022/players.json',
-            };
-    
-            axios.request(searchpic).then(function (response) {
                 for (let i = 0; i < playersID.length; i++) {
-                    firstname = playersFirstName[i]
-                    lastname = playersLastName[i]
-                    picid = 0
-                    index2 = 0
                     found = false
-                    console.log(lastname)
-                    while(!found && (response.data.league.standard[index2] != null)){
-                        //console.log(response.data.league.standard[index].firstName)
-                        if(response.data.league.standard[index2].firstName == firstname && response.data.league.standard[index2].lastName == lastname){
-                            console.log("found")
-                            picid = response.data.league.standard[index2].personId
-                            picurlfull = `https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${picid}.png`
-                            document.getElementById(`playerpic${i+1}`).src = picurlfull;
+                    index = 0
+                    while(!found){
+                        if(playersID[i] == allPlayersID[index]){
+                            playersFirstName[i] = allPlayersFN[index]
+                            playersLastName[i] = allPlayersLN[index]
+                            playersFullname[i] = `${playersFirstName[i]} ${playersLastName[i]}`
+                            playersTeams[i] = allPlayersTeam[index]
+                            document.getElementById(playerhtml[i]).innerHTML = playersFullname[i]
+                            document.getElementById(playerhtml[i]).style.visibility = "visible";
+                            document.getElementById(teamhtml[i]).innerHTML = playersTeams[i]
+                            document.getElementById(teamhtml[i]).style.visibility = "visible";
+                            document.getElementById(buttonhtml[i]).style.visibility = "visible";
+                            document.getElementById(pichtml[i]).style.visibility = "visible";
+                            document.getElementById(stat1html[i]).innerHTML = stat1[i]
+                            document.getElementById(stat1html[i]).style.visibility = "visible";
+                            document.getElementById(stat2html[i]).innerHTML = stat2[i]
+                            document.getElementById(stat2html[i]).style.visibility = "visible";
+                            document.getElementById(stat3html[i]).innerHTML = stat3[i]
+                            document.getElementById(stat3html[i]).style.visibility = "visible";
+                            document.getElementById(stat4html[i]).innerHTML = stat4[i]
+                            document.getElementById(stat4html[i]).style.visibility = "visible";
+                            searchprofileID[i] = playersID[i]
+                            searchprofileFN[i] = playersFirstName[i]
+                            searchprofileLN[i] = playersLastName[i]
+                            searchprofileTeam[i] =  playersTeams[i]
                             found = true
                         }
-                        index2 = index2 + 1
+                        index = index + 1
                     }
                 }
-            }).catch(function (error) {
-                console.error(error);
+
+                    //search for player pics
+                const searchpic = {
+                    method: 'GET',
+                    url: 'http://data.nba.net/data/10s/prod/v1/2022/players.json',
+                };
+        
+                axios.request(searchpic).then(function (response) {
+                    for (let i = 0; i < playersID.length; i++) {
+                        firstname = playersFirstName[i]
+                        lastname = playersLastName[i]
+                        picid = 0
+                        index2 = 0
+                        found = false
+                        console.log(lastname)
+                        while(!found && (response.data.league.standard[index2] != null)){
+                            //console.log(response.data.league.standard[index].firstName)
+                            if(response.data.league.standard[index2].firstName == firstname && response.data.league.standard[index2].lastName == lastname){
+                                console.log("found")
+                                picid = response.data.league.standard[index2].personId
+                                picurlfull = `https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${picid}.png`
+                                document.getElementById(`playerpic${i+1}`).src = picurlfull;
+                                found = true
+                            }
+                            index2 = index2 + 1
+                        }
+                    }
+                }).catch(function (error) {
+                    console.error(error);
+                });
             });
+        }).catch(function (error) {
+            console.error(error);
         });
-    }).catch(function (error) {
-        console.error(error);
-    });
+    }
+
+
+        //API and logic for Baseball data
+    else if(mlb){
+        const playersearch = {
+            method: 'GET',
+            url: 'https://mlb-data.p.rapidapi.com/json/named.search_player_all.bam',
+            params: {name_part: '\'cespedes%25\'', sport_code: '\'mlb\'', active_sw: '\'Y\''},
+            headers: {
+              'X-RapidAPI-Key': '9c4416de73msha577cfcfd547904p12fe47jsn52713b65c4ce',
+              'X-RapidAPI-Host': 'mlb-data.p.rapidapi.com'
+            }
+          };
+        
+        axios.request(playersearch).then(function (response) {
+            console.log(response.data);
+        }).catch(function (error) {
+            console.error(error);
+        });
+    }
+
+
+
+        //API and logic for NFL data
+    else if(nfl){
+
+    }
+    
+
+
+
+
 }
 
 async function profile1(){

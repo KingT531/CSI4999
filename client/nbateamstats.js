@@ -35,7 +35,10 @@ async function keeplive(){
         lost = 0
         index = 0
         while(index < response.data.data.length){
-            if(response.data.data[index].home_team_score > response.data.data[index].visitor_team_score){
+            if(response.data.data[index].home_team.id == teamid && response.data.data[index].home_team_score > response.data.data[index].visitor_team_score){
+                win = win + 1
+            }
+            else if(response.data.data[index].visitor_team.id == teamid && response.data.data[index].home_team_score < response.data.data[index].visitor_team_score){
                 win = win + 1
             }
             else{
