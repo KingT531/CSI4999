@@ -16,7 +16,7 @@ async function keeplive() {
         userelement.setAttribute('href', 'profile.html');
 
         //get user favorites from backend
-        //axios.post("https://csi4999-server.herokuapp.com/api/favoriteplayer", {
+        //axios.post("https://csi4999-server.herokuapp.com/api/getfavorites", {
         axios.post("http://localhost:3001/api/getfavorites", {
             username: user,
         }).then(function (response) {
@@ -100,10 +100,19 @@ async function keeplive() {
                                 playerfavteamnames[i] = playerfavteam
                                 playerfavsports[i] = 1
 
+
                                 //get player picture
+
+                                //search nba endpoint for id
+                                // const searchpic = {
+                                //     method: 'GET',
+                                //     url: 'http://data.nba.net/data/10s/prod/v1/2022/players.json',
+                                // };
+
+                                //search local json for id
                                 const searchpic = {
                                     method: 'GET',
-                                    url: 'http://data.nba.net/data/10s/prod/v1/2022/players.json',
+                                    url: 'JSON/nbaplayers.json',
                                 };
 
                                 axios.request(searchpic).then(function (response) {
@@ -170,6 +179,7 @@ async function keeplive() {
 
 function removeplayerfav1link() {
     if (user != "") {
+        //axios.post("https://csi4999-server.herokuapp.com/api/removefavoritep1", {
         axios.post("http://localhost:3001/api/removefavoritep1", {
             username: user,
         }).then(function (response) {
@@ -180,6 +190,7 @@ function removeplayerfav1link() {
 
 function removeplayerfav2link() {
     if (user != "") {
+        //axios.post("https://csi4999-server.herokuapp.com/api/removefavoritep2", {
         axios.post("http://localhost:3001/api/removefavoritep2", {
             username: user,
         }).then(function (response) {
@@ -190,6 +201,7 @@ function removeplayerfav2link() {
 
 function removeplayerfav3link() {
     if (user != "") {
+        //axios.post("https://csi4999-server.herokuapp.com/api/removefavoritep3", {
         axios.post("http://localhost:3001/api/removefavoritep3", {
             username: user,
         }).then(function (response) {
@@ -200,6 +212,7 @@ function removeplayerfav3link() {
 
 function removeplayerfav4link() {
     if (user != "") {
+        //axios.post("https://csi4999-server.herokuapp.com/api/removefavoritep4", {
         axios.post("http://localhost:3001/api/removefavoritep4", {
             username: user,
         }).then(function (response) {
@@ -210,6 +223,7 @@ function removeplayerfav4link() {
 
 function removeplayerfav5link() {
     if (user != "") {
+        //axios.post("https://csi4999-server.herokuapp.com/api/removefavoritep5", {
         axios.post("http://localhost:3001/api/removefavoritep5", {
             username: user,
         }).then(function (response) {
@@ -220,6 +234,7 @@ function removeplayerfav5link() {
 
 function removeplayerfav6link() {
     if (user != "") {
+        //axios.post("https://csi4999-server.herokuapp.com/api/removefavoritep6", {
         axios.post("http://localhost:3001/api/removefavoritep6", {
             username: user,
         }).then(function (response) {
@@ -230,6 +245,7 @@ function removeplayerfav6link() {
 
 function removeplayerfav7link() {
     if (user != "") {
+        //axios.post("https://csi4999-server.herokuapp.com/api/removefavoritep7", {
         axios.post("http://localhost:3001/api/removefavoritep7", {
             username: user,
         }).then(function (response) {
@@ -240,6 +256,7 @@ function removeplayerfav7link() {
 
 function removeplayerfav8link() {
     if (user != "") {
+        //axios.post("https://csi4999-server.herokuapp.com/api/removefavoritep8", {
         axios.post("http://localhost:3001/api/removefavoritep8", {
             username: user,
         }).then(function (response) {
@@ -250,6 +267,7 @@ function removeplayerfav8link() {
 
 function removeplayerfav9link() {
     if (user != "") {
+        //axios.post("https://csi4999-server.herokuapp.com/api/removefavoritep9", {
         axios.post("http://localhost:3001/api/removefavoritep9", {
             username: user,
         }).then(function (response) {
@@ -260,6 +278,7 @@ function removeplayerfav9link() {
 
 function removeplayerfav10link() {
     if (user != "") {
+        //axios.post("https://csi4999-server.herokuapp.com/api/removefavoritep10", {
         axios.post("http://localhost:3001/api/removefavoritep10", {
             username: user,
         }).then(function (response) {
@@ -270,6 +289,7 @@ function removeplayerfav10link() {
 
 function removeteamfav1link() {
     if (user != "") {
+        //axios.post("https://csi4999-server.herokuapp.com/api/removefavoritet1", {
         axios.post("http://localhost:3001/api/removefavoritet1", {
             username: user,
         }).then(function (response) {
@@ -280,6 +300,7 @@ function removeteamfav1link() {
 
 function removeteamfav2link() {
     if (user != "") {
+        //axios.post("https://csi4999-server.herokuapp.com/api/removefavoritet2", {
         axios.post("http://localhost:3001/api/removefavoritet2", {
             username: user,
         }).then(function (response) {
@@ -290,6 +311,7 @@ function removeteamfav2link() {
 
 function removeteamfav3link() {
     if (user != "") {
+        //axios.post("https://csi4999-server.herokuapp.com/api/removefavoritet3", {
         axios.post("http://localhost:3001/api/removefavoritet3", {
             username: user,
         }).then(function (response) {
@@ -300,6 +322,7 @@ function removeteamfav3link() {
 
 function removeteamfav4link() {
     if (user != "") {
+        //axios.post("https://csi4999-server.herokuapp.com/api/removefavoritet4", {
         axios.post("http://localhost:3001/api/removefavoritet4", {
             username: user,
         }).then(function (response) {
@@ -310,6 +333,7 @@ function removeteamfav4link() {
 
 function removeteamfav5link() {
     if (user != "") {
+        //axios.post("https://csi4999-server.herokuapp.com/api/removefavoritet5", {
         axios.post("http://localhost:3001/api/removefavoritet5", {
             username: user,
         }).then(function (response) {
@@ -320,6 +344,7 @@ function removeteamfav5link() {
 
 function removeteamfav6link() {
     if (user != "") {
+        //axios.post("https://csi4999-server.herokuapp.com/api/removefavoritet6", {
         axios.post("http://localhost:3001/api/removefavoritet6", {
             username: user,
         }).then(function (response) {
@@ -330,6 +355,7 @@ function removeteamfav6link() {
 
 function removeteamfav7link() {
     if (user != "") {
+        //axios.post("https://csi4999-server.herokuapp.com/api/removefavoritet7", {
         axios.post("http://localhost:3001/api/removefavoritet7", {
             username: user,
         }).then(function (response) {
@@ -340,6 +366,7 @@ function removeteamfav7link() {
 
 function removeteamfav8link() {
     if (user != "") {
+        //axios.post("https://csi4999-server.herokuapp.com/api/removefavoritet8", {
         axios.post("http://localhost:3001/api/removefavoritet8", {
             username: user,
         }).then(function (response) {
@@ -350,6 +377,7 @@ function removeteamfav8link() {
 
 function removeteamfav9link() {
     if (user != "") {
+        //axios.post("https://csi4999-server.herokuapp.com/api/removefavoritet9", {
         axios.post("http://localhost:3001/api/removefavoritet9", {
             username: user,
         }).then(function (response) {
@@ -360,6 +388,7 @@ function removeteamfav9link() {
 
 function removeteamfav10link() {
     if (user != "") {
+        //axios.post("https://csi4999-server.herokuapp.com/api/removefavoritet10", {
         axios.post("http://localhost:3001/api/removefavoritet10", {
             username: user,
         }).then(function (response) {

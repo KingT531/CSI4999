@@ -63,7 +63,7 @@ async function favorite() {
     username = window.localStorage.getItem('user');
     if (username != "") {
         fav = `1${teamid}#${teamname}`
-        //axios.post("https://csi4999-server.herokuapp.com/api/favoriteplayer", {
+        //axios.post("https://csi4999-server.herokuapp.com/api/favoriteteam", {
         axios.post("http://localhost:3001/api/favoriteteam", {
             username: username,
             favorite: fav,
