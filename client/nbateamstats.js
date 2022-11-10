@@ -62,21 +62,29 @@ async function keeplive() {
 async function favorite() {
     username = window.localStorage.getItem('user');
     if (username != "") {
-        fav = `1${teamid}`
+        fav = `1${teamid}#${teamname}`
         //axios.post("https://csi4999-server.herokuapp.com/api/favoriteplayer", {
         axios.post("http://localhost:3001/api/favoriteteam", {
             username: username,
             favorite: fav,
         }).then(function (response) {
-            if (response.data.favoriteRes) {
+            if (response.data.status == 0) {
+                document.getElementById('favmessage').innerHTML = "Added to Favorites"
                 console.log("succeeded to add favorite")
             }
-            else if (!response.data.favoriteRes) {
+            else if (response.data.status == 1) {
                 document.getElementById('favmessage').innerHTML = "Favorites List is full!"
                 console.log("Failed to add favorite")
             }
-            else {
+            else if (response.data.status == 2) {
+                document.getElementById('favmessage').innerHTML = "Favorite Already Exists!"
+                console.log("Failed to add favorite")
+            }
+            else if (response.data.status == 3) {
                 document.getElementById('favmessage').innerHTML = "Not Logged In!"
+                console.log("Failed to add favorite")
+            }
+            else {
                 console.log("error");
             }
         })

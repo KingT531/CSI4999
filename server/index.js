@@ -116,145 +116,159 @@ app.post('/api/favoriteplayer', (req, res) => {
         //     res.send({err:err})
         // }
         if (result.length > 0) {
+            pfav = [null, null, null, null, null, null, null, null, null, null]
+            pfav[0] = result[0].playerfav1
+            pfav[1] = result[0].playerfav2
+            pfav[2] = result[0].playerfav3
+            pfav[3] = result[0].playerfav4
+            pfav[4] = result[0].playerfav5
+            pfav[5] = result[0].playerfav6
+            pfav[6] = result[0].playerfav7
+            pfav[7] = result[0].playerfav8
+            pfav[8] = result[0].playerfav9
+            pfav[9] = result[0].playerfav10
 
-            pfav1 = result[0].playerfav1
-            pfav2 = result[0].playerfav2
-            pfav3 = result[0].playerfav3
-            pfav4 = result[0].playerfav4
-            pfav5 = result[0].playerfav5
-            pfav6 = result[0].playerfav6
-            pfav7 = result[0].playerfav7
-            pfav8 = result[0].playerfav8
-            pfav9 = result[0].playerfav9
-            pfav10 = result[0].playerfav10
-
-            if (pfav1 == null) {
-                const sqlInsertFavorite = "UPDATE favorites SET playerfav1 = ? WHERE username = ?";
-                db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
-                    if (err) {
-                        console.log(err)
-                        res.send({ err: err })
-                    }
-                    else {
-                        res.send({ favoriteRes: true })
-                    }
-                });
-            }
-            else if (pfav2 == null) {
-                const sqlInsertFavorite = "UPDATE favorites SET playerfav2 = ? WHERE username = ?";
-                db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
-                    if (err) {
-                        console.log(err)
-                        res.send({ err: err })
-                    }
-                    else {
-                        res.send({ favoriteRes: true })
-                    }
-                });
+            newfavorite = true
+            index = 0
+            while (newfavorite && index < 10) {
+                if (favorite == pfav[index]) {
+                    newfavorite = false
+                }
+                index = index + 1
             }
 
-            else if (pfav3 == null) {
-                const sqlInsertFavorite = "UPDATE favorites SET playerfav3 = ? WHERE username = ?";
-                db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
-                    if (err) {
-                        console.log(err)
-                        res.send({ err: err })
-                    }
-                    else {
-                        res.send({ favoriteRes: true })
-                    }
-                });
-            }
-            else if (pfav4 == null) {
-                const sqlInsertFavorite = "UPDATE favorites SET playerfav4 = ? WHERE username = ?";
-                db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
-                    if (err) {
-                        console.log(err)
-                        res.send({ err: err })
-                    }
-                    else {
-                        res.send({ favoriteRes: true })
-                    }
-                });
-            }
-            else if (pfav5 == null) {
-                const sqlInsertFavorite = "UPDATE favorites SET playerfav5 = ? WHERE username = ?";
-                db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
-                    if (err) {
-                        console.log(err)
-                        res.send({ err: err })
-                    }
-                    else {
-                        res.send({ favoriteRes: true })
-                    }
-                });
-            }
-            else if (pfav6 == null) {
-                const sqlInsertFavorite = "UPDATE favorites SET playerfav6 = ? WHERE username = ?";
-                db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
-                    if (err) {
-                        console.log(err)
-                        res.send({ err: err })
-                    }
-                    else {
-                        res.send({ favoriteRes: true })
-                    }
-                });
-            }
-            else if (pfav7 == null) {
-                const sqlInsertFavorite = "UPDATE favorites SET playerfav7 = ? WHERE username = ?";
-                db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
-                    if (err) {
-                        console.log(err)
-                        res.send({ err: err })
-                    }
-                    else {
-                        res.send({ favoriteRes: true })
-                    }
-                });
-            }
-            else if (pfav8 == null) {
-                const sqlInsertFavorite = "UPDATE favorites SET playerfav8 = ? WHERE username = ?";
-                db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
-                    if (err) {
-                        console.log(err)
-                        res.send({ err: err })
-                    }
-                    else {
-                        res.send({ favoriteRes: true })
-                    }
-                });
-            }
-            else if (pfav9 == null) {
-                const sqlInsertFavorite = "UPDATE favorites SET playerfav9 = ? WHERE username = ?";
-                db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
-                    if (err) {
-                        console.log(err)
-                        res.send({ err: err })
-                    }
-                    else {
-                        res.send({ favoriteRes: true })
-                    }
-                });
-            }
-            else if (pfav10 == null) {
-                const sqlInsertFavorite = "UPDATE favorites SET playerfav10 = ? WHERE username = ?";
-                db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
-                    if (err) {
-                        console.log(err)
-                        res.send({ err: err })
-                    }
-                    else {
-                        res.send({ favoriteRes: true })
-                    }
-                });
+            if (newfavorite) {
+                if (pfav[0] == null) {
+                    const sqlInsertFavorite = "UPDATE favorites SET playerfav1 = ? WHERE username = ?";
+                    db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
+                        if (err) {
+                            console.log(err)
+                            res.send({ err: err })
+                        }
+                        else {
+                            res.send({ status: 0 })
+                        }
+                    });
+                }
+                else if (pfav[1] == null) {
+                    const sqlInsertFavorite = "UPDATE favorites SET playerfav2 = ? WHERE username = ?";
+                    db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
+                        if (err) {
+                            console.log(err)
+                            res.send({ err: err })
+                        }
+                        else {
+                            res.send({ status: 0 })
+                        }
+                    });
+                }
+
+                else if (pfav[2] == null) {
+                    const sqlInsertFavorite = "UPDATE favorites SET playerfav3 = ? WHERE username = ?";
+                    db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
+                        if (err) {
+                            console.log(err)
+                            res.send({ err: err })
+                        }
+                        else {
+                            res.send({ status: 0 })
+                        }
+                    });
+                }
+                else if (pfav[3] == null) {
+                    const sqlInsertFavorite = "UPDATE favorites SET playerfav4 = ? WHERE username = ?";
+                    db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
+                        if (err) {
+                            console.log(err)
+                            res.send({ err: err })
+                        }
+                        else {
+                            res.send({ status: 0 })
+                        }
+                    });
+                }
+                else if (pfav[4] == null) {
+                    const sqlInsertFavorite = "UPDATE favorites SET playerfav5 = ? WHERE username = ?";
+                    db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
+                        if (err) {
+                            console.log(err)
+                            res.send({ err: err })
+                        }
+                        else {
+                            res.send({ status: 0 })
+                        }
+                    });
+                }
+                else if (pfav[5] == null) {
+                    const sqlInsertFavorite = "UPDATE favorites SET playerfav6 = ? WHERE username = ?";
+                    db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
+                        if (err) {
+                            console.log(err)
+                            res.send({ err: err })
+                        }
+                        else {
+                            res.send({ status: 0 })
+                        }
+                    });
+                }
+                else if (pfav[6] == null) {
+                    const sqlInsertFavorite = "UPDATE favorites SET playerfav7 = ? WHERE username = ?";
+                    db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
+                        if (err) {
+                            console.log(err)
+                            res.send({ err: err })
+                        }
+                        else {
+                            res.send({ status: 0 })
+                        }
+                    });
+                }
+                else if (pfav[7] == null) {
+                    const sqlInsertFavorite = "UPDATE favorites SET playerfav8 = ? WHERE username = ?";
+                    db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
+                        if (err) {
+                            console.log(err)
+                            res.send({ err: err })
+                        }
+                        else {
+                            res.send({ status: 0 })
+                        }
+                    });
+                }
+                else if (pfav[8] == null) {
+                    const sqlInsertFavorite = "UPDATE favorites SET playerfav9 = ? WHERE username = ?";
+                    db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
+                        if (err) {
+                            console.log(err)
+                            res.send({ err: err })
+                        }
+                        else {
+                            res.send({ status: 0 })
+                        }
+                    });
+                }
+                else if (pfav[9] == null) {
+                    const sqlInsertFavorite = "UPDATE favorites SET playerfav10 = ? WHERE username = ?";
+                    db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
+                        if (err) {
+                            console.log(err)
+                            res.send({ err: err })
+                        }
+                        else {
+                            res.send({ status: 0 })
+                        }
+                    });
+                }
+                else {
+                    res.send({ status: 1 })
+                }
             }
             else {
-                res.send({ favoriteRes: false })
+                res.send({ status: 2 })
             }
         }
         else {
-            res.send({ favoriteRes: false })
+            res.send({ status: 3 })
         }
     });
 });
@@ -272,80 +286,161 @@ app.post('/api/favoriteteam', (req, res) => {
         //     res.send({err:err})
         // }
         if (result.length > 0) {
+            tfav = [null, null, null, null, null, null, null, null, null, null]
+            tfav[0] = result[0].teamfav1
+            tfav[1] = result[0].teamfav2
+            tfav[2] = result[0].teamfav3
+            tfav[3] = result[0].teamfav4
+            tfav[4] = result[0].teamfav5
+            tfav[5] = result[0].teamfav6
+            tfav[6] = result[0].teamfav7
+            tfav[7] = result[0].teamfav8
+            tfav[8] = result[0].teamfav9
+            tfav[9] = result[0].teamfav10
 
-            tfav1 = result[0].teamfav1
-            tfav2 = result[0].teamfav2
-            tfav3 = result[0].teamfav3
-            tfav4 = result[0].teamfav4
-            tfav5 = result[0].teamfav5
+            newfavorite = true
+            index = 0
+            while (newfavorite && index < 10) {
+                if (favorite == tfav[index]) {
+                    newfavorite = false
+                }
+                index = index + 1
+            }
+            if (newfavorite) {
+                if (tfav[0] == null) {
+                    const sqlInsertFavorite = "UPDATE favorites SET teamfav1 = ? WHERE username = ?";
+                    db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
+                        if (err) {
+                            console.log(err)
+                            res.send({ err: err })
+                        }
+                        else {
+                            res.send({ status: 0 })
+                        }
+                    });
+                }
+                else if (tfav[1] == null) {
+                    const sqlInsertFavorite = "UPDATE favorites SET teamfav2 = ? WHERE username = ?";
+                    db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
+                        if (err) {
+                            console.log(err)
+                            res.send({ err: err })
+                        }
+                        else {
+                            res.send({ status: 0 })
+                        }
+                    });
+                }
 
-            if (tfav1 == null) {
-                const sqlInsertFavorite = "UPDATE favorites SET teamfav1 = ? WHERE username = ?";
-                db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
-                    if (err) {
-                        console.log(err)
-                        res.send({ err: err })
-                    }
-                    else {
-                        res.send({ favoriteRes: true })
-                    }
-                });
-            }
-            else if (tfav2 == null) {
-                const sqlInsertFavorite = "UPDATE favorites SET teamfav2 = ? WHERE username = ?";
-                db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
-                    if (err) {
-                        console.log(err)
-                        res.send({ err: err })
-                    }
-                    else {
-                        res.send({ favoriteRes: true })
-                    }
-                });
-            }
-
-            else if (tfav3 == null) {
-                const sqlInsertFavorite = "UPDATE favorites SET teamfav3 = ? WHERE username = ?";
-                db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
-                    if (err) {
-                        console.log(err)
-                        res.send({ err: err })
-                    }
-                    else {
-                        res.send({ favoriteRes: true })
-                    }
-                });
-            }
-            else if (tfav4 == null) {
-                const sqlInsertFavorite = "UPDATE favorites SET teamfav4 = ? WHERE username = ?";
-                db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
-                    if (err) {
-                        console.log(err)
-                        res.send({ err: err })
-                    }
-                    else {
-                        res.send({ favoriteRes: true })
-                    }
-                });
-            }
-            else if (tfav5 == null) {
-                const sqlInsertFavorite = "UPDATE favorites SET teamfav5 = ? WHERE username = ?";
-                db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
-                    if (err) {
-                        console.log(err)
-                        res.send({ err: err })
-                    }
-                    else {
-                        res.send({ favoriteRes: true })
-                    }
-                });
+                else if (tfav[2] == null) {
+                    const sqlInsertFavorite = "UPDATE favorites SET teamfav3 = ? WHERE username = ?";
+                    db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
+                        if (err) {
+                            console.log(err)
+                            res.send({ err: err })
+                        }
+                        else {
+                            res.send({ status: 0 })
+                        }
+                    });
+                }
+                else if (tfav[3] == null) {
+                    const sqlInsertFavorite = "UPDATE favorites SET teamfav4 = ? WHERE username = ?";
+                    db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
+                        if (err) {
+                            console.log(err)
+                            res.send({ err: err })
+                        }
+                        else {
+                            res.send({ status: 0 })
+                        }
+                    });
+                }
+                else if (tfav[4] == null) {
+                    const sqlInsertFavorite = "UPDATE favorites SET teamfav5 = ? WHERE username = ?";
+                    db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
+                        if (err) {
+                            console.log(err)
+                            res.send({ err: err })
+                        }
+                        else {
+                            res.send({ status: 0 })
+                        }
+                    });
+                }
+                else if (tfav[5] == null) {
+                    const sqlInsertFavorite = "UPDATE favorites SET teamfav6 = ? WHERE username = ?";
+                    db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
+                        if (err) {
+                            console.log(err)
+                            res.send({ err: err })
+                        }
+                        else {
+                            res.send({ status: 0 })
+                        }
+                    });
+                }
+                else if (tfav[6] == null) {
+                    const sqlInsertFavorite = "UPDATE favorites SET teamfav7 = ? WHERE username = ?";
+                    db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
+                        if (err) {
+                            console.log(err)
+                            res.send({ err: err })
+                        }
+                        else {
+                            res.send({ status: 0 })
+                        }
+                    });
+                }
+                else if (tfav[7] == null) {
+                    const sqlInsertFavorite = "UPDATE favorites SET teamfav8 = ? WHERE username = ?";
+                    db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
+                        if (err) {
+                            console.log(err)
+                            res.send({ err: err })
+                        }
+                        else {
+                            res.send({ status: 0 })
+                        }
+                    });
+                }
+                else if (tfav[8] == null) {
+                    const sqlInsertFavorite = "UPDATE favorites SET teamfav9 = ? WHERE username = ?";
+                    db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
+                        if (err) {
+                            console.log(err)
+                            res.send({ err: err })
+                        }
+                        else {
+                            res.send({ status: 0 })
+                        }
+                    });
+                }
+                else if (tfav[9] == null) {
+                    const sqlInsertFavorite = "UPDATE favorites SET teamfav10 = ? WHERE username = ?";
+                    db.query(sqlInsertFavorite, [favorite, username], (err, result) => {
+                        if (err) {
+                            console.log(err)
+                            res.send({ err: err })
+                        }
+                        else {
+                            res.send({ status: 0 })
+                        }
+                    });
+                }
+                else {
+                    res.send({ status: 1 })
+                    console.log("favorite list is full")
+                }
             }
             else {
-                res.send({ favoriteRes: false })
+                res.send({ status: 2 })
+                console.log("Favorite Already Exists")
             }
         }
         else {
-            res.send({ favoriteRes: false })
+            res.send({ status: 3 })
+            console.log("Not Logged In")
         }
     });
 });
@@ -566,6 +661,76 @@ app.post('/api/removefavoritet5', (req, res) => {
 
     const username = req.body.username;
     const sqlGetFavorites = "UPDATE favorites SET teamfav5 = NULL WHERE username = ?";
+    db.query(sqlGetFavorites, [username], (err, result) => {
+        if (result.length > 0) {
+            res.send(true)
+        }
+        else {
+            res.send({ err: err })
+        }
+    });
+});
+
+app.post('/api/removefavoritet6', (req, res) => {
+
+    const username = req.body.username;
+    const sqlGetFavorites = "UPDATE favorites SET teamfav6 = NULL WHERE username = ?";
+    db.query(sqlGetFavorites, [username], (err, result) => {
+        if (result.length > 0) {
+            res.send(true)
+        }
+        else {
+            res.send({ err: err })
+        }
+    });
+});
+
+app.post('/api/removefavoritet7', (req, res) => {
+
+    const username = req.body.username;
+    const sqlGetFavorites = "UPDATE favorites SET teamfav7 = NULL WHERE username = ?";
+    db.query(sqlGetFavorites, [username], (err, result) => {
+        if (result.length > 0) {
+            res.send(true)
+        }
+        else {
+            res.send({ err: err })
+        }
+    });
+});
+
+app.post('/api/removefavoritet8', (req, res) => {
+
+    const username = req.body.username;
+    const sqlGetFavorites = "UPDATE favorites SET teamfav8 = NULL WHERE username = ?";
+    db.query(sqlGetFavorites, [username], (err, result) => {
+        if (result.length > 0) {
+            res.send(true)
+        }
+        else {
+            res.send({ err: err })
+        }
+    });
+});
+
+app.post('/api/removefavoritet9', (req, res) => {
+
+    const username = req.body.username;
+    const sqlGetFavorites = "UPDATE favorites SET teamfav9 = NULL WHERE username = ?";
+    db.query(sqlGetFavorites, [username], (err, result) => {
+        if (result.length > 0) {
+            res.send(true)
+        }
+        else {
+            res.send({ err: err })
+        }
+    });
+});
+
+app.post('/api/removefavoritet10', (req, res) => {
+
+    const username = req.body.username;
+    const sqlGetFavorites = "UPDATE favorites SET teamfav10 = NULL WHERE username = ?";
     db.query(sqlGetFavorites, [username], (err, result) => {
         if (result.length > 0) {
             res.send(true)
