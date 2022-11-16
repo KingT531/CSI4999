@@ -21,10 +21,16 @@ async function keeplive() {
     document.getElementById('playername').innerHTML = playername
 
     //find player image
+    // const searchpic = {
+    //     method: 'GET',
+    //     url: 'http://data.nba.net/data/10s/prod/v1/2022/players.json',
+    // };
+
     const searchpic = {
         method: 'GET',
-        url: 'http://data.nba.net/data/10s/prod/v1/2022/players.json',
+        url: 'JSON/nbaplayers.json',
     };
+
     axios.request(searchpic).then(function (response) {
         firstname = playerfirst
         lastname = playerlast
