@@ -1,21 +1,21 @@
 
-function keeplive(){
-     //load user login information
-     user = window.localStorage.getItem('user');
-     var userelement = document.getElementById('loginstatus');
-     if(user != ""){
-         document.getElementById('loginstatus').innerHTML = user;
-         userelement.setAttribute('href', 'profile.html');
-     }
-     else{
-     }
+function keeplive() {
+    //load user login information
+    user = window.localStorage.getItem('user');
+    var userelement = document.getElementById('loginstatus');
+    if (user != "") {
+        document.getElementById('loginstatus').innerHTML = user;
+        userelement.setAttribute('href', 'profile.html');
+    }
+    else {
+    }
 }
 
-function logout(){
+function logout() {
     empty = "";
     window.localStorage.setItem('user', empty);
     document.getElementById('status').innerHTML = "";
-    document.getElementById("logoutbutton").style.visibility  = "hidden";
+    document.getElementById("logoutbutton").style.visibility = "hidden";
 }
 
 function register() {
@@ -26,47 +26,53 @@ function register() {
     const fname = document.getElementById('Fname').value;
     const lname = document.getElementById('Lname').value;
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    var passformat=  /^[A-Za-z0-9]\w{2,15}$/;
-    var userformat=  /^[A-Za-z0-9]\w{1,15}$/;
-    var nameformat=  /^[A-Za-z]\w{0,15}$/;
+    var passformat = /^[A-Za-z0-9]\w{2,15}$/;
+    var userformat = /^[A-Za-z0-9]\w{1,15}$/;
+    var nameformat = /^[A-Za-z]\w{0,15}$/;
 
-    if(formuser.length === 0 || formpass.length === 0 || formpass2.length === 0 || formemail.length === 0 || fname.length === 0 || lname.length === 0){
+    if (formuser.length === 0 || formpass.length === 0 || formpass2.length === 0 || formemail.length === 0 || fname.length === 0 || lname.length === 0) {
         console.log("A Field is Empty");
+        document.getElementById('regstatus').innerHTML = "A field is empty";
     }
-    else if(formpass != formpass2){
+    else if (formpass != formpass2) {
         console.log("Passwords don't match")
+        document.getElementById('regstatus').innerHTML = "Passwords Don't Match";
     }
-    else if(!formemail.match(mailformat)){
+    else if (!formemail.match(mailformat)) {
         console.log("Invalid Email format")
+        document.getElementById('regstatus').innerHTML = "Invalid Email format";
     }
-    else if(!formuser.match(userformat)){
-        console.log("Invalid Username format")
+    else if (!formuser.match(userformat)) {
+        document.getElementById('regstatus').innerHTML = "Invalid Email format";
     }
-    else if(!formpass.match(passformat)){
+    else if (!formpass.match(passformat)) {
         console.log("Invalid Password format")
+        document.getElementById('regstatus').innerHTML = "Invalid Password format";
     }
-    else if(!fname.match(nameformat) || !lname.match(nameformat)){
+    else if (!fname.match(nameformat) || !lname.match(nameformat)) {
         console.log("Invalid first or last name format")
+        document.getElementById('regstatus').innerHTML = "Invalid first or last name format";
     }
-    else{
+    else {
         //axios.post("https://csi4999-server.herokuapp.com/api/register", {
-        axios.post("http://localhost:3001/api/register", {   
-            username: formuser, 
+        axios.post("http://localhost:3001/api/register", {
+            username: formuser,
             password: formpass,
             email: formemail,
             first: fname,
             last: lname,
-        }).then(function(response){
-            if (response.data.newaccount){
+        }).then(function (response) {
+            if (response.data.newaccount) {
                 console.log("Account Created")
                 window.location.href = "login.html";
                 //document.getElementById('logstatus').innerHTML = "account created: " + userval;
             }
-            else if (!response.data.newaccount){
+            else if (!response.data.newaccount) {
                 console.log("User already exists")
+                document.getElementById('regstatus').innerHTML = "User already exists";
                 //document.getElementById('logstatus').innerHTML = "User already exists";
             }
-            else{
+            else {
                 console.log("error");
             }
         })
