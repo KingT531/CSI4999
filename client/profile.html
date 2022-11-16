@@ -24,6 +24,7 @@
     <div>
     <p class="favtitle">Player Favorites:</p>
   </div>
+  <div class="pfavs1">
     <div id="pfav1" class="favorite">
       <p id="playerfav1name">Player1Favorite</p>
       <p id="playerfav1team">Player1Favoriteteam</p>
@@ -68,7 +69,8 @@
     <button id="player5favbutton" onclick="playerfav5link()">Profile</button>
     <button id="player5removebutton" onclick="removeplayerfav5link()">Remove Favorite</button>
   </div>
-
+</div>
+  <div class="pfavs1">
     <div id="pfav6" class="favorite">
     <p id="playerfav6name">Player6Favorite</p>
     <p id="playerfav6team">Player6Favoriteteam</p>
@@ -113,13 +115,14 @@
     <button id="player10favbutton" onclick="playerfav10link()">Profile</button>
     <button id="player10removebutton" onclick="removeplayerfav10link()">Remove Favorite</button>
     </div>
+  </div>
 
     <p></p><p></p><p></p><p></p><p></p><p></p>
     <div>
       <p class="favtitle">Team Favorites:</p>
     </div>
-
-    <div id="tfav1" class="favorite">
+<div class="tfavs1">
+  <div id="tfav1" class="favorite">
     <p id="teamfav1name">Team1Favorite</p>
     <img src="pics/no-image.jpg" class="tpic" id="teamfav1pic" alt="team img" />
     <p></p>
@@ -158,7 +161,9 @@
     <button id="team5favbutton" onclick="teamfav5link()">Profile</button>
     <button id="team5removebutton" onclick="removeteamfav5link()">Remove Favorite</button>
   </div>
+</div>
 
+<div class="tfavs2">
   <div id="tfav6" class="favorite">
     <p id="teamfav6name">Team6Favorite</p>
     <img src="pics/no-image.jpg" class="tpic" id="teamfav6pic" alt="team img" />
@@ -198,6 +203,7 @@
     <button id="team10favbutton" onclick="teamfav10link()">Profile</button>
     <button id="team10removebutton" onclick="removeteamfav10link()">Remove Favorite</button>
   </div>
+</div>
     <script src="https://unpkg.com/axios@1.0.0/dist/axios.min.js"></script>
     <script src="profile.js"></script>
   </body>
