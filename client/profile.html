@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>Profile</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="stylesheet" type="text/css" href="profile.css" />
   </head>
-  <body onload="keeplive()">
+
+  <body onload="keeplive()" class="body">
     <header>
       <nav>
         <ul class="navigation">
@@ -17,6 +19,7 @@
       </nav>
       <a id="loginstatus" class="login" href="login.html"><button>Login</button></a>
     </header>
+    
     <div class="userstatus">
       <p id="username"></p>
       <button onclick="logout()">Logout</button>
@@ -92,7 +95,7 @@
     <div id="pfav8" class="favorite">
     <p id="playerfav8name">Player8Favorite</p>
     <p id="playerfav8team">Player8Favoriteteam</p>
-    <img src="pics/no-image.jpg" class="tpic" id="playerfav8pic" alt="player img" />
+    <img src="pics/no-image.jpg" id="playerfav8pic" alt="player img" />
     <p></p>
     <button id="player8favbutton" onclick="playerfav8link()">Profile</button>
     <button id="player8removebutton" onclick="removeplayerfav8link()">Remove Favorite</button>
@@ -101,7 +104,7 @@
     <div id="pfav9" class="favorite">
     <p id="playerfav9name">Player9Favorite</p>
     <p id="playerfav9team">Player9Favoriteteam</p>
-    <img src="pics/no-image.jpg" class="tpic" id="playerfav9pic" alt="player img" />
+    <img src="pics/no-image.jpg" id="playerfav9pic" alt="player img" />
     <p></p>
     <button id="player9favbutton" onclick="playerfav9link()">Profile</button>
     <button id="player9removebutton" onclick="removeplayerfav9link()">Remove Favorite</button>
@@ -110,7 +113,7 @@
     <div id="pfav10" class="favorite">
     <p id="playerfav10name">Player10Favorite</p>
     <p id="playerfav10team">Player10Favoriteteam</p>
-    <img src="pics/no-image.jpg" class="tpic" id="playerfav10pic" alt="player img" />
+    <img src="pics/no-image.jpg" id="playerfav10pic" alt="player img" />
     <p></p>
     <button id="player10favbutton" onclick="playerfav10link()">Profile</button>
     <button id="player10removebutton" onclick="removeplayerfav10link()">Remove Favorite</button>

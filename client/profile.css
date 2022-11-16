@@ -9,6 +9,10 @@
     padding: 10px;
 }
 
+.body {
+    /* background-image: linear-gradient(red, yellow); */
+}
+
 .favtitle {
     font-size: 50px;
     text-align: center;
