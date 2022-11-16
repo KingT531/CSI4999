@@ -93,6 +93,12 @@ async function keeplive() {
                                 fullname = `${playerfavfname} ${playerfavlname}`
                                 document.getElementById(`playerfav${i + 1}name`).innerHTML = fullname
                                 document.getElementById(`playerfav${i + 1}team`).innerHTML = playerfavteam
+                                document.getElementById(`playerfav${i + 1}name`).style.visibility = "visible";
+                                document.getElementById(`playerfav${i + 1}team`).style.visibility = "visible";
+                                document.getElementById(`playerfav${i + 1}pic`).style.visibility = "visible";
+                                document.getElementById(`player${i + 1}favbutton`).style.visibility = "visible";
+                                document.getElementById(`player${i + 1}removebutton`).style.visibility = "visible";
+                                document.getElementById(`pfav${i + 1}`).style.visibility = "visible";
 
                                 playerfavids[i] = playerfavid
                                 playerfavfnames[i] = playerfavfname
@@ -135,6 +141,15 @@ async function keeplive() {
                             default:
                         }
                     }
+                    else {
+                        //clear data
+                        document.getElementById(`playerfav${i + 1}name`).remove();
+                        document.getElementById(`playerfav${i + 1}team`).remove();
+                        document.getElementById(`playerfav${i + 1}pic`).remove();
+                        document.getElementById(`player${i + 1}favbutton`).remove();
+                        document.getElementById(`player${i + 1}removebutton`).remove();
+                        document.getElementById(`pfav${i + 1}`).remove();
+                    }
                 }
 
                 //display team favorites
@@ -164,6 +179,14 @@ async function keeplive() {
                                 break;
                             default:
                         }
+                    }
+                    else {
+                        //clear data
+                        document.getElementById(`teamfav${i + 1}name`).remove();
+                        document.getElementById(`teamfav${i + 1}pic`).remove();
+                        document.getElementById(`team${i + 1}favbutton`).remove();
+                        document.getElementById(`team${i + 1}removebutton`).remove();
+                        document.getElementById(`tfav${i + 1}`).remove();
                     }
                 }
             }
