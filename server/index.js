@@ -7,23 +7,6 @@ const bcrypt = require('bcryptjs')
 const e = require('express')
 const saltRounds = 10;
 
-// details for connecting to database on heroku server
-// mysql://b4baa5583f6588:f55feaaf@us-cdbr-east-06.cleardb.net/heroku_6790ad1ab9e7025?reconnect=true
-// const db = mysql.createPool({
-//     host: 'us-cdbr-east-06.cleardb.net',
-//     user: 'b4baa5583f6588',
-//     password: 'f55feaaf',
-//     database: 'heroku_6790ad1ab9e7025'
-// })
-
-// database connection information - must change to connect to database locally
-const db = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'sports',
-})
-
 // used for online hosting otherwise may get error connecting
 // app.use(cors({
 //     //origin: ["http://localhost:3000"],
@@ -37,6 +20,23 @@ const db = mysql.createPool({
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// database connection information - must change to connect to database locally
+const db = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'sports',
+})
+
+// details for connecting to database on heroku server
+// mysql://b4baa5583f6588:f55feaaf@us-cdbr-east-06.cleardb.net/heroku_6790ad1ab9e7025?reconnect=true
+// const db = mysql.createPool({
+//     host: 'us-cdbr-east-06.cleardb.net',
+//     user: 'b4baa5583f6588',
+//     password: '',
+//     database: 'heroku_6790ad1ab9e7025'
+// })
 
 // Login 
 app.post('/api/login', (req, res) => {
