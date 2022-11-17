@@ -76,17 +76,18 @@ async function keeplive() {
     to = [null]
 
     //2d array of season stats and season year
-    xyPoints = []
-    xyMIN = []
-    xyFG = []
-    xyP3 = []
-    xyFT = []
-    xyReb = []
-    xyAST = []
-    xyBLK = []
-    xySTL = []
-    xyPF = []
-    xyTO = []
+    yPoints = []
+    yMIN = []
+    yFG = []
+    yP3 = []
+    yFT = []
+    yReb = []
+    yAST = []
+    yBLK = []
+    ySTL = []
+    yPF = []
+    yTO = []
+    xseasons = []
 
     axios.request(getseasonaverage).then(function (response) {
         if (response.data.data.length != 0) {
@@ -104,17 +105,18 @@ async function keeplive() {
             pf[0] = response.data.data[0].pf
             to[0] = response.data.data[0].turnover
 
-            xyPoints.push({ x: season, y: pts[0] })
-            xyMIN.push({ x: season, y: min[0] })
-            xyFG.push({ x: season, y: fg[0] })
-            xyP3.push({ x: season, y: p3[0] })
-            xyFT.push({ x: season, y: ft[0] })
-            xyReb.push({ x: season, y: reb[0] })
-            xyAST.push({ x: season, y: ast[0] })
-            xyBLK.push({ x: season, y: blk[0] })
-            xySTL.push({ x: season, y: stl[0] })
-            xyPF.push({ x: season, y: pf[0] })
-            xyTO.push({ x: season, y: to[0] })
+            yPoints.push(pts[0])
+            yMIN.push(min[0])
+            yFG.push(fg[0])
+            yP3.push(p3[0])
+            yFT.push(ft[0])
+            yReb.push(reb[0])
+            yAST.push(ast[0])
+            yBLK.push(blk[0])
+            ySTL.push(stl[0])
+            yPF.push(pf[0])
+            yTO.push(to[0])
+            xseasons.push(season)
 
             document.getElementById('playerstatGP').innerHTML = `Games Played: ${gp[0]}`
             document.getElementById('playerstatPTS').innerHTML = `PTS: ${pts[0]}`
@@ -170,195 +172,209 @@ async function keeplive() {
                     ipf = response.data.data[0].pf
                     ito = response.data.data[0].turnover
 
-                    xyPoints.unshift({ x: iseason, y: ipoints })
-                    xyMIN.unshift({ x: iseason, y: imin })
-                    xyFG.unshift({ x: iseason, y: ifg })
-                    xyP3.unshift({ x: iseason, y: ip3 })
-                    xyFT.unshift({ x: iseason, y: ift })
-                    xyReb.unshift({ x: iseason, y: ireb })
-                    xyAST.unshift({ x: iseason, y: iast })
-                    xyBLK.unshift({ x: iseason, y: iblk })
-                    xySTL.unshift({ x: iseason, y: istl })
-                    xyPF.unshift({ x: iseason, y: ipf })
-                    xyTO.unshift({ x: iseason, y: ito })
+                    yPoints.unshift(ipoints)
+                    yMIN.unshift(imin)
+                    yFG.unshift(ifg)
+                    yP3.unshift(ip3)
+                    yFT.unshift(ift)
+                    yReb.unshift(ireb)
+                    yAST.unshift(iast)
+                    yBLK.unshift(iblk)
+                    ySTL.unshift(istl)
+                    yPF.unshift(ipf)
+                    yTO.unshift(ito)
+                    xseasons.unshift(iseason)
                 }
                 seasoni = seasons[end]
                 end = end + 1
                 if (end == seasons.length) {
-                    console.log(xyMIN)
+                    console.log(xseasons)
+                    console.log(yPoints)
                     new Chart("ChartPTS", {
-                        type: "scatter",
+                        type: "line",
                         data: {
+                            labels: xseasons,
                             datasets: [{
+                                label: 'Average Points per seasons',
                                 pointRadius: 4,
                                 pointBackgroundColor: "rgba(0,0,255,1)",
-                                data: xyPoints
+                                data: yPoints
                             }]
                         },
                         options: {
                             title: {
                                 display: true,
-                                text: 'Average Points per Season'
+                                text: ''
                             }
                         }
                     });
                     new Chart("ChartMIN", {
-                        type: "scatter",
+                        type: "line",
                         data: {
+                            labels: xseasons,
                             datasets: [{
+                                label: 'Average MIN per Season',
                                 pointRadius: 4,
                                 pointBackgroundColor: "rgba(0,0,255,1)",
-                                data: xyMIN
+                                data: yMIN
                             }]
                         },
                         options: {
                             title: {
                                 display: true,
-                                text: 'Average MIN per Season'
                             }
                         }
                     });
                     new Chart("ChartFG", {
-                        type: "scatter",
+                        type: "line",
                         data: {
+                            labels: xseasons,
                             datasets: [{
+                                label: 'Average FG% per Season',
                                 pointRadius: 4,
                                 pointBackgroundColor: "rgba(0,0,255,1)",
-                                data: xyFG
+                                data: yFG
                             }]
                         },
                         options: {
                             title: {
                                 display: true,
-                                text: 'Average FG% per Season'
                             }
                         }
                     });
                     new Chart("Chart3P", {
-                        type: "scatter",
+                        type: "line",
                         data: {
+                            labels: xseasons,
                             datasets: [{
+                                label: 'Average 3P% per Season',
                                 pointRadius: 4,
                                 pointBackgroundColor: "rgba(0,0,255,1)",
-                                data: xyP3
+                                data: yP3
                             }]
                         },
                         options: {
                             title: {
                                 display: true,
-                                text: 'Average 3P% per Season'
                             }
                         }
                     });
                     new Chart("ChartFT", {
-                        type: "scatter",
+                        type: "line",
                         data: {
+                            labels: xseasons,
                             datasets: [{
+                                label: 'Average FT% per Season',
                                 pointRadius: 4,
                                 pointBackgroundColor: "rgba(0,0,255,1)",
-                                data: xyFT
+                                data: yFT
                             }]
                         },
                         options: {
                             title: {
                                 display: true,
-                                text: 'Average FT% per Season'
                             }
                         }
                     });
                     new Chart("ChartREB", {
-                        type: "scatter",
+                        type: "line",
                         data: {
+                            labels: xseasons,
                             datasets: [{
+                                label: 'Average REB per Season',
                                 pointRadius: 4,
                                 pointBackgroundColor: "rgba(0,0,255,1)",
-                                data: xyReb
+                                data: yReb
                             }]
                         },
                         options: {
                             title: {
                                 display: true,
-                                text: 'Average REB per Season'
                             }
                         }
                     });
                     new Chart("ChartAST", {
-                        type: "scatter",
+                        type: "line",
                         data: {
+                            labels: xseasons,
                             datasets: [{
+                                label: 'Average AST per Season',
                                 pointRadius: 4,
                                 pointBackgroundColor: "rgba(0,0,255,1)",
-                                data: xyAST
+                                data: yAST
                             }]
                         },
                         options: {
                             title: {
                                 display: true,
-                                text: 'Average AST per Season'
                             }
                         }
                     });
                     new Chart("ChartBLK", {
-                        type: "scatter",
+                        type: "line",
                         data: {
+                            labels: xseasons,
                             datasets: [{
+                                label: 'Average BLK per Season',
                                 pointRadius: 4,
                                 pointBackgroundColor: "rgba(0,0,255,1)",
-                                data: xyBLK
+                                data: yBLK
                             }]
                         },
                         options: {
                             title: {
                                 display: true,
-                                text: 'Average BLK per Season'
                             }
                         }
                     });
                     new Chart("ChartSTL", {
-                        type: "scatter",
+                        type: "line",
                         data: {
+                            labels: xseasons,
                             datasets: [{
+                                label: 'Average STL per Season',
                                 pointRadius: 4,
                                 pointBackgroundColor: "rgba(0,0,255,1)",
-                                data: xySTL
+                                data: ySTL
                             }]
                         },
                         options: {
                             title: {
                                 display: true,
-                                text: 'Average STL per Season'
                             }
                         }
                     });
                     new Chart("ChartPF", {
-                        type: "scatter",
+                        type: "line",
                         data: {
+                            labels: xseasons,
                             datasets: [{
+                                label: 'Average PF per Season',
                                 pointRadius: 4,
                                 pointBackgroundColor: "rgba(0,0,255,1)",
-                                data: xyPF
+                                data: yPF
                             }]
                         },
                         options: {
                             title: {
                                 display: true,
-                                text: 'Average PF per Season'
                             }
                         }
                     });
                     new Chart("ChartTO", {
-                        type: "scatter",
+                        type: "line",
                         data: {
+                            labels: xseasons,
                             datasets: [{
+                                label: 'Average TO per Season',
                                 pointRadius: 4,
                                 pointBackgroundColor: "rgba(0,0,255,1)",
-                                data: xyTO
+                                data: yTO
                             }]
                         },
                         options: {
                             title: {
                                 display: true,
-                                text: 'Average TO per Season'
                             }
                         }
                     });
