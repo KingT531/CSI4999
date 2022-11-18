@@ -95,9 +95,9 @@ async function keeplive() {
             gp[0] = response.data.data[0].games_played
             pts[0] = response.data.data[0].pts
             min[0] = response.data.data[0].min.replace(/:/g, ".");
-            fg[0] = response.data.data[0].fg_pct
-            p3[0] = response.data.data[0].fg3_pct
-            ft[0] = response.data.data[0].ft_pct
+            fg[0] = response.data.data[0].fg_pct * 100
+            p3[0] = response.data.data[0].fg3_pct * 100
+            ft[0] = response.data.data[0].ft_pct * 100
             reb[0] = response.data.data[0].reb
             ast[0] = response.data.data[0].ast
             blk[0] = response.data.data[0].blk
@@ -162,9 +162,9 @@ async function keeplive() {
                     iseason = seasons[end]
                     ipoints = response.data.data[0].pts
                     imin = response.data.data[0].min.replace(/:/g, ".");
-                    ifg = response.data.data[0].fg_pct
-                    ip3 = response.data.data[0].fg3_pct
-                    ift = response.data.data[0].ft_pct
+                    ifg = response.data.data[0].fg_pct * 100
+                    ip3 = response.data.data[0].fg3_pct * 100
+                    ift = response.data.data[0].ft_pct * 100
                     ireb = response.data.data[0].reb
                     iast = response.data.data[0].ast
                     iblk = response.data.data[0].blk
@@ -188,8 +188,6 @@ async function keeplive() {
                 seasoni = seasons[end]
                 end = end + 1
                 if (end == seasons.length) {
-                    console.log(xseasons)
-                    console.log(yPoints)
                     new Chart("ChartPTS", {
                         type: "line",
                         data: {

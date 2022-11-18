@@ -54,6 +54,7 @@ async function searchteams() {
                     document.getElementById(pichtml[indexMatch]).src = picurlfull;
                     document.getElementById(pichtml[indexMatch]).style.visibility = "visible";
                     document.getElementById(buttonhtml[indexMatch]).style.visibility = "visible";
+                    document.getElementById(`divt${indexMatch + 1}`).style.display = "block"
                     indexMatch = indexMatch + 1
                 }
                 index = index + 1

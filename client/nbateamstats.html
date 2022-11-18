@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>Team Stats</title>
-    <link rel="stylesheet" type="text/css" href="accstyle.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body onload="keeplive()">
     <header>
@@ -19,15 +19,42 @@
       >
     </header>
 
-    <p id="teamname">Team Name</p>
-    <img src="pics/no-image.jpg" id="teampic" alt="team img" />
-    <p><button onclick="favorite()">Favorite</button></p>
-    <p id="favmessage"></p>
-    <p>2022 Season Stats:</p>
-    <p id="gamesplayed"></p>
-    <p id="gameswon"></p>
-    <p id="gameslost"></p>
-    <p id="winrate"></p>
+   <div class="team-profile">
+      <div class="L">
+        <p id="teamname">Team Name</p>
+        <img src="pics/no-image.jpg" class="tpic" id="teampic" alt="team img" />
+        <button class="profile-btn" onclick="favorite()">Favorite</button>
+        <p id="favmessage"></p>
+      </div>
+      <div class="R">
+        <table class="team-stat">
+          <thead>
+            <td colspan="2" class="season-num" align="center">2022 Season Averages</td>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="stat-title">Games Played</span></td>
+              <td><span class="stat" id="gamesplayed">Games Played</span></td>
+            </tr>
+            <tr>
+              <td><span class="stat-title">Games Won</span></td>
+              <td><span class="stat" id="gameswon">Games Wom</span></td>
+            </tr>
+            <tr>
+              <td><span class="stat-title">Games Lost</span></td>
+              <td><span class="stat" id="gameslost">Games Lost</span></td>
+            </tr>
+            <tr>
+              <td><span class="stat-title">Winrate</span></td>
+              <td><span class="stat" id="winrate">Winrate</span></td>
+            </tr>
+          </tbody>
+        </table>
+       
+      </div>
+   
+    
+   </div>
 
     <script src="https://unpkg.com/axios@1.0.0/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>

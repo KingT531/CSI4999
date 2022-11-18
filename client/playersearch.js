@@ -48,7 +48,6 @@ async function searchplayers() {
         axios.request(searchplayers).then(function (response) {
 
             //get list of players id's using input search
-            console.log(response)
             index = 0
             allPlayersID = []
             allPlayersFN = []
@@ -70,7 +69,6 @@ async function searchplayers() {
 
             //get ID's of players who have 2022 season data and combine with previous results
             axios.request(searchcurrentplayers).then(function (response) {
-                console.log(response)
                 index = 0
                 playersID = []
                 //avg pts
@@ -90,7 +88,7 @@ async function searchplayers() {
                     stat1.push(response.data.data[index].pts)
                     stat2.push(response.data.data[index].reb)
                     stat3.push(response.data.data[index].ast)
-                    stat4.push(response.data.data[index].fg3_pct)
+                    stat4.push(response.data.data[index].fg3_pct * 100)
                     index = index + 1
                 }
                 for (let i = 0; i < playersID.length; i++) {
@@ -121,6 +119,7 @@ async function searchplayers() {
                             searchprofileLN[i] = playersLastName[i]
                             searchprofileTeam[i] = playersTeams[i]
                             found = true
+                            document.getElementById(`divp${i + 1}`).style.display = "block"
                         }
                         index = index + 1
                     }
@@ -145,11 +144,9 @@ async function searchplayers() {
                         picid = 0
                         index2 = 0
                         found = false
-                        console.log(lastname)
                         while (!found && (response.data.league.standard[index2] != null)) {
                             //console.log(response.data.league.standard[index].firstName)
                             if (response.data.league.standard[index2].firstName == firstname && response.data.league.standard[index2].lastName == lastname) {
-                                console.log("found")
                                 picid = response.data.league.standard[index2].personId
                                 picurlfull = `https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${picid}.png`
                                 document.getElementById(`playerpic${i + 1}`).src = picurlfull;
@@ -181,7 +178,6 @@ async function searchplayers() {
         };
 
         axios.request(playersearch).then(function (response) {
-            console.log(response.data);
         }).catch(function (error) {
             console.error(error);
         });

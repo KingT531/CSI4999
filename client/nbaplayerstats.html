@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>Player Profile</title>
-    <link rel="stylesheet" type="text/css" href="accstyle.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body onload="keeplive()">
     <header>
@@ -15,40 +15,101 @@
         </ul>
       </nav>
       <a id="loginstatus" class="login" href="login.html"
-        ><button>Login</button></a
-      >
+        ><button class="navbutton">Login</button></a>
     </header>
 
-    <p id="playername">Player Name</p>
-    <p id="teamname">Team Name</p>
-    <img src="pics/no-image.jpg" id="playerpic" alt="player img" />
-    <p><button onclick="favorite()">Favorite</button></p>
-    <p id="favmessage"></p>
-    <p>2022 Season Stats:</p>
-    <p id="playerstatGP">Games Played</p>
-    <p id="playerstatPTS">PTS</p>
-    <p id="playerstatMIN">MIN</p>
-    <p id="playerstatFG">FG%</p>
-    <p id="playerstat3P">3p%</p>
-    <p id="playerstatFT">FT%</p>
-    <p id="playerstatREB">REB</p>
-    <p id="playerstatAST">AST</p>
-    <p id="playerstatBLK">BLK</p>
-    <p id="playerstatSTL">STL</p>
-    <p id="playerstatPF">PF</p>
-    <p id="playerstatTO">TO</p>
-    <p>Stats of Past Seasons:</p>
-    <canvas id="ChartPTS" style="width: 100%; max-width: 700px"></canvas>
-    <canvas id="ChartMIN" style="width: 100%; max-width: 700px"></canvas>
-    <canvas id="ChartFG" style="width: 100%; max-width: 700px"></canvas>
-    <canvas id="Chart3P" style="width: 100%; max-width: 700px"></canvas>
-    <canvas id="ChartFT" style="width: 100%; max-width: 700px"></canvas>
-    <canvas id="ChartREB" style="width: 100%; max-width: 700px"></canvas>
-    <canvas id="ChartAST" style="width: 100%; max-width: 700px"></canvas>
-    <canvas id="ChartBLK" style="width: 100%; max-width: 700px"></canvas>
-    <canvas id="ChartSTL" style="width: 100%; max-width: 700px"></canvas>
-    <canvas id="ChartPF" style="width: 100%; max-width: 700px"></canvas>
-    <canvas id="ChartTO" style="width: 100%; max-width: 700px"></canvas>
+    <div class="nbaplayerstats">
+        <div class="row">
+            <div class="columnL">
+              <table class="stat-board" >
+                <thead>
+                  <tr>
+                    <td><span class="playername" id="playername">Player Name</span></td>
+                    <td><button class="favbutton" onclick="favorite()">Favorite</button>
+                    <p id="favmessage"></p></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" align="center"><img src="pics/no-image.jpg" id="playerpic" alt="player img" /></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" align="center"><span class="teamname" id="teamname">Team Name</p></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" align="center">2022 Season Averages:</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="stat-title">Games Played </span></td>
+                    <td><span class="stat" id="playerstatGP">Games Played</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="stat-title">Points per game </span></td>
+                    <td><span class="stat" id="playerstatPTS">PTS</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="stat-title">Minutes per game </span></td>
+                    <td><span class="stat" id="playerstatMIN">MIN</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="stat-title">Field Goal % </span></td>
+                    <td><span class="stat" id="playerstatFG">FG%</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="stat-title">3pt Field Goal % </span></td>
+                    <td><span class="stat" id="playerstat3P">3p%</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="stat-title">Free Throw %</span></td>
+                    <td><span class="stat" id="playerstatFT">FT%</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="stat-title">Rebounds </span></td>
+                    <td><span class="stat" id="playerstatREB">REB</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="stat-title">Assists </span></td>
+                    <td><span class="stat" id="playerstatAST">AST</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="stat-title">Blocks </span></td>
+                    <td><span class="stat" id="playerstatBLK">BLK</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="stat-title">Steals </span></td>
+                    <td><span class="stat" id="playerstatSTL">STL</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="stat-title">Fouls </span></td>
+                    <td><span class="stat" id="playerstatPF">PF</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="stat-title">Turnover </span></td>
+                    <td><span class="stat" id="playerstatTO">TO</span></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+            </div>
+
+            <div class="columnR">
+              <div class="stat-charts">
+                <p align="center">Averages of Last Five Seasons:</p>
+                <canvas id="ChartPTS" style="width: 100%; max-width: 700px"></canvas>
+                <canvas id="ChartMIN" style="width: 100%; max-width: 700px"></canvas>
+                <canvas id="ChartFG" style="width: 100%; max-width: 700px"></canvas>
+                <canvas id="Chart3P" style="width: 100%; max-width: 700px"></canvas>
+                <canvas id="ChartFT" style="width: 100%; max-width: 700px"></canvas>
+                <canvas id="ChartREB" style="width: 100%; max-width: 700px"></canvas>
+                <canvas id="ChartAST" style="width: 100%; max-width: 700px"></canvas>
+                <canvas id="ChartBLK" style="width: 100%; max-width: 700px"></canvas>
+                <canvas id="ChartSTL" style="width: 100%; max-width: 700px"></canvas>
+                <canvas id="ChartPF" style="width: 100%; max-width: 700px"></canvas>
+                <canvas id="ChartTO" style="width: 100%; max-width: 700px"></canvas>
+              </div>
+            </div>
+        </div>
+    </div>
 
     <script src="https://unpkg.com/axios@1.0.0/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
