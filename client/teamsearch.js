@@ -89,6 +89,7 @@ async function searchteams() {
                     document.getElementById(pichtml[itoadd]).src = picurlfull;
                     document.getElementById(pichtml[itoadd]).style.visibility = "visible";
                     document.getElementById(buttonhtml[itoadd]).style.visibility = "visible";
+                    document.getElementById(`divt${itoadd + 1}`).style.display = "block"
                     itoadd = itoadd + 1
                 }
                 itotal = itotal + 1
