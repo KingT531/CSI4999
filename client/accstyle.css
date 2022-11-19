@@ -17,7 +17,7 @@ header {
 	justify-content: flex-end;
 	align-items: center;
 	padding: 30px 10%;
-	background-color: #24252A;
+	background-color: #FF0000;
 }
 
 .logo {
@@ -61,22 +61,26 @@ button:hover {
 
 
 body {
-	background-color: whitesmoke
+	background-color: lightyellow
+	
+	
 }
 
 .signup-div {
 	margin: 100px auto;
 	width: 550px;
-	background-color: green;
+	background-color:#0088a9;
+	background-image: linear-gradient(red, yellow);
 	padding: 60px;
 }
 
 .login-div {
 	margin: 100px auto;
 	width: 350px;
-	background-color: green;
+	background-color:#0088a9 ;
 	padding: 60px;
 }
+
 
 .logo {
 	background-color: purple;
