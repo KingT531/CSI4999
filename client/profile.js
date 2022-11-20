@@ -8,10 +8,10 @@ async function keeplive() {
     //load user login information
     user = window.localStorage.getItem('user');
     var userelement = document.getElementById('loginstatus');
-    if (user != "") {
+    if (user != "" && user != null) {
 
         //user information
-        document.getElementById('loginstatus').innerHTML = user;
+        document.getElementById('navbutton').innerHTML = `${user}'s profile`;
         document.getElementById('username').innerHTML = `${user}'s profile`;
         userelement.setAttribute('href', 'profile.html');
 
@@ -206,7 +206,12 @@ function removeplayerfav1link() {
         axios.post("http://localhost:3001/api/removefavoritep1", {
             username: user,
         }).then(function (response) {
-
+            document.getElementById(`playerfav1name`).remove();
+            document.getElementById(`playerfav1team`).remove();
+            document.getElementById(`playerfav1pic`).remove();
+            document.getElementById(`player1favbutton`).remove();
+            document.getElementById(`player1removebutton`).remove();
+            document.getElementById(`pfav1`).remove();
         });
     }
 }
@@ -217,7 +222,12 @@ function removeplayerfav2link() {
         axios.post("http://localhost:3001/api/removefavoritep2", {
             username: user,
         }).then(function (response) {
-
+            document.getElementById(`playerfav2name`).remove();
+            document.getElementById(`playerfav2team`).remove();
+            document.getElementById(`playerfav2pic`).remove();
+            document.getElementById(`player2favbutton`).remove();
+            document.getElementById(`player2removebutton`).remove();
+            document.getElementById(`pfav2`).remove();
         });
     }
 }
@@ -228,7 +238,12 @@ function removeplayerfav3link() {
         axios.post("http://localhost:3001/api/removefavoritep3", {
             username: user,
         }).then(function (response) {
-
+            document.getElementById(`playerfav3name`).remove();
+            document.getElementById(`playerfav3team`).remove();
+            document.getElementById(`playerfav3pic`).remove();
+            document.getElementById(`player3favbutton`).remove();
+            document.getElementById(`player3removebutton`).remove();
+            document.getElementById(`pfav3`).remove();
         });
     }
 }
@@ -239,7 +254,12 @@ function removeplayerfav4link() {
         axios.post("http://localhost:3001/api/removefavoritep4", {
             username: user,
         }).then(function (response) {
-
+            document.getElementById(`playerfav4name`).remove();
+            document.getElementById(`playerfav4team`).remove();
+            document.getElementById(`playerfav4pic`).remove();
+            document.getElementById(`player4favbutton`).remove();
+            document.getElementById(`player4removebutton`).remove();
+            document.getElementById(`pfav4`).remove();
         });
     }
 }
@@ -250,7 +270,12 @@ function removeplayerfav5link() {
         axios.post("http://localhost:3001/api/removefavoritep5", {
             username: user,
         }).then(function (response) {
-
+            document.getElementById(`playerfav5name`).remove();
+            document.getElementById(`playerfav5team`).remove();
+            document.getElementById(`playerfav5pic`).remove();
+            document.getElementById(`player5favbutton`).remove();
+            document.getElementById(`player5removebutton`).remove();
+            document.getElementById(`pfav5`).remove();
         });
     }
 }
@@ -261,7 +286,12 @@ function removeplayerfav6link() {
         axios.post("http://localhost:3001/api/removefavoritep6", {
             username: user,
         }).then(function (response) {
-
+            document.getElementById(`playerfav6name`).remove();
+            document.getElementById(`playerfav6team`).remove();
+            document.getElementById(`playerfav6pic`).remove();
+            document.getElementById(`player6favbutton`).remove();
+            document.getElementById(`player6removebutton`).remove();
+            document.getElementById(`pfav6`).remove();
         });
     }
 }
@@ -272,7 +302,12 @@ function removeplayerfav7link() {
         axios.post("http://localhost:3001/api/removefavoritep7", {
             username: user,
         }).then(function (response) {
-
+            document.getElementById(`playerfav7name`).remove();
+            document.getElementById(`playerfav7team`).remove();
+            document.getElementById(`playerfav7pic`).remove();
+            document.getElementById(`player7favbutton`).remove();
+            document.getElementById(`player7removebutton`).remove();
+            document.getElementById(`pfav7`).remove();
         });
     }
 }
@@ -283,7 +318,12 @@ function removeplayerfav8link() {
         axios.post("http://localhost:3001/api/removefavoritep8", {
             username: user,
         }).then(function (response) {
-
+            document.getElementById(`playerfav8name`).remove();
+            document.getElementById(`playerfav8team`).remove();
+            document.getElementById(`playerfav8pic`).remove();
+            document.getElementById(`player8favbutton`).remove();
+            document.getElementById(`player8removebutton`).remove();
+            document.getElementById(`pfav8`).remove();
         });
     }
 }
@@ -294,7 +334,12 @@ function removeplayerfav9link() {
         axios.post("http://localhost:3001/api/removefavoritep9", {
             username: user,
         }).then(function (response) {
-
+            document.getElementById(`playerfav9name`).remove();
+            document.getElementById(`playerfav9team`).remove();
+            document.getElementById(`playerfav9pic`).remove();
+            document.getElementById(`player9favbutton`).remove();
+            document.getElementById(`player9removebutton`).remove();
+            document.getElementById(`pfav9`).remove();
         });
     }
 }
@@ -305,7 +350,12 @@ function removeplayerfav10link() {
         axios.post("http://localhost:3001/api/removefavoritep10", {
             username: user,
         }).then(function (response) {
-
+            document.getElementById(`playerfav10name`).remove();
+            document.getElementById(`playerfav10team`).remove();
+            document.getElementById(`playerfav10pic`).remove();
+            document.getElementById(`player10favbutton`).remove();
+            document.getElementById(`player10removebutton`).remove();
+            document.getElementById(`pfav10`).remove();
         });
     }
 }
@@ -316,7 +366,11 @@ function removeteamfav1link() {
         axios.post("http://localhost:3001/api/removefavoritet1", {
             username: user,
         }).then(function (response) {
-
+            document.getElementById(`teamfav1name`).remove();
+            document.getElementById(`teamfav1pic`).remove();
+            document.getElementById(`team1favbutton`).remove();
+            document.getElementById(`team1removebutton`).remove();
+            document.getElementById(`tfav1`).remove();
         });
     }
 }
@@ -327,7 +381,11 @@ function removeteamfav2link() {
         axios.post("http://localhost:3001/api/removefavoritet2", {
             username: user,
         }).then(function (response) {
-
+            document.getElementById(`teamfav2name`).remove();
+            document.getElementById(`teamfav2pic`).remove();
+            document.getElementById(`team2favbutton`).remove();
+            document.getElementById(`team2removebutton`).remove();
+            document.getElementById(`tfav2`).remove();
         });
     }
 }
@@ -338,7 +396,11 @@ function removeteamfav3link() {
         axios.post("http://localhost:3001/api/removefavoritet3", {
             username: user,
         }).then(function (response) {
-
+            document.getElementById(`teamfav3name`).remove();
+            document.getElementById(`teamfav3pic`).remove();
+            document.getElementById(`team3favbutton`).remove();
+            document.getElementById(`team3removebutton`).remove();
+            document.getElementById(`tfav3`).remove();
         });
     }
 }
@@ -349,7 +411,11 @@ function removeteamfav4link() {
         axios.post("http://localhost:3001/api/removefavoritet4", {
             username: user,
         }).then(function (response) {
-
+            document.getElementById(`teamfav4name`).remove();
+            document.getElementById(`teamfav4ic`).remove();
+            document.getElementById(`team4favbutton`).remove();
+            document.getElementById(`team4removebutton`).remove();
+            document.getElementById(`tfav4`).remove();
         });
     }
 }
@@ -360,7 +426,11 @@ function removeteamfav5link() {
         axios.post("http://localhost:3001/api/removefavoritet5", {
             username: user,
         }).then(function (response) {
-
+            document.getElementById(`teamfav5name`).remove();
+            document.getElementById(`teamfav5pic`).remove();
+            document.getElementById(`team5favbutton`).remove();
+            document.getElementById(`team5removebutton`).remove();
+            document.getElementById(`tfav5`).remove();
         });
     }
 }
@@ -371,7 +441,11 @@ function removeteamfav6link() {
         axios.post("http://localhost:3001/api/removefavoritet6", {
             username: user,
         }).then(function (response) {
-
+            document.getElementById(`teamfav6name`).remove();
+            document.getElementById(`teamfav6pic`).remove();
+            document.getElementById(`team6favbutton`).remove();
+            document.getElementById(`team6removebutton`).remove();
+            document.getElementById(`tfav6`).remove();
         });
     }
 }
@@ -382,7 +456,11 @@ function removeteamfav7link() {
         axios.post("http://localhost:3001/api/removefavoritet7", {
             username: user,
         }).then(function (response) {
-
+            document.getElementById(`teamfav7name`).remove();
+            document.getElementById(`teamfav7pic`).remove();
+            document.getElementById(`team7favbutton`).remove();
+            document.getElementById(`team7removebutton`).remove();
+            document.getElementById(`tfav7`).remove();
         });
     }
 }
@@ -393,7 +471,11 @@ function removeteamfav8link() {
         axios.post("http://localhost:3001/api/removefavoritet8", {
             username: user,
         }).then(function (response) {
-
+            document.getElementById(`teamfav8name`).remove();
+            document.getElementById(`teamfav8pic`).remove();
+            document.getElementById(`team8favbutton`).remove();
+            document.getElementById(`team8removebutton`).remove();
+            document.getElementById(`tfav8`).remove();
         });
     }
 }
@@ -404,7 +486,11 @@ function removeteamfav9link() {
         axios.post("http://localhost:3001/api/removefavoritet9", {
             username: user,
         }).then(function (response) {
-
+            document.getElementById(`teamfav9name`).remove();
+            document.getElementById(`teamfav9pic`).remove();
+            document.getElementById(`team9favbutton`).remove();
+            document.getElementById(`team9removebutton`).remove();
+            document.getElementById(`tfav9`).remove();
         });
     }
 }
@@ -415,7 +501,11 @@ function removeteamfav10link() {
         axios.post("http://localhost:3001/api/removefavoritet10", {
             username: user,
         }).then(function (response) {
-
+            document.getElementById(`teamfav10name`).remove();
+            document.getElementById(`teamfav10pic`).remove();
+            document.getElementById(`team10favbutton`).remove();
+            document.getElementById(`team10removebutton`).remove();
+            document.getElementById(`tfav10`).remove();
         });
     }
 }
