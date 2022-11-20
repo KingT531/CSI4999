@@ -6,7 +6,7 @@ async function keeplive() {
     user = window.localStorage.getItem('user');
     var userelement = document.getElementById('loginstatus');
     if (user != "" && user != null) {
-        document.getElementById('loginstatus').innerHTML = user;
+        document.getElementById('navbutton').innerHTML = `${user}'s profile`;
         userelement.setAttribute('href', 'profile.html');
     }
     else {
