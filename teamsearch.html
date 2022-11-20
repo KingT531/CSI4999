@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Team Search</title>
+    <link rel="stylesheet" href="NavBar.css">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+
+  <body onload="keeplive()">
+    <header>
+      <h1 class="sportstitle">Sports Mania</h1>
+      <nav>
+        <ul class="navigation">
+          <li><a href="NavBar.html">Home</a></li>
+          <li><a href="teamsearch.html">Teams</a></li>
+          <li><a href="playersearch.html">Players</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </nav>
+      <a id="loginstatus" class="login" href="login.html"
+        ><button id="navbutton" class="navbutton">Login</button></a
+      >
+    </header>
+
+    <div class="search-box">
+      <div class="form">
+        <input class="forminput" id="search" type="text" title="search" placeholder="search team" />
+        <button class="search-btn" onClick="searchteams()">Search for Teams</button>
+      </div>
+
+      <div class="sport-pick">
+        <label for="nba">NBA</label>
+        <input type="radio" name="sport" value="nba" id="radioNBA" checked="checked" />
+    
+        <label for="nfl">NFL</label>
+        <input type="radio" name="sport" value="nfl" id="radioNFL" />
+      </div>
+    </div>
+
+
+    <div class="flex-container">
+      <div id="divt1" class="team-card" style="display:none">
+        <p id="team1">team1</p>
+        <img src="pics/no-image.jpg" class="tpic" id="teampic1" alt="teampic1 img"/><br>
+        <button class="profile-btn" id="profile1" onClick="profile1()">Profile</button>
+      </div>
+      <div id="divt2" class="team-card" style="display:none">
+        <p id="team2">team2</p>
+        <img src="pics/no-image.jpg" class="tpic" id="teampic2" alt="teampic2 img"/><br>
+        <button class="profile-btn" id="profile2" onClick="profile2()">Profile</button>
+      </div>
+      <div id="divt3" class="team-card" style="display:none">
+        <p id="team3">team3</p>
+        <img src="pics/no-image.jpg" class="tpic" id="teampic3" alt="teampic3 img"/><br>
+        <button class="profile-btn" id="profile3" onClick="profile3()">Profile</button>
+      </div>
+      <div id="divt4" class="team-card" style="display:none">
+        <p id="team4">team4</p>
+        <img src="pics/no-image.jpg" class="tpic" id="teampic4" alt="teampic4 img"/><br>
+        <button class="profile-btn" id="profile4" onClick="profile4()">Profile</button>
+      </div>
+      <div id="divt5" class="team-card" style="display:none">
+        <p id="team5">team5</p>
+        <img src="pics/no-image.jpg" class="tpic" id="teampic5" alt="teampic5 img"/><br>
+        <button class="profile-btn" id="profile5" onClick="profile5()">Profile</button>
+      </div>
+      <div id="divt6" class="team-card" style="display:none">
+        <p id="team6">team6</p>
+        <img src="pics/no-image.jpg" class="tpic" id="teampic6" alt="teampic6 img"/><br>
+        <button class="profile-btn" id="profile6" onClick="profile6()">Profile</button>
+      </div>
+      <div id="divt7" class="team-card" style="display:none">
+        <p id="team7">team7</p>
+        <img src="pics/no-image.jpg" class="tpic" id="teampic7" alt="teampic7 img"/><br>
+        <button class="profile-btn" id="profile7" onClick="profile7()">Profile</button>
+      </div>
+      <div id="divt8" class="team-card" style="display:none">
+        <p id="team8">team8</p>
+        <img src="pics/no-image.jpg" class="tpic" id="teampic8" alt="teampic8 img"/><br>
+        <button class="profile-btn" id="profile8" onClick="profile8()">Profile</button>
+      </div>
+    </div>
+
+    <script src="keeplive.js"></script>
+    <script src="teamsearch.js"></script>
+    <script src="https://unpkg.com/axios@1.0.0/dist/axios.min.js"></script>
+  </body>
+  <body>
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+      <title>Footer Design</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="css/style.css">
+      <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    </head>
+
+    <body>
+
+      <footer class="footer">
+        <div class="container">
+          <div class="row">
+            <div class="footer-col">
+              <h4>company</h4>
+              <ul>
+                <li><a href="#">about us</a></li>
+                <li><a href="#">our services</a></li>
+                <li><a href="#">privacy policy</a></li>
+                <li><a href="#">affiliate program</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>get help</h4>
+              <ul>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">shipping</a></li>
+                <li><a href="#">returns</a></li>
+                <li><a href="#">order status</a></li>
+                <li><a href="#">payment options</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Sports</h4>
+              <ul>
+                <li><a href="#">Basketball</a></li>
+                <li><a href="#">Football</a></li>
+                <li><a href="#">-</a></li>
+                <li><a href="#">-</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>github</h4>
+              <div class="social-links">
+                <a href="https://github.com/KingT531/CSI4999"><i class="fab fa-github"></i></a>
+                <!-- <a href="#"><i class="fab fa-twitter"></i></a>
+               <a href="#"><i class="fab fa-instagram"></i></a>
+               <a href="#"><i class="fab fa-linkedin-in"></i></a> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <style>
+          .footer {
+  background-color: #24262b;
+  padding: 70px 0;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+/* need new styling to work on certain pages */
+}
+
+html {
+  min-height: 150vh;
+}
+
+
+        </style>
+      </footer>
+
+      <!-- #endregion -->
+      <!-- FOOTER ENDS-->
+    </body>
+</html>

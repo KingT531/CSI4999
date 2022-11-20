@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Player Profile</title>
+    <link rel="stylesheet" href="NavBar.css">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body onload="keeplive()">
+    <header>
+      <h1 class="sportstitle">Sports Mania</h1>
+      <nav>
+        <ul class="navigation">
+          <li><a href="NavBar.html">Home</a></li>
+          <li><a href="teamsearch.html">Teams</a></li>
+          <li><a href="playersearch.html">Players</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </nav>
+      <a id="loginstatus" class="login" href="login.html"
+        ><button id="navbutton" class="navbutton">Login</button></a>
+    </header>
+
+    <div class="nbaplayerstats">
+        <div class="row">
+            <div class="columnL">
+              <table class="stat-board" >
+                <thead>
+                  <tr>
+                    <td><span class="playername" id="playername">Player Name</span></td>
+                    <td><button class="favbutton" onclick="favorite()">Favorite</button>
+                    <p id="favmessage"></p></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" align="center"><img src="pics/no-image.jpg" id="playerpic" alt="player img" /></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" align="center"><span class="teamname" id="teamname">Team Name</p></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" align="center">2022 Season Averages:</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="stat-title">Games Played </span></td>
+                    <td><span class="stat" id="playerstatGP">Games Played</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="stat-title">Points per game </span></td>
+                    <td><span class="stat" id="playerstatPTS">PTS</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="stat-title">Minutes per game </span></td>
+                    <td><span class="stat" id="playerstatMIN">MIN</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="stat-title">Field Goal % </span></td>
+                    <td><span class="stat" id="playerstatFG">FG%</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="stat-title">3pt Field Goal % </span></td>
+                    <td><span class="stat" id="playerstat3P">3p%</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="stat-title">Free Throw %</span></td>
+                    <td><span class="stat" id="playerstatFT">FT%</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="stat-title">Rebounds </span></td>
+                    <td><span class="stat" id="playerstatREB">REB</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="stat-title">Assists </span></td>
+                    <td><span class="stat" id="playerstatAST">AST</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="stat-title">Blocks </span></td>
+                    <td><span class="stat" id="playerstatBLK">BLK</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="stat-title">Steals </span></td>
+                    <td><span class="stat" id="playerstatSTL">STL</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="stat-title">Fouls </span></td>
+                    <td><span class="stat" id="playerstatPF">PF</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="stat-title">Turnover </span></td>
+                    <td><span class="stat" id="playerstatTO">TO</span></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+            </div>
+
+            <div class="columnR">
+              <p class="charthead" align="center">Averages of Previous Seasons:</p>
+              <div class="stat-charts">
+                <canvas id="ChartPTS" style="width: 100%; max-width: 700px"></canvas>
+                <canvas id="ChartMIN" style="width: 100%; max-width: 700px"></canvas>
+                <canvas id="ChartFG" style="width: 100%; max-width: 700px"></canvas>
+                <canvas id="Chart3P" style="width: 100%; max-width: 700px"></canvas>
+                <canvas id="ChartFT" style="width: 100%; max-width: 700px"></canvas>
+                <canvas id="ChartREB" style="width: 100%; max-width: 700px"></canvas>
+                <canvas id="ChartAST" style="width: 100%; max-width: 700px"></canvas>
+                <canvas id="ChartBLK" style="width: 100%; max-width: 700px"></canvas>
+                <canvas id="ChartSTL" style="width: 100%; max-width: 700px"></canvas>
+                <canvas id="ChartPF" style="width: 100%; max-width: 700px"></canvas>
+                <canvas id="ChartTO" style="width: 100%; max-width: 700px"></canvas>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/axios@1.0.0/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="nbaplayerstats.js"></script>
+  </body>
+</html>
+
+<!-- #region  -->
+    <!-- FOOTER STARTS HERE-->
+    <!DOCTYPE html>
+    <html lang='en' class=''>
+
+    <head>
+
+      <meta charset='UTF-8'>
+      <title>CodePen Demo</title>
+
+      <meta name="robots" content="noindex">
+
+      <link rel="shortcut icon" type="image/x-icon"
+        href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+      <link rel="mask-icon"
+        href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg"
+        color="#111">
+      <link rel="canonical" href="https://codepen.io/alvarotrigo/pen/vYRRxje">
+
+
+
+
+      <style class="INLINE_PEN_STYLESHEET_ID">
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        
+      </style>
+
+
+      <script
+        src="https://cpwebassets.codepen.io/assets/editor/iframe/iframeConsoleRunner-6bce046e7128ddf9391ccf7acbecbf7ce0cbd7b6defbeb2e217a867f51485d25.js"></script>
+      <script
+        src="https://cpwebassets.codepen.io/assets/editor/iframe/iframeRefreshCSS-550eae0ce567d3d9182e33cee4e187761056020161aa87e3ef74dc467972c555.js"></script>
+      <script
+        src="https://cpwebassets.codepen.io/assets/editor/iframe/iframeRuntimeErrors-4f205f2c14e769b448bcf477de2938c681660d5038bc464e3700256713ebe261.js"></script>
+    </head>
+
+    <body>
+
+      <!DOCTYPE html>
+      <html lang="en">
+
+      <head>
+        <title>Footer Design</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+      </head>
+
+      <body>
+
+        <footer class="footer">
+          <div class="container">
+            <div class="row">
+              <div class="footer-col">
+                <h4>company</h4>
+                <ul>
+                  <li><a href="#">about us</a></li>
+                  <li><a href="#">our services</a></li>
+                  <li><a href="#">privacy policy</a></li>
+                  <li><a href="#">affiliate program</a></li>
+                </ul>
+              </div>
+              <div class="footer-col">
+                <h4>get help</h4>
+                <ul>
+                  <li><a href="#">FAQ</a></li>
+                  <li><a href="#">shipping</a></li>
+                  <li><a href="#">returns</a></li>
+                  <li><a href="#">order status</a></li>
+                  <li><a href="#">payment options</a></li>
+                </ul>
+              </div>
+              <div class="footer-col">
+                <h4>Sports</h4>
+                <ul>
+                  <li><a href="#">Basketball</a></li>
+                  <li><a href="#">Football</a></li>
+                  <li><a href="#">-</a></li>
+                  <li><a href="#">-</a></li>
+                </ul>
+              </div>
+              <div class="footer-col">
+                <h4>github</h4>
+                <div class="social-links">
+                  <a href="https://github.com/KingT531/CSI4999"><i class="fab fa-github"></i></a>
+                  <!-- <a href="#"><i class="fab fa-twitter"></i></a>
+                 <a href="#"><i class="fab fa-instagram"></i></a>
+                 <a href="#"><i class="fab fa-linkedin-in"></i></a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+
+        <!-- #endregion -->
+        <!-- FOOTER ENDS-->
+      </body>
+
+      </html>
