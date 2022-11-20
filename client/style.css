@@ -13,13 +13,15 @@ button {
 	font-weight: bold;
 }
 
+.login {}
+
 header {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 	display: flex;
 	align-items: center;
-	padding: 5px 10%;
+	padding: 1px 5%;
 	background-color: #ffffff;
 	border-style: ridge;
 	border-color: rgb(119, 23, 23);
@@ -64,7 +66,7 @@ header {
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	animation: rainbow-text-simple-animation-rev 0.75s ease forwards;
-	padding-right: 600px;
+	padding-right: 700px;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 50px;
 
@@ -106,7 +108,7 @@ header {
 button.navbutton {
 	margin-left: 20px;
 	padding: 9px 25px;
-	background-color: rgb(216, 150, 52);
+	background-color: rgb(223, 83, 48);
 	border: none;
 	border-radius: 50px;
 	cursor: pointer;
@@ -137,7 +139,7 @@ button.login {
 .signup-div {
 	margin: 100px auto;
 	width: 550px;
-	background-color: green;
+	background-color: rgb(139, 15, 6);
 	padding: 60px;
 }
 
@@ -145,7 +147,7 @@ button.login {
 .login-div {
 	margin: 100px auto;
 	width: 350px;
-	background-color: green;
+	background-color: rgb(139, 15, 6);
 	padding: 60px;
 }
 
@@ -165,7 +167,7 @@ button.login {
 .title,
 .subtitle {
 	text-align: center;
-	color: black
+	color: rgb(0, 0, 0)
 }
 
 .title {
@@ -174,7 +176,7 @@ button.login {
 }
 
 .sub-title {
-	font-size 18px;
+	font-size: 18px;
 }
 
 .loginform {
@@ -198,7 +200,7 @@ button.login {
 	border-radius: 30px;
 	border: 1px solid rgba (0, 0. 0. 0.2) padding 15px;
 	margin: 10px 0;
-	background-color: orange;
+	background-color: rgb(235, 229, 229);
 	text-align: left;
 }
 
@@ -307,13 +309,15 @@ button.submitbtn {
 .columnL {
 	float: left;
 	width: 25%;
-	background-color: blue;
+	background-color: rgb(22, 22, 22);
 }
 
 .columnR {
 	float: left;
-	width: 75%;
-	background-color: orange;
+	width: 70%;
+	background-color: rgb(255, 255, 255);
+	border-style: ridge;
+	border-color: black;
 }
 
 .stat,
@@ -322,7 +326,7 @@ button.submitbtn {
 }
 
 button.favbutton {
-	background-color: #fff000;
+	background-color: #ff7707;
 	border-radius: 12px;
 	color: #000;
 	cursor: pointer;
@@ -346,6 +350,11 @@ button.favbutton {
 	font-size: larger;
 }
 
+.charthead {
+	font-weight: bold;
+	font-size: 25px;
+}
+
 .stat-charts {
 	width: 70%;
 	background-color: white;
@@ -367,6 +376,8 @@ button.favbutton {
 }
 
 .team-profile .L {
+	font-weight: bold;
+	font-size: 20px;
 	width: 100%;
 	text-align: center;
 	padding 30px 25px;
@@ -379,7 +390,7 @@ button.favbutton {
 .team-profile .R {
 	width: 400%;
 	text-align: center;
-	background-color: purple;
+	background-color: rgb(92, 92, 92)
 }
 
 .team-stat {
@@ -400,8 +411,8 @@ button.favbutton {
 	display: flex;
 	align-items: center;
 	width: 100%;
-	height: 20vh;
-	background: gold;
+	height: 12vh;
+	background: rgb(129, 4, 0);
 }
 
 .form {
@@ -420,7 +431,7 @@ button.favbutton {
 
 .search-btn {
 	padding: 10px 50px;
-	background: tomato;
+	background: rgb(158, 158, 158);
 	border: none;
 	outline: none;
 	letter-spacing: 1px;
@@ -438,15 +449,16 @@ button.favbutton {
 
 .sch-profile {
 	float: left;
-	background: rgb(160, 104, 32);
+	background: rgb(20, 20, 20);
 	text-align: center;
 	padding: 25px;
+	color: white;
 }
 
 /* table in player-search */
 .sch-stats {
 	float: left;
-	background: gray;
+	background: rgb(187, 186, 186);
 	border: 1px solid;
 }
 
@@ -458,11 +470,11 @@ button.favbutton {
 
 .profile-btn {
 	align-items: center;
-	background-color: #0A66C2;
+	background-color: #d35220;
 	border: 0;
 	border-radius: 100px;
 	box-sizing: border-box;
-	color: #ffffff;
+	color: #000000;
 	cursor: pointer;
 	display: inline-flex;
 	font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -513,10 +525,12 @@ button.favbutton {
 }
 
 .team-card {
+	font-weight: bold;
+	font-size: 20px;
 	text-align: center;
-	padding: 25px;
+	padding: 20px;
 	border: 2px solid;
-	background: blue;
+	background: yellow;
 	flex-direction: row;
 }
 
