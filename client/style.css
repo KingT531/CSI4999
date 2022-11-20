@@ -548,3 +548,9 @@ button.favbutton {
 	cursor: pointer;
 	transition: all 0.3s ease 0s;
 }
+
+.searchresult {
+	font-weight: bold;
+	font-size: 25px;
+	text-align: center;
+}

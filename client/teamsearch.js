@@ -7,10 +7,12 @@ async function searchteams() {
     pichtml = ['teampic1', 'teampic2', 'teampic3', 'teampic4', 'teampic5', 'teampic6', 'teampic7', 'teampic8']
     searchprofileID = [null, null, null, null, null, null, null, null]
     searchprofileTeam = [null, null, null, null, null, null, null, null]
+    document.getElementById('searchresult').innerHTML = ""
     for (let i = 0; i < 8; i++) {
         document.getElementById(teamhtml[i]).style.visibility = "hidden";
         document.getElementById(buttonhtml[i]).style.visibility = "hidden";
         document.getElementById(pichtml[i]).style.visibility = "hidden";
+        document.getElementById(`divt${i + 1}`).style.display = "none";
     }
 
     //get input search box text
@@ -58,6 +60,9 @@ async function searchteams() {
                     indexMatch = indexMatch + 1
                 }
                 index = index + 1
+            }
+            if (indexMatch == 0) {
+                document.getElementById('searchresult').innerHTML = "No Search Results Found"
             }
         });
     }

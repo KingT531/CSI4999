@@ -13,6 +13,7 @@ async function searchplayers() {
     searchprofileFN = [null, null, null, null, null, null, null, null]
     searchprofileLN = [null, null, null, null, null, null, null, null]
     searchprofileTeam = [null, null, null, null, null, null, null, null]
+    document.getElementById('searchresult').innerHTML = ""
     for (let i = 0; i < 8; i++) {
         document.getElementById(playerhtml[i]).style.visibility = "hidden";
         document.getElementById(teamhtml[i]).style.visibility = "hidden";
@@ -22,6 +23,7 @@ async function searchplayers() {
         document.getElementById(stat2html[i]).style.visibility = "hidden";
         document.getElementById(stat3html[i]).style.visibility = "hidden";
         document.getElementById(stat4html[i]).style.visibility = "hidden";
+        document.getElementById(`divp${i + 1}`).style.display = "none";
     }
 
     //get input search box text
@@ -90,6 +92,9 @@ async function searchplayers() {
                     stat3.push(response.data.data[index].ast)
                     stat4.push((response.data.data[index].fg3_pct * 100).toFixed(2))
                     index = index + 1
+                }
+                if (playersID.length == 0) {
+                    document.getElementById('searchresult').innerHTML = "No Search Results Found"
                 }
                 for (let i = 0; i < playersID.length; i++) {
                     found = false
