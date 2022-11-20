@@ -88,7 +88,7 @@ async function searchplayers() {
                     stat1.push(response.data.data[index].pts)
                     stat2.push(response.data.data[index].reb)
                     stat3.push(response.data.data[index].ast)
-                    stat4.push(response.data.data[index].fg3_pct * 100)
+                    stat4.push((response.data.data[index].fg3_pct * 100).toFixed(2))
                     index = index + 1
                 }
                 for (let i = 0; i < playersID.length; i++) {

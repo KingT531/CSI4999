@@ -95,9 +95,9 @@ async function keeplive() {
             gp[0] = response.data.data[0].games_played
             pts[0] = response.data.data[0].pts
             min[0] = response.data.data[0].min.replace(/:/g, ".");
-            fg[0] = response.data.data[0].fg_pct * 100
-            p3[0] = response.data.data[0].fg3_pct * 100
-            ft[0] = response.data.data[0].ft_pct * 100
+            fg[0] = (response.data.data[0].fg_pct * 100).toFixed(2)
+            p3[0] = (response.data.data[0].fg3_pct * 100).toFixed(2)
+            ft[0] = (response.data.data[0].ft_pct * 100).toFixed(2)
             reb[0] = response.data.data[0].reb
             ast[0] = response.data.data[0].ast
             blk[0] = response.data.data[0].blk
@@ -162,9 +162,9 @@ async function keeplive() {
                     iseason = seasons[end]
                     ipoints = response.data.data[0].pts
                     imin = response.data.data[0].min.replace(/:/g, ".");
-                    ifg = response.data.data[0].fg_pct * 100
-                    ip3 = response.data.data[0].fg3_pct * 100
-                    ift = response.data.data[0].ft_pct * 100
+                    ifg = (response.data.data[0].fg_pct * 100).toFixed(2)
+                    ip3 = (response.data.data[0].fg3_pct * 100).toFixed(2)
+                    ift = (response.data.data[0].ft_pct * 100).toFixed(2)
                     ireb = response.data.data[0].reb
                     iast = response.data.data[0].ast
                     iblk = response.data.data[0].blk
@@ -193,7 +193,7 @@ async function keeplive() {
                         data: {
                             labels: xseasons,
                             datasets: [{
-                                label: 'Average Points per seasons',
+                                label: 'Average Points per Season',
                                 pointRadius: 4,
                                 pointBackgroundColor: "rgba(0,0,255,1)",
                                 data: yPoints
