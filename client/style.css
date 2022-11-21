@@ -13,8 +13,6 @@ button {
 	font-weight: bold;
 }
 
-.login {}
-
 header {
 	box-sizing: border-box;
 	margin: 0;
@@ -139,16 +137,20 @@ button.login {
 .signup-div {
 	margin: 100px auto;
 	width: 550px;
-	background-color: rgb(139, 15, 6);
+	background-color: rgb(255, 163, 57);
 	padding: 60px;
+	border-style: solid;
+	border-color: black;
 }
 
 
 .login-div {
 	margin: 100px auto;
 	width: 350px;
-	background-color: rgb(139, 15, 6);
+	background-color: rgb(255, 163, 57);
 	padding: 60px;
+	border-style: solid;
+	border-color: black;
 }
 
 .logo {
@@ -242,7 +244,7 @@ button.submitbtn {
 	border: 1px solid black;
 	cursor: pointer;
 	position: relative;
-	background-color: yellow;
+	background-color: rgb(161, 161, 161);
 	user-select: none;
 	-webkit-user-select: none;
 	touch-action: manipulation;
