@@ -45,8 +45,6 @@ async function keeplive() {
                 teamfavs.push(response.data[0].teamfav8)
                 teamfavs.push(response.data[0].teamfav9)
                 teamfavs.push(response.data[0].teamfav10)
-                console.log(playerfavs)
-                console.log(teamfavs)
 
                 playerfavsports = [null, null, null, null, null, null, null, null, null, null]
                 playerfavids = [null, null, null, null, null, null, null, null, null, null]
@@ -62,6 +60,7 @@ async function keeplive() {
                 for (let i = 0; i < 10; i++) {
                     if (playerfavs[i] != null) {
                         switch (playerfavs[i].charAt(0)) {
+                            //case 1 is nba
                             case '1':
                                 favcode = playerfavs[i]
                                 count = 0
@@ -138,6 +137,53 @@ async function keeplive() {
                                     console.error(error);
                                 });
                                 break;
+
+                            //case 3 is nhl
+                            case '3':
+                                favcode = playerfavs[i]
+                                count = 0
+                                index = 0
+                                divider1 = null
+                                divider2 = null
+                                divider3 = null
+
+                                while (index < favcode.length && count < 3) {
+                                    if (count == 0 && favcode[index] == '#') {
+                                        divider1 = index
+                                        count = count + 1
+                                    }
+                                    else if (count == 1 && favcode[index] == '#') {
+                                        divider2 = index
+                                        count = count + 1
+                                    }
+                                    else if (count == 2 && favcode[index] == '#') {
+                                        divider3 = index
+                                        count = count + 1
+                                    }
+                                    index = index + 1
+                                }
+
+                                playerfavid = favcode.substring(1, divider1)
+                                playerfavname = favcode.substring(divider1 + 1, divider2)
+                                playerfavteam = favcode.substring(divider3 + 1)
+                                document.getElementById(`playerfav${i + 1}name`).innerHTML = playerfavname
+                                document.getElementById(`playerfav${i + 1}team`).innerHTML = playerfavteam
+                                document.getElementById(`playerfav${i + 1}name`).style.visibility = "visible";
+                                document.getElementById(`playerfav${i + 1}team`).style.visibility = "visible";
+                                document.getElementById(`playerfav${i + 1}pic`).style.visibility = "visible";
+                                document.getElementById(`player${i + 1}favbutton`).style.visibility = "visible";
+                                document.getElementById(`player${i + 1}removebutton`).style.visibility = "visible";
+                                document.getElementById(`pfav${i + 1}`).style.visibility = "visible";
+
+                                playerfavids[i] = playerfavid
+                                playerfavfnames[i] = playerfavname
+                                playerfavteamnames[i] = playerfavteam
+                                playerfavsports[i] = 3
+
+                                picurl = `https://nhl.bamcontent.com/images/headshots/current/168x168/${playerfavid}.jpg`
+                                document.getElementById(`playerfav${i + 1}pic`).src = picurl;
+                                break;
+
                             default:
                         }
                     }
@@ -156,6 +202,7 @@ async function keeplive() {
                 for (let i = 0; i < 10; i++) {
                     if (teamfavs[i] != null) {
                         switch (teamfavs[i].charAt(0)) {
+                            //case 1 is nba
                             case '1':
                                 favcode = teamfavs[i]
                                 count = 0
@@ -177,6 +224,30 @@ async function keeplive() {
                                 teamfavids[i] = teamid
                                 teamfavnames[i] = teamname
                                 break;
+
+                            //case 3 is nhl
+                            case '3':
+                                favcode = teamfavs[i]
+                                count = 0
+                                index = 0
+                                divider1 = null
+                                while (index < favcode.length && count < 1) {
+                                    if (count == 0 && favcode[index] == '#') {
+                                        divider1 = index
+                                        count = count + 1
+                                    }
+                                    index = index + 1
+                                }
+                                teamid = favcode.substring(1, divider1)
+                                teamname = favcode.substring(divider1 + 1)
+                                document.getElementById(`teamfav${i + 1}name`).innerHTML = teamname
+                                //picurlfull = `pics/nbateam/${teamid}.png`
+                                //document.getElementById(`teamfav${i + 1}pic`).src = picurlfull;
+                                teamfavsports[i] = 3
+                                teamfavids[i] = teamid
+                                teamfavnames[i] = teamname
+                                break;
+
                             default:
                         }
                     }
@@ -519,6 +590,12 @@ function playerfav1link() {
             window.localStorage.setItem('nbaplayerTeam', playerfavteamnames[0]);
             window.location.href = "nbaplayerstats.html";
             break;
+        case 3:
+            window.localStorage.setItem('nhlplayerID', playerfavids[0]);
+            window.localStorage.setItem('nhlplayerFN', playerfavfnames[0]);
+            window.localStorage.setItem('nhlplayerTeam', playerfavteamnames[0]);
+            window.location.href = "nhlplayerstats.html";
+            break;
         default:
     }
 }
@@ -531,6 +608,12 @@ function playerfav2link() {
             window.localStorage.setItem('nbaplayerLN', playerfavlnames[1]);
             window.localStorage.setItem('nbaplayerTeam', playerfavteamnames[1]);
             window.location.href = "nbaplayerstats.html";
+            break;
+        case 3:
+            window.localStorage.setItem('nhlplayerID', playerfavids[1]);
+            window.localStorage.setItem('nhlplayerFN', playerfavfnames[1]);
+            window.localStorage.setItem('nhlplayerTeam', playerfavteamnames[1]);
+            window.location.href = "nhlplayerstats.html";
             break;
         default:
     }
@@ -545,6 +628,12 @@ function playerfav3link() {
             window.localStorage.setItem('nbaplayerTeam', playerfavteamnames[2]);
             window.location.href = "nbaplayerstats.html";
             break;
+        case 3:
+            window.localStorage.setItem('nhlplayerID', playerfavids[2]);
+            window.localStorage.setItem('nhlplayerFN', playerfavfnames[2]);
+            window.localStorage.setItem('nhlplayerTeam', playerfavteamnames[2]);
+            window.location.href = "nhlplayerstats.html";
+            break;
         default:
     }
 }
@@ -557,6 +646,12 @@ function playerfav4link() {
             window.localStorage.setItem('nbaplayerLN', playerfavlnames[3]);
             window.localStorage.setItem('nbaplayerTeam', playerfavteamnames[3]);
             window.location.href = "nbaplayerstats.html";
+            break;
+        case 3:
+            window.localStorage.setItem('nhlplayerID', playerfavids[3]);
+            window.localStorage.setItem('nhlplayerFN', playerfavfnames[3]);
+            window.localStorage.setItem('nhlplayerTeam', playerfavteamnames[3]);
+            window.location.href = "nhlplayerstats.html";
             break;
         default:
     }
@@ -571,6 +666,12 @@ function playerfav5link() {
             window.localStorage.setItem('nbaplayerTeam', playerfavteamnames[4]);
             window.location.href = "nbaplayerstats.html";
             break;
+        case 3:
+            window.localStorage.setItem('nhlplayerID', playerfavids[4]);
+            window.localStorage.setItem('nhlplayerFN', playerfavfnames[4]);
+            window.localStorage.setItem('nhlplayerTeam', playerfavteamnames[4]);
+            window.location.href = "nhlplayerstats.html";
+            break;
         default:
     }
 }
@@ -583,6 +684,12 @@ function playerfav6link() {
             window.localStorage.setItem('nbaplayerLN', playerfavlnames[5]);
             window.localStorage.setItem('nbaplayerTeam', playerfavteamnames[5]);
             window.location.href = "nbaplayerstats.html";
+            break;
+        case 3:
+            window.localStorage.setItem('nhlplayerID', playerfavids[5]);
+            window.localStorage.setItem('nhlplayerFN', playerfavfnames[5]);
+            window.localStorage.setItem('nhlplayerTeam', playerfavteamnames[5]);
+            window.location.href = "nhlplayerstats.html";
             break;
         default:
     }
@@ -597,6 +704,12 @@ function playerfav7link() {
             window.localStorage.setItem('nbaplayerTeam', playerfavteamnames[6]);
             window.location.href = "nbaplayerstats.html";
             break;
+        case 3:
+            window.localStorage.setItem('nhlplayerID', playerfavids[6]);
+            window.localStorage.setItem('nhlplayerFN', playerfavfnames[6]);
+            window.localStorage.setItem('nhlplayerTeam', playerfavteamnames[6]);
+            window.location.href = "nhlplayerstats.html";
+            break;
         default:
     }
 }
@@ -609,6 +722,12 @@ function playerfav8link() {
             window.localStorage.setItem('nbaplayerLN', playerfavlnames[7]);
             window.localStorage.setItem('nbaplayerTeam', playerfavteamnames[7]);
             window.location.href = "nbaplayerstats.html";
+            break;
+        case 3:
+            window.localStorage.setItem('nhlplayerID', playerfavids[7]);
+            window.localStorage.setItem('nhlplayerFN', playerfavfnames[7]);
+            window.localStorage.setItem('nhlplayerTeam', playerfavteamnames[7]);
+            window.location.href = "nhlplayerstats.html";
             break;
         default:
     }
@@ -623,6 +742,12 @@ function playerfav9link() {
             window.localStorage.setItem('nbaplayerTeam', playerfavteamnames[8]);
             window.location.href = "nbaplayerstats.html";
             break;
+        case 3:
+            window.localStorage.setItem('nhlplayerID', playerfavids[8]);
+            window.localStorage.setItem('nhlplayerFN', playerfavfnames[8]);
+            window.localStorage.setItem('nhlplayerTeam', playerfavteamnames[8]);
+            window.location.href = "nhlplayerstats.html";
+            break;
         default:
     }
 }
@@ -636,6 +761,12 @@ function playerfav10link() {
             window.localStorage.setItem('nbaplayerTeam', playerfavteamnames[9]);
             window.location.href = "nbaplayerstats.html";
             break;
+        case 3:
+            window.localStorage.setItem('nhlplayerID', playerfavids[9]);
+            window.localStorage.setItem('nhlplayerFN', playerfavfnames[9]);
+            window.localStorage.setItem('nhlplayerTeam', playerfavteamnames[9]);
+            window.location.href = "nhlplayerstats.html";
+            break;
         default:
     }
 }
@@ -646,6 +777,11 @@ function teamfav1link() {
             window.localStorage.setItem('nbaTeamID', teamfavids[0]);
             window.localStorage.setItem('nbaTeamName', teamfavnames[0]);
             window.location.href = "nbateamstats.html";
+            break;
+        case 3:
+            window.localStorage.setItem('nhlTeamID', teamfavids[0]);
+            window.localStorage.setItem('nhlTeamName', teamfavnames[0]);
+            window.location.href = "nhlteamstats.html";
             break;
         default:
     }
@@ -658,6 +794,11 @@ function teamfav2link() {
             window.localStorage.setItem('nbaTeamName', teamfavnames[1]);
             window.location.href = "nbateamstats.html";
             break;
+        case 3:
+            window.localStorage.setItem('nhlTeamID', teamfavids[1]);
+            window.localStorage.setItem('nhlTeamName', teamfavnames[1]);
+            window.location.href = "nhlteamstats.html";
+            break;
         default:
     }
 }
@@ -668,6 +809,11 @@ function teamfav3link() {
             window.localStorage.setItem('nbaTeamID', teamfavids[2]);
             window.localStorage.setItem('nbaTeamName', teamfavnames[2]);
             window.location.href = "nbateamstats.html";
+            break;
+        case 3:
+            window.localStorage.setItem('nhlTeamID', teamfavids[2]);
+            window.localStorage.setItem('nhlTeamName', teamfavnames[2]);
+            window.location.href = "nhlteamstats.html";
             break;
         default:
     }
@@ -680,6 +826,11 @@ function teamfav4link() {
             window.localStorage.setItem('nbaTeamName', teamfavnames[3]);
             window.location.href = "nbateamstats.html";
             break;
+        case 3:
+            window.localStorage.setItem('nhlTeamID', teamfavids[3]);
+            window.localStorage.setItem('nhlTeamName', teamfavnames[3]);
+            window.location.href = "nhlteamstats.html";
+            break;
         default:
     }
 }
@@ -690,6 +841,11 @@ function teamfav5link() {
             window.localStorage.setItem('nbaTeamID', teamfavids[4]);
             window.localStorage.setItem('nbaTeamName', teamfavnames[4]);
             window.location.href = "nbateamstats.html";
+            break;
+        case 3:
+            window.localStorage.setItem('nhlTeamID', teamfavids[4]);
+            window.localStorage.setItem('nhlTeamName', teamfavnames[4]);
+            window.location.href = "nhlteamstats.html";
             break;
         default:
     }
@@ -702,6 +858,11 @@ function teamfav6link() {
             window.localStorage.setItem('nbaTeamName', teamfavnames[5]);
             window.location.href = "nbateamstats.html";
             break;
+        case 3:
+            window.localStorage.setItem('nhlTeamID', teamfavids[5]);
+            window.localStorage.setItem('nhlTeamName', teamfavnames[5]);
+            window.location.href = "nhlteamstats.html";
+            break;
         default:
     }
 }
@@ -712,6 +873,11 @@ function teamfav7link() {
             window.localStorage.setItem('nbaTeamID', teamfavids[6]);
             window.localStorage.setItem('nbaTeamName', teamfavnames[6]);
             window.location.href = "nbateamstats.html";
+            break;
+        case 3:
+            window.localStorage.setItem('nhlTeamID', teamfavids[6]);
+            window.localStorage.setItem('nhlTeamName', teamfavnames[6]);
+            window.location.href = "nhlteamstats.html";
             break;
         default:
     }
@@ -724,6 +890,11 @@ function teamfav8link() {
             window.localStorage.setItem('nbaTeamName', teamfavnames[7]);
             window.location.href = "nbateamstats.html";
             break;
+        case 3:
+            window.localStorage.setItem('nhlTeamID', teamfavids[7]);
+            window.localStorage.setItem('nhlTeamName', teamfavnames[7]);
+            window.location.href = "nhlteamstats.html";
+            break;
         default:
     }
 }
@@ -735,6 +906,11 @@ function teamfav9link() {
             window.localStorage.setItem('nbaTeamName', teamfavnames[8]);
             window.location.href = "nbateamstats.html";
             break;
+        case 3:
+            window.localStorage.setItem('nhlTeamID', teamfavids[8]);
+            window.localStorage.setItem('nhlTeamName', teamfavnames[8]);
+            window.location.href = "nhlteamstats.html";
+            break;
         default:
     }
 }
@@ -745,6 +921,11 @@ function teamfav10link() {
             window.localStorage.setItem('nbaTeamID', teamfavids[9]);
             window.localStorage.setItem('nbaTeamName', teamfavnames[9]);
             window.location.href = "nbateamstats.html";
+            break;
+        case 3:
+            window.localStorage.setItem('nhlTeamID', teamfavids[9]);
+            window.localStorage.setItem('nhlTeamName', teamfavnames[9]);
+            window.location.href = "nhlteamstats.html";
             break;
         default:
     }

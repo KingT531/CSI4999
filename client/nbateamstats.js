@@ -61,7 +61,7 @@ async function keeplive() {
 
 async function favorite() {
     username = window.localStorage.getItem('user');
-    if (username != "") {
+    if (username != "" && username != null) {
         fav = `1${teamid}#${teamname}`
         //axios.post("https://csi4999-server.herokuapp.com/api/favoriteteam", {
         axios.post("http://localhost:3001/api/favoriteteam", {

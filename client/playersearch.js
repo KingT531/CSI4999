@@ -1,4 +1,4 @@
-async function searchplayers() {
+function searchplayers() {
 
     //clear old values
     playerhtml = ['playername1', 'playername2', 'playername3', 'playername4', 'playername5', 'playername6', 'playername7', 'playername8']
@@ -214,6 +214,7 @@ async function searchplayers() {
             //search for players
             iteamid = 1
             playercount = 0
+            statcount = 1
             while (iteamid < 56 && playercount < 8) {
                 if (iteamid == 11) {
                     iteamid = 12
@@ -232,31 +233,71 @@ async function searchplayers() {
                 axios.request(playersearch).then(function (response) {
                     iteamplayer = 0
                     while (iteamplayer < response.data.roster.length && playercount < 8) {
-                        if (response.data.roster[iteamplayer].person.fullName.toLowerCase().includes(searchreq.toLowerCase())) {
+                        if (playercount < 8 && response.data.roster[iteamplayer].person.fullName.toLowerCase().includes(searchreq.toLowerCase())) {
                             teamid = response.data.link.substring(14, 16);
                             if (teamid.charAt(1) == '/') {
                                 teamid = teamid.substring(0, 1);
                             }
-                            document.getElementById(playerhtml[playercount]).innerHTML = response.data.roster[iteamplayer].person.fullName
+                            playername = response.data.roster[iteamplayer].person.fullName
+                            document.getElementById(playerhtml[playercount]).innerHTML = playername
                             document.getElementById(playerhtml[playercount]).style.visibility = "visible";
                             document.getElementById(teamhtml[playercount]).innerHTML = nhlteamnames[teamid]
                             document.getElementById(teamhtml[playercount]).style.visibility = "visible";
                             document.getElementById(buttonhtml[playercount]).style.visibility = "visible";
                             document.getElementById(pichtml[playercount]).style.visibility = "visible";
-                            document.getElementById(stat1html[playercount]).innerHTML = "placeholder"
+                            document.getElementById(stat1html[playercount]).innerHTML = "N/A"
                             document.getElementById(stat1html[playercount]).style.visibility = "visible";
-                            document.getElementById(stat2html[playercount]).innerHTML = "placeholder"
+                            document.getElementById(stat2html[playercount]).innerHTML = "N/A"
                             document.getElementById(stat2html[playercount]).style.visibility = "visible";
-                            document.getElementById(stat3html[playercount]).innerHTML = "placeholder"
+                            document.getElementById(stat3html[playercount]).innerHTML = "N/A"
                             document.getElementById(stat3html[playercount]).style.visibility = "visible";
-                            document.getElementById(stat4html[playercount]).innerHTML = "placeholder"
+                            document.getElementById(stat4html[playercount]).innerHTML = "N/A"
                             document.getElementById(stat4html[playercount]).style.visibility = "visible";
-                            searchprofileID[playercount] = response.data.roster[iteamplayer].person.id
-                            searchprofileFN[playercount] = response.data.roster[iteamplayer].person.fullName
+                            playerid = response.data.roster[iteamplayer].person.id
+                            searchprofileID[playercount] = playerid
+                            searchprofileFN[playercount] = playername
                             searchprofileTeam[playercount] = nhlteamnames[teamid]
                             document.getElementById(`divp${playercount + 1}`).style.display = "block"
                             playercount = playercount + 1
+                            picurl = `https://nhl.bamcontent.com/images/headshots/current/168x168/${playerid}.jpg`
+                            document.getElementById(`playerpic${playercount}`).src = picurl;
+                            currentid = iteamid
 
+                            const playersearch = {
+                                method: 'GET',
+                                url: `https://statsapi.web.nhl.com/api/v1/people/${playerid}?hydrate=stats(splits=statsSingleSeason)`,
+                            };
+                            axios.request(playersearch).then(function (response) {
+                                try {
+                                    if (response.data.people[0].stats[0].splits[0].stat.shots != null) {
+                                        document.getElementById(stat1html[statcount - 1]).innerHTML = response.data.people[0].stats[0].splits[0].stat.games
+                                        document.getElementById(`playerposition${statcount}`).innerHTML = response.data.people[0].primaryPosition.type
+                                        document.getElementById(stat2html[statcount - 1]).innerHTML = response.data.people[0].stats[0].splits[0].stat.shots
+                                        document.getElementById(stat3html[statcount - 1]).innerHTML = response.data.people[0].stats[0].splits[0].stat.goals
+                                        document.getElementById(stat4html[statcount - 1]).innerHTML = response.data.people[0].stats[0].splits[0].stat.assists
+                                        document.getElementById(`${statcount}stat1label`).innerHTML = "Games:"
+                                        document.getElementById(`${statcount}stat2label`).innerHTML = "Shots:"
+                                        document.getElementById(`${statcount}stat3label`).innerHTML = "Goals:"
+                                        document.getElementById(`${statcount}stat4label`).innerHTML = "Assists:"
+                                    }
+                                    else {
+                                        document.getElementById(stat1html[statcount - 1]).innerHTML = response.data.people[0].stats[0].splits[0].stat.games
+                                        document.getElementById(`playerposition${statcount}`).innerHTML = response.data.people[0].primaryPosition.type
+                                        document.getElementById(stat2html[statcount - 1]).innerHTML = response.data.people[0].stats[0].splits[0].stat.shotsAgainst
+                                        document.getElementById(stat3html[statcount - 1]).innerHTML = response.data.people[0].stats[0].splits[0].stat.saves
+                                        document.getElementById(stat4html[statcount - 1]).innerHTML = response.data.people[0].stats[0].splits[0].stat.goalsAgainst
+                                        document.getElementById(`${statcount}stat1label`).innerHTML = "Games:"
+                                        document.getElementById(`${statcount}stat2label`).innerHTML = "ShotsAgainst:"
+                                        document.getElementById(`${statcount}stat3label`).innerHTML = "Saves:"
+                                        document.getElementById(`${statcount}stat4label`).innerHTML = "GoalsAgainst:"
+                                    }
+                                } catch (error) {
+                                    console.log("player stats not available")
+                                }
+                                statcount = statcount + 1
+                            }).catch(function (error) {
+                                console.error(error);
+                            });
                         }
                         iteamplayer = iteamplayer + 1
                     }
@@ -273,7 +314,7 @@ async function searchplayers() {
 
     //API and logic for NFL data
     else if (nfl) {
-        //on hold
+        document.getElementById('searchresult').innerHTML = "NFL player search not implemented yet"
     }
 
 }
