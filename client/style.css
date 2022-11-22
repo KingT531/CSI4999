@@ -14,12 +14,11 @@ button {
 }
 
 header {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
 	display: flex;
+	margin: 0;
 	align-items: center;
-	padding: 1px 5%;
+	padding-left: 6%;
+	padding-right: 8%;
 	background-color: #ffffff;
 	border-style: ridge;
 	border-color: rgb(119, 23, 23);
@@ -30,12 +29,14 @@ header {
 }
 
 .navigation {
+	display: flex;
 	list-style: none;
+	margin-left: auto;
 }
 
 .navigation li {
-	display: inline-block;
 	padding: 0px 20px;
+
 }
 
 .navigation li a {
@@ -64,10 +65,8 @@ header {
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	animation: rainbow-text-simple-animation-rev 0.75s ease forwards;
-	padding-right: 700px;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 50px;
-
 }
 
 .sportstitle:hover {
