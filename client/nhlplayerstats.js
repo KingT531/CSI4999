@@ -15,4 +15,8 @@ async function keeplive() {
     document.getElementById('teamname').innerHTML = playerteam
     document.getElementById('playername').innerHTML = playername
 
+
+    picurl = `https://nhl.bamcontent.com/images/headshots/current/168x168/${playerid}.jpg`
+    document.getElementById('playerpic').src = picurl;
+
 }
