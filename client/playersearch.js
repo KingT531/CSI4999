@@ -31,10 +31,21 @@ async function searchplayers() {
 
 
     //API and logic for nba player search
-    nba = true;
-    mlb = false;
+    nba = false;
     nfl = false;
+    nhl = false
+    if (document.getElementById('radioNBA').checked) {
+        nba = true;
+    }
+    else if (document.getElementById('radioNFL').checked) {
+        nfl = true;
+    }
+    else if (document.getElementById('radioNHL').checked) {
+        nhl = true;
+    }
+
     if (nba) {
+        window.localStorage.setItem('playersearchsport', 0);
         //search for players using input name
         const searchplayers = {
             method: 'GET',
@@ -62,7 +73,7 @@ async function searchplayers() {
                 allPlayersTeam.push(response.data.data[index].team.full_name)
                 index = index + 1
             }
-            //get 2021 data from all players in allPlayersID
+            //get 2022 data from all players in allPlayersID
             const searchcurrentplayers = {
                 method: 'GET',
                 url: 'https://www.balldontlie.io/api/v1/season_averages',
@@ -93,6 +104,7 @@ async function searchplayers() {
                     stat4.push((response.data.data[index].fg3_pct * 100).toFixed(2))
                     index = index + 1
                 }
+                //fill html with player data
                 if (playersID.length == 0) {
                     document.getElementById('searchresult').innerHTML = "No Search Results Found"
                 }
@@ -169,98 +181,227 @@ async function searchplayers() {
         });
     }
 
-
-    //API and logic for Baseball data
-    else if (mlb) {
-        const playersearch = {
+    //API and logic for NHL data
+    else if (nhl) {
+        window.localStorage.setItem('playersearchsport', 2);
+        //find team names and id
+        nhlteamnames = []
+        for (let i = 0; i < 56; i++) {
+            nhlteamnames.push(null)
+        }
+        const nhlteams = {
             method: 'GET',
-            url: 'https://mlb-data.p.rapidapi.com/json/named.search_player_all.bam',
-            params: { name_part: '\'cespedes%25\'', sport_code: '\'mlb\'', active_sw: '\'Y\'' },
-            headers: {
-                'X-RapidAPI-Key': '9c4416de73msha577cfcfd547904p12fe47jsn52713b65c4ce',
-                'X-RapidAPI-Host': 'mlb-data.p.rapidapi.com'
-            }
+            url: 'JSON/nhlteams.json',
         };
+        axios.request(nhlteams).then(function (response) {
+            i = 0
+            nhlteamid = 1
+            while (i < 32) {
+                if (nhlteamid == 11) {
+                    nhlteamid = 12
+                }
+                else if (nhlteamid == 27) {
+                    nhlteamid = 28
+                }
+                else if (nhlteamid == 31) {
+                    nhlteamid = 52
+                }
+                nhlteamnames[nhlteamid] = response.data.teams[i].name
+                i = i + 1
+                nhlteamid = nhlteamid + 1
+            }
 
-        axios.request(playersearch).then(function (response) {
+            //search for players
+            iteamid = 1
+            playercount = 0
+            while (iteamid < 56 && playercount < 8) {
+                if (iteamid == 11) {
+                    iteamid = 12
+                }
+                else if (iteamid == 27) {
+                    iteamid = 28
+                }
+                else if (iteamid == 31) {
+                    iteamid = 52
+                }
+                currentid = iteamid
+                const playersearch = {
+                    method: 'GET',
+                    url: `https://statsapi.web.nhl.com/api/v1/teams/${currentid}/roster`,
+                };
+                axios.request(playersearch).then(function (response) {
+                    iteamplayer = 0
+                    while (iteamplayer < response.data.roster.length && playercount < 8) {
+                        if (response.data.roster[iteamplayer].person.fullName.toLowerCase().includes(searchreq.toLowerCase())) {
+                            teamid = response.data.link.substring(14, 16);
+                            if (teamid.charAt(1) == '/') {
+                                teamid = teamid.substring(0, 1);
+                            }
+                            document.getElementById(playerhtml[playercount]).innerHTML = response.data.roster[iteamplayer].person.fullName
+                            document.getElementById(playerhtml[playercount]).style.visibility = "visible";
+                            document.getElementById(teamhtml[playercount]).innerHTML = nhlteamnames[teamid]
+                            document.getElementById(teamhtml[playercount]).style.visibility = "visible";
+                            document.getElementById(buttonhtml[playercount]).style.visibility = "visible";
+                            document.getElementById(pichtml[playercount]).style.visibility = "visible";
+                            document.getElementById(stat1html[playercount]).innerHTML = "placeholder"
+                            document.getElementById(stat1html[playercount]).style.visibility = "visible";
+                            document.getElementById(stat2html[playercount]).innerHTML = "placeholder"
+                            document.getElementById(stat2html[playercount]).style.visibility = "visible";
+                            document.getElementById(stat3html[playercount]).innerHTML = "placeholder"
+                            document.getElementById(stat3html[playercount]).style.visibility = "visible";
+                            document.getElementById(stat4html[playercount]).innerHTML = "placeholder"
+                            document.getElementById(stat4html[playercount]).style.visibility = "visible";
+                            searchprofileID[playercount] = response.data.roster[iteamplayer].person.id
+                            searchprofileFN[playercount] = response.data.roster[iteamplayer].person.fullName
+                            searchprofileTeam[playercount] = nhlteamnames[teamid]
+                            document.getElementById(`divp${playercount + 1}`).style.display = "block"
+                            playercount = playercount + 1
+
+                        }
+                        iteamplayer = iteamplayer + 1
+                    }
+                }).catch(function (error) {
+                    console.error(error);
+                });
+                iteamid = iteamid + 1
+            }
         }).catch(function (error) {
             console.error(error);
         });
+
     }
-
-
 
     //API and logic for NFL data
     else if (nfl) {
-
+        //on hold
     }
-
-
-
-
 
 }
 
 async function profile1() {
-    window.localStorage.setItem('nbaplayerID', searchprofileID[0]);
-    window.localStorage.setItem('nbaplayerFN', searchprofileFN[0]);
-    window.localStorage.setItem('nbaplayerLN', searchprofileLN[0]);
-    window.localStorage.setItem('nbaplayerTeam', searchprofileTeam[0]);
-    window.location.href = "nbaplayerstats.html";
+    if (window.localStorage.getItem('playersearchsport') == 0) {
+        window.localStorage.setItem('nbaplayerID', searchprofileID[0]);
+        window.localStorage.setItem('nbaplayerFN', searchprofileFN[0]);
+        window.localStorage.setItem('nbaplayerLN', searchprofileLN[0]);
+        window.localStorage.setItem('nbaplayerTeam', searchprofileTeam[0]);
+        window.location.href = "nbaplayerstats.html";
+    }
+    else if (window.localStorage.getItem('playersearchsport') == 2) {
+        window.localStorage.setItem('nhlplayerID', searchprofileID[0]);
+        window.localStorage.setItem('nhlplayerTeam', searchprofileTeam[0]);
+        window.localStorage.setItem('nhlplayerFN', searchprofileFN[0]);
+        window.location.href = "nhlplayerstats.html";
+    }
 }
 
 async function profile2() {
-    window.localStorage.setItem('nbaplayerID', searchprofileID[1]);
-    window.localStorage.setItem('nbaplayerFN', searchprofileFN[1]);
-    window.localStorage.setItem('nbaplayerLN', searchprofileLN[1]);
-    window.localStorage.setItem('nbaplayerTeam', searchprofileTeam[1]);
-    window.location.href = "nbaplayerstats.html";
+    if (window.localStorage.getItem('playersearchsport') == 0) {
+        window.localStorage.setItem('nbaplayerID', searchprofileID[1]);
+        window.localStorage.setItem('nbaplayerFN', searchprofileFN[1]);
+        window.localStorage.setItem('nbaplayerLN', searchprofileLN[1]);
+        window.localStorage.setItem('nbaplayerTeam', searchprofileTeam[1]);
+        window.location.href = "nbaplayerstats.html";
+    }
+    else if (window.localStorage.getItem('playersearchsport') == 2) {
+        window.localStorage.setItem('nhlplayerID', searchprofileID[1]);
+        window.localStorage.setItem('nhlplayerTeam', searchprofileTeam[1]);
+        window.localStorage.setItem('nhlplayerFN', searchprofileFN[1]);
+        window.location.href = "nhlplayerstats.html";
+    }
 }
 
 async function profile3() {
-    window.localStorage.setItem('nbaplayerID', searchprofileID[2]);
-    window.localStorage.setItem('nbaplayerFN', searchprofileFN[2]);
-    window.localStorage.setItem('nbaplayerLN', searchprofileLN[2]);
-    window.localStorage.setItem('nbaplayerTeam', searchprofileTeam[2]);
-    window.location.href = "nbaplayerstats.html";
+    if (window.localStorage.getItem('playersearchsport') == 0) {
+        window.localStorage.setItem('nbaplayerID', searchprofileID[2]);
+        window.localStorage.setItem('nbaplayerFN', searchprofileFN[2]);
+        window.localStorage.setItem('nbaplayerLN', searchprofileLN[2]);
+        window.localStorage.setItem('nbaplayerTeam', searchprofileTeam[2]);
+        window.location.href = "nbaplayerstats.html";
+    }
+    else if (window.localStorage.getItem('playersearchsport') == 2) {
+        window.localStorage.setItem('nhlplayerID', searchprofileID[2]);
+        window.localStorage.setItem('nhlplayerTeam', searchprofileTeam[2]);
+        window.localStorage.setItem('nhlplayerFN', searchprofileFN[2]);
+        window.location.href = "nhlplayerstats.html";
+    }
 }
 
 async function profile4() {
-    window.localStorage.setItem('nbaplayerID', searchprofileID[3]);
-    window.localStorage.setItem('nbaplayerFN', searchprofileFN[3]);
-    window.localStorage.setItem('nbaplayerLN', searchprofileLN[3]);
-    window.localStorage.setItem('nbaplayerTeam', searchprofileTeam[3]);
-    window.location.href = "nbaplayerstats.html";
+    if (window.localStorage.getItem('playersearchsport') == 0) {
+        window.localStorage.setItem('nbaplayerID', searchprofileID[3]);
+        window.localStorage.setItem('nbaplayerFN', searchprofileFN[3]);
+        window.localStorage.setItem('nbaplayerLN', searchprofileLN[3]);
+        window.localStorage.setItem('nbaplayerTeam', searchprofileTeam[3]);
+        window.location.href = "nbaplayerstats.html";
+    }
+    else if (window.localStorage.getItem('playersearchsport') == 2) {
+        window.localStorage.setItem('nhlplayerID', searchprofileID[3]);
+        window.localStorage.setItem('nhlplayerTeam', searchprofileTeam[3]);
+        window.localStorage.setItem('nhlplayerFN', searchprofileFN[3]);
+        window.location.href = "nhlplayerstats.html";
+    }
 }
 
 async function profile5() {
-    window.localStorage.setItem('nbaplayerID', searchprofileID[4]);
-    window.localStorage.setItem('nbaplayerFN', searchprofileFN[4]);
-    window.localStorage.setItem('nbaplayerLN', searchprofileLN[4]);
-    window.localStorage.setItem('nbaplayerTeam', searchprofileTeam[4]);
-    window.location.href = "nbaplayerstats.html";
+    if (window.localStorage.getItem('playersearchsport') == 0) {
+        window.localStorage.setItem('nbaplayerID', searchprofileID[4]);
+        window.localStorage.setItem('nbaplayerFN', searchprofileFN[4]);
+        window.localStorage.setItem('nbaplayerLN', searchprofileLN[4]);
+        window.localStorage.setItem('nbaplayerTeam', searchprofileTeam[4]);
+        window.location.href = "nbaplayerstats.html";
+    }
+    else if (window.localStorage.getItem('playersearchsport') == 2) {
+        window.localStorage.setItem('nhlplayerID', searchprofileID[4]);
+        window.localStorage.setItem('nhlplayerTeam', searchprofileTeam[4]);
+        window.localStorage.setItem('nhlplayerFN', searchprofileFN[4]);
+        window.location.href = "nhlplayerstats.html";
+    }
 }
 
 async function profile6() {
-    window.localStorage.setItem('nbaplayerID', searchprofileID[5]);
-    window.localStorage.setItem('nbaplayerFN', searchprofileFN[5]);
-    window.localStorage.setItem('nbaplayerLN', searchprofileLN[5]);
-    window.localStorage.setItem('nbaplayerTeam', searchprofileTeam[5]);
-    window.location.href = "nbaplayerstats.html";
+    if (window.localStorage.getItem('playersearchsport') == 0) {
+        window.localStorage.setItem('nbaplayerID', searchprofileID[5]);
+        window.localStorage.setItem('nbaplayerFN', searchprofileFN[5]);
+        window.localStorage.setItem('nbaplayerLN', searchprofileLN[5]);
+        window.localStorage.setItem('nbaplayerTeam', searchprofileTeam[5]);
+        window.location.href = "nbaplayerstats.html";
+    }
+    else if (window.localStorage.getItem('playersearchsport') == 2) {
+        window.localStorage.setItem('nhlplayerID', searchprofileID[5]);
+        window.localStorage.setItem('nhlplayerTeam', searchprofileTeam[5]);
+        window.localStorage.setItem('nhlplayerFN', searchprofileFN[5]);
+        window.location.href = "nhlplayerstats.html";
+    }
 }
 
 async function profile7() {
-    window.localStorage.setItem('nbaplayerID', searchprofileID[6]);
-    window.localStorage.setItem('nbaplayerFN', searchprofileFN[6]);
-    window.localStorage.setItem('nbaplayerLN', searchprofileLN[6]);
-    window.localStorage.setItem('nbaplayerTeam', searchprofileTeam[6]);
-    window.location.href = "nbaplayerstats.html";
+    if (window.localStorage.getItem('playersearchsport') == 0) {
+        window.localStorage.setItem('nbaplayerID', searchprofileID[6]);
+        window.localStorage.setItem('nbaplayerFN', searchprofileFN[6]);
+        window.localStorage.setItem('nbaplayerLN', searchprofileLN[6]);
+        window.localStorage.setItem('nbaplayerTeam', searchprofileTeam[6]);
+        window.location.href = "nbaplayerstats.html";
+    }
+    else if (window.localStorage.getItem('playersearchsport') == 2) {
+        window.localStorage.setItem('nhlplayerID', searchprofileID[6]);
+        window.localStorage.setItem('nhlplayerTeam', searchprofileTeam[6]);
+        window.localStorage.setItem('nhlplayerFN', searchprofileFN[6]);
+        window.location.href = "nhlplayerstats.html";
+    }
 }
 
 async function profile8() {
-    window.localStorage.setItem('nbaplayerID', searchprofileID[7]);
-    window.localStorage.setItem('nbaplayerFN', searchprofileFN[7]);
-    window.localStorage.setItem('nbaplayerLN', searchprofileLN[7]);
-    window.localStorage.setItem('nbaplayerTeam', searchprofileTeam[7]);
-    window.location.href = "nbaplayerstats.html";
+    if (window.localStorage.getItem('playersearchsport') == 0) {
+        window.localStorage.setItem('nbaplayerID', searchprofileID[7]);
+        window.localStorage.setItem('nbaplayerFN', searchprofileFN[7]);
+        window.localStorage.setItem('nbaplayerLN', searchprofileLN[7]);
+        window.localStorage.setItem('nbaplayerTeam', searchprofileTeam[7]);
+        window.location.href = "nbaplayerstats.html";
+    }
+    else if (window.localStorage.getItem('playersearchsport') == 2) {
+        window.localStorage.setItem('nhlplayerID', searchprofileID[7]);
+        window.localStorage.setItem('nhlplayerTeam', searchprofileTeam[7]);
+        window.localStorage.setItem('nhlplayerFN', searchprofileFN[7]);
+        window.location.href = "nhlplayerstats.html";
+    }
 }
