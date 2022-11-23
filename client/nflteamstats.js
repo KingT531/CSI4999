@@ -10,11 +10,8 @@ async function keeplive() {
     else {
     }
 
-    //window.localStorage.setItem('nflTeamID', 0);
-    //window.localStorage.setItem('nflTeamName', 'Detroit Lions');
-    //window.localStorage.setItem('nflTeamNameShort', 'Lions');
-    const teamID = window.localStorage.getItem('nflTeamID');
-    const teamname = window.localStorage.getItem('nflTeamName');
+    teamID = window.localStorage.getItem('nflTeamID');
+    teamname = window.localStorage.getItem('nflTeamName');
     document.getElementById('teamname').innerHTML = teamname
 
     const winsearch = {
@@ -123,4 +120,36 @@ async function keeplive() {
         console.error(error);
     });
 
+}
+
+async function favorite() {
+    username = window.localStorage.getItem('user');
+    if (username != "" && username != null) {
+        fav = `2${teamID}#${teamname}`
+        //axios.post("https://csi4999-server.herokuapp.com/api/favoriteteam", {
+        axios.post("http://localhost:3001/api/favoriteteam", {
+            username: username,
+            favorite: fav,
+        }).then(function (response) {
+            if (response.data.status == 0) {
+                document.getElementById('favmessage').innerHTML = "Added to Favorites"
+                console.log("succeeded to add favorite")
+            }
+            else if (response.data.status == 1) {
+                document.getElementById('favmessage').innerHTML = "Favorites List is full!"
+                console.log("Failed to add favorite")
+            }
+            else if (response.data.status == 2) {
+                document.getElementById('favmessage').innerHTML = "Favorite Already Exists!"
+                console.log("Failed to add favorite")
+            }
+            else if (response.data.status == 3) {
+                document.getElementById('favmessage').innerHTML = "Not Logged In!"
+                console.log("Failed to add favorite")
+            }
+            else {
+                console.log("error");
+            }
+        })
+    }
 }

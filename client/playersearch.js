@@ -13,6 +13,7 @@ function searchplayers() {
     searchprofileFN = [null, null, null, null, null, null, null, null]
     searchprofileLN = [null, null, null, null, null, null, null, null]
     searchprofileTeam = [null, null, null, null, null, null, null, null]
+    searchprofilePosition = [null, null, null, null, null, null, null, null]
     document.getElementById('searchresult').innerHTML = ""
     for (let i = 0; i < 8; i++) {
         document.getElementById(playerhtml[i]).style.visibility = "hidden";
@@ -348,8 +349,8 @@ function searchplayers() {
                     teamid = response.data.team.id
                     playerid = response.data.athletes[0].items[i].id
                     playerposition = response.data.athletes[0].items[i].position.name
-                    if (fullname.toLowerCase().includes(searchreq.toLowerCase())) {
-                        //console.log(response.data.athletes[0].items[i])
+                    if (fullname.toLowerCase().includes(searchreq.toLowerCase()) && response.data.athletes[1].items[i].status.name == 'Active') {
+                        console.log(response.data.athletes[0].items[i])
                         document.getElementById(`playerposition${playercount + 1}`).innerHTML = playerposition
                         document.getElementById(playerhtml[playercount]).innerHTML = fullname
                         document.getElementById(playerhtml[playercount]).style.visibility = "visible";
@@ -377,6 +378,7 @@ function searchplayers() {
                         searchprofileID[playercount] = playerid
                         searchprofileFN[playercount] = fullname
                         searchprofileTeam[playercount] = teamname
+                        searchprofilePosition[playercount] = playerposition
                         picurl = `https://a.espncdn.com/combiner/i?img=/i/headshots/nfl/players/full/${playerid}.png&w=350&h=254`
                         document.getElementById(`playerpic${playercount + 1}`).src = picurl;
                         playercount = playercount + 1
@@ -392,8 +394,8 @@ function searchplayers() {
                     teamid = response.data.team.id
                     playerid = response.data.athletes[1].items[i].id
                     playerposition = response.data.athletes[1].items[i].position.name
-                    if (fullname.toLowerCase().includes(searchreq.toLowerCase())) {
-                        //console.log(response.data.athletes[1].items[i])
+                    if (fullname.toLowerCase().includes(searchreq.toLowerCase()) && response.data.athletes[1].items[i].status.name == 'Active') {
+                        console.log(response.data.athletes[1].items[i])
                         document.getElementById(`playerposition${playercount + 1}`).innerHTML = playerposition
                         document.getElementById(playerhtml[playercount]).innerHTML = fullname
                         document.getElementById(playerhtml[playercount]).style.visibility = "visible";
@@ -417,6 +419,10 @@ function searchplayers() {
                         document.getElementById(stat2html[playercount]).innerHTML = `${response.data.athletes[1].items[i].height} inches`
                         document.getElementById(stat3html[playercount]).innerHTML = `${response.data.athletes[1].items[i].weight}lbs`
                         document.getElementById(stat4html[playercount]).innerHTML = response.data.athletes[1].items[i].age
+                        searchprofileID[playercount] = playerid
+                        searchprofileFN[playercount] = fullname
+                        searchprofileTeam[playercount] = teamname
+                        searchprofilePosition[playercount] = playerposition
                         picurl = `https://a.espncdn.com/combiner/i?img=/i/headshots/nfl/players/full/${playerid}.png&w=350&h=254`
                         document.getElementById(`playerpic${playercount + 1}`).src = picurl;
                         playercount = playercount + 1
@@ -432,8 +438,8 @@ function searchplayers() {
                     teamid = response.data.team.id
                     playerid = response.data.athletes[2].items[i].id
                     playerposition = response.data.athletes[2].items[i].position.name
-                    if (fullname.toLowerCase().includes(searchreq.toLowerCase())) {
-                        //console.log(response.data.athletes[2].items[i])
+                    if (fullname.toLowerCase().includes(searchreq.toLowerCase()) && response.data.athletes[1].items[i].status.name == 'Active') {
+                        console.log(response.data.athletes[2].items[i])
                         document.getElementById(`playerposition${playercount + 1}`).innerHTML = playerposition
                         document.getElementById(playerhtml[playercount]).innerHTML = fullname
                         document.getElementById(playerhtml[playercount]).style.visibility = "visible";
@@ -457,8 +463,13 @@ function searchplayers() {
                         document.getElementById(stat2html[playercount]).innerHTML = `${response.data.athletes[2].items[i].height} inches`
                         document.getElementById(stat3html[playercount]).innerHTML = `${response.data.athletes[2].items[i].weight}lbs`
                         document.getElementById(stat4html[playercount]).innerHTML = response.data.athletes[2].items[i].age
+                        searchprofileID[playercount] = playerid
+                        searchprofileFN[playercount] = fullname
+                        searchprofileTeam[playercount] = teamname
+                        searchprofilePosition[playercount] = playerposition
                         picurl = `https://a.espncdn.com/combiner/i?img=/i/headshots/nfl/players/full/${playerid}.png&w=350&h=254`
                         document.getElementById(`playerpic${playercount + 1}`).src = picurl;
+
                         playercount = playercount + 1
                     }
                     i = i + 1
@@ -489,6 +500,7 @@ async function profile1() {
         window.localStorage.setItem('nflplayerID', searchprofileID[0]);
         window.localStorage.setItem('nflplayerTeam', searchprofileTeam[0]);
         window.localStorage.setItem('nflplayerFN', searchprofileFN[0]);
+        window.localStorage.setItem('nflplayerPos', searchprofilePosition[0]);
         window.location.href = "nflplayerstats.html";
     }
 }
@@ -511,6 +523,7 @@ async function profile2() {
         window.localStorage.setItem('nflplayerID', searchprofileID[1]);
         window.localStorage.setItem('nflplayerTeam', searchprofileTeam[1]);
         window.localStorage.setItem('nflplayerFN', searchprofileFN[1]);
+        window.localStorage.setItem('nflplayerPos', searchprofilePosition[1]);
         window.location.href = "nflplayerstats.html";
     }
 }
@@ -533,6 +546,7 @@ async function profile3() {
         window.localStorage.setItem('nflplayerID', searchprofileID[2]);
         window.localStorage.setItem('nflplayerTeam', searchprofileTeam[2]);
         window.localStorage.setItem('nflplayerFN', searchprofileFN[2]);
+        window.localStorage.setItem('nflplayerPos', searchprofilePosition[2]);
         window.location.href = "nflplayerstats.html";
     }
 }
@@ -555,6 +569,7 @@ async function profile4() {
         window.localStorage.setItem('nflplayerID', searchprofileID[3]);
         window.localStorage.setItem('nflplayerTeam', searchprofileTeam[3]);
         window.localStorage.setItem('nflplayerFN', searchprofileFN[3]);
+        window.localStorage.setItem('nflplayerPos', searchprofilePosition[3]);
         window.location.href = "nflplayerstats.html";
     }
 }
@@ -577,6 +592,7 @@ async function profile5() {
         window.localStorage.setItem('nflplayerID', searchprofileID[4]);
         window.localStorage.setItem('nflplayerTeam', searchprofileTeam[4]);
         window.localStorage.setItem('nflplayerFN', searchprofileFN[4]);
+        window.localStorage.setItem('nflplayerPos', searchprofilePosition[4]);
         window.location.href = "nflplayerstats.html";
     }
 }
@@ -599,6 +615,7 @@ async function profile6() {
         window.localStorage.setItem('nflplayerID', searchprofileID[5]);
         window.localStorage.setItem('nflplayerTeam', searchprofileTeam[5]);
         window.localStorage.setItem('nflplayerFN', searchprofileFN[5]);
+        window.localStorage.setItem('nflplayerPos', searchprofilePosition[5]);
         window.location.href = "nflplayerstats.html";
     }
 }
@@ -621,6 +638,7 @@ async function profile7() {
         window.localStorage.setItem('nflplayerID', searchprofileID[6]);
         window.localStorage.setItem('nflplayerTeam', searchprofileTeam[6]);
         window.localStorage.setItem('nflplayerFN', searchprofileFN[6]);
+        window.localStorage.setItem('nflplayerPos', searchprofilePosition[6]);
         window.location.href = "nflplayerstats.html";
     }
 }
@@ -643,6 +661,7 @@ async function profile8() {
         window.localStorage.setItem('nflplayerID', searchprofileID[7]);
         window.localStorage.setItem('nflplayerTeam', searchprofileTeam[7]);
         window.localStorage.setItem('nflplayerFN', searchprofileFN[7]);
+        window.localStorage.setItem('nflplayerPos', searchprofilePosition[7]);
         window.location.href = "nflplayerstats.html";
     }
 }
