@@ -350,7 +350,7 @@ function searchplayers() {
                     playerid = response.data.athletes[0].items[i].id
                     playerposition = response.data.athletes[0].items[i].position.name
                     if (fullname.toLowerCase().includes(searchreq.toLowerCase()) && response.data.athletes[1].items[i].status.name == 'Active') {
-                        console.log(response.data.athletes[0].items[i])
+                        //console.log(response.data.athletes[0].items[i])
                         document.getElementById(`playerposition${playercount + 1}`).innerHTML = playerposition
                         document.getElementById(playerhtml[playercount]).innerHTML = fullname
                         document.getElementById(playerhtml[playercount]).style.visibility = "visible";
@@ -395,7 +395,7 @@ function searchplayers() {
                     playerid = response.data.athletes[1].items[i].id
                     playerposition = response.data.athletes[1].items[i].position.name
                     if (fullname.toLowerCase().includes(searchreq.toLowerCase()) && response.data.athletes[1].items[i].status.name == 'Active') {
-                        console.log(response.data.athletes[1].items[i])
+                        //console.log(response.data.athletes[1].items[i])
                         document.getElementById(`playerposition${playercount + 1}`).innerHTML = playerposition
                         document.getElementById(playerhtml[playercount]).innerHTML = fullname
                         document.getElementById(playerhtml[playercount]).style.visibility = "visible";
@@ -439,7 +439,7 @@ function searchplayers() {
                     playerid = response.data.athletes[2].items[i].id
                     playerposition = response.data.athletes[2].items[i].position.name
                     if (fullname.toLowerCase().includes(searchreq.toLowerCase()) && response.data.athletes[1].items[i].status.name == 'Active') {
-                        console.log(response.data.athletes[2].items[i])
+                        //console.log(response.data.athletes[2].items[i])
                         document.getElementById(`playerposition${playercount + 1}`).innerHTML = playerposition
                         document.getElementById(playerhtml[playercount]).innerHTML = fullname
                         document.getElementById(playerhtml[playercount]).style.visibility = "visible";

@@ -22,7 +22,7 @@ async function keeplive() {
     };
 
     axios.request(searchteams).then(function (response) {
-        console.log(response.data.teams[0].teamStats[0].splits[0].stat)
+        //console.log(response.data.teams[0].teamStats[0].splits[0].stat)
         games = response.data.teams[0].teamStats[0].splits[0].stat.gamesPlayed
         win = response.data.teams[0].teamStats[0].splits[0].stat.wins
         lost = response.data.teams[0].teamStats[0].splits[0].stat.losses
