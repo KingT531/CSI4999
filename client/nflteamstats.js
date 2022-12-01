@@ -13,6 +13,8 @@ async function keeplive() {
     teamID = window.localStorage.getItem('nflTeamID');
     teamname = window.localStorage.getItem('nflTeamName');
     document.getElementById('teamname').innerHTML = teamname
+    picurlfull = `pics/nflteam/${teamID}.png`
+    document.getElementById('teampic').src = picurlfull;
 
     const winsearch = {
         method: 'GET',
