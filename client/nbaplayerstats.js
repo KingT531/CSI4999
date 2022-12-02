@@ -146,7 +146,7 @@ async function keeplive() {
             document.getElementById('playerstatTO').innerHTML = ""
 
         }
-        seasons = [2021, 2020, 2019, 2018, 2017]
+        seasons = [2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014]
         index = 0
         end = 0
         while (index < seasons.length) {
