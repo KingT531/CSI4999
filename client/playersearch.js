@@ -1,6 +1,7 @@
 function searchplayers() {
 
     //clear old values
+    document.getElementById("footerspacing").style.padding = "0px 0px 0px 0px";
     playerhtml = ['playername1', 'playername2', 'playername3', 'playername4', 'playername5', 'playername6', 'playername7', 'playername8']
     teamhtml = ['team1', 'team2', 'team3', 'team4', 'team5', 'team6', 'team7', 'team8']
     buttonhtml = ['profile1', 'profile2', 'profile3', 'profile4', 'profile5', 'profile6', 'profile7', 'profile8']

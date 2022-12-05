@@ -11,6 +11,7 @@ async function keeplive() {
     if (user != "" && user != null) {
 
         //user information
+        document.getElementById('logout-btn').innerHTML = "Logout";
         document.getElementById('navbutton').innerHTML = `${user}'s profile`;
         document.getElementById('username').innerHTML = `${user}'s profile`;
         userelement.setAttribute('href', 'profile.html');
