@@ -92,7 +92,7 @@ async function searchteams() {
                     document.getElementById(teamhtml[itoadd]).innerHTML = response.data._embedded.teamWinStatsList[itotal].name
                     document.getElementById(teamhtml[itoadd]).style.visibility = "visible";
                     teamsID.push(itotal)
-                    picurlfull = `pics/nflteam/${itotal}.png`
+                    picurlfull = `pics/nflteam/${response.data._embedded.teamWinStatsList[itotal].name}.png`
                     document.getElementById(pichtml[itoadd]).src = picurlfull;
                     document.getElementById(pichtml[itoadd]).style.visibility = "visible";
                     document.getElementById(buttonhtml[itoadd]).style.visibility = "visible";
