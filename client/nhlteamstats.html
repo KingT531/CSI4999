@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>NBA Team Stats</title>
+    <title>NHL Team Stats</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body onload="keeplive()">
@@ -33,30 +33,40 @@
           <tbody>
             <tr>
               <td><span class="stat-title">Games Played</span></td>
-              <td><span class="stat" id="gamesplayed">Games Played</span></td>
+              <td><span class="stat" id="gamesplayed"></span></td>
             </tr>
             <tr>
               <td><span class="stat-title">Games Won</span></td>
-              <td><span class="stat" id="gameswon">Games Wom</span></td>
+              <td><span class="stat" id="gameswon"></span></td>
             </tr>
             <tr>
               <td><span class="stat-title">Games Lost</span></td>
-              <td><span class="stat" id="gameslost">Games Lost</span></td>
+              <td><span class="stat" id="gameslost"></span></td>
             </tr>
             <tr>
               <td><span class="stat-title">Winrate</span></td>
-              <td><span class="stat" id="winrate">Winrate</span></td>
+              <td><span class="stat" id="winrate"></span></td>
+            </tr>
+            <tr>
+              <td><span class="stat-title">Goals per Game</span></td>
+              <td><span class="stat" id="gpg"></span></td>
+            </tr>
+            <tr>
+              <td><span class="stat-title">Goals Against per Game</span></td>
+              <td><span class="stat" id="gapg"></span></td>
+            </tr>
+            <tr>
+              <td><span class="stat-title">Face Off Win%</span></td>
+              <td><span class="stat" id="fowp"></span></td>
             </tr>
           </tbody>
         </table>
-       
       </div>
    
-    
    </div>
 
     <script src="https://unpkg.com/axios@1.0.0/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    <script src="nbateamstats.js"></script>
+    <script src="nhlteamstats.js"></script>
   </body>
 </html>

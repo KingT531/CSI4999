@@ -7,62 +7,45 @@ async function keeplive() {
         document.getElementById('navbutton').innerHTML = `${user}'s profile`;
         userelement.setAttribute('href', 'profile.html');
     }
-    else {
-    }
 
-    teamid = window.localStorage.getItem('nbaTeamID');
-    teamname = window.localStorage.getItem('nbaTeamName');
+    //get stored team name and id
+    teamid = window.localStorage.getItem('nhlTeamID');
+    teamname = window.localStorage.getItem('nhlTeamName');
+
+    //fill html elements with data
     document.getElementById('teamname').innerHTML = teamname
-    picurlfull = `pics/nbateam/${teamid}.png`
-    document.getElementById('teampic').src = picurlfull;
 
-    //date format YYYY-MM-DD'
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
-    today = yyyy + '/' + mm + '/' + dd;
-
-    const gamessearch = {
+    //call nhl api
+    const searchteams = {
         method: 'GET',
-        url: 'https://www.balldontlie.io/api/v1/games',
-        params: { seasons: [2022], team_ids: [teamid], end_date: today, per_page: 100 },
+        url: `https://statsapi.web.nhl.com/api/v1/teams/${teamid}/?hydrate=stats(splits=statsSingleSeason)`,
     };
 
-    axios.request(gamessearch).then(function (response) {
-        games = 0
-        win = 0
-        lost = 0
-        index = 0
-        while (index < response.data.data.length) {
-            if (response.data.data[index].home_team.id == teamid && response.data.data[index].home_team_score > response.data.data[index].visitor_team_score) {
-                win = win + 1
-            }
-            else if (response.data.data[index].visitor_team.id == teamid && response.data.data[index].home_team_score < response.data.data[index].visitor_team_score) {
-                win = win + 1
-            }
-            else {
-                lost = lost + 1
-            }
-            index = index + 1
-        }
-        games = win + lost
-        document.getElementById('gamesplayed').innerHTML = `Games Played: ${games}`
-        document.getElementById('gameswon').innerHTML = `Won: ${win}`
-        document.getElementById('gameslost').innerHTML = `Lost: ${lost}`
+    axios.request(searchteams).then(function (response) {
+        //console.log(response.data.teams[0].teamStats[0].splits[0].stat)
+        games = response.data.teams[0].teamStats[0].splits[0].stat.gamesPlayed
+        win = response.data.teams[0].teamStats[0].splits[0].stat.wins
+        lost = response.data.teams[0].teamStats[0].splits[0].stat.losses
         winrate = (((win * 1.0) / games * 1.0) * 100).toFixed(2)
-        document.getElementById('winrate').innerHTML = `Winrate: ${winrate}%`
-
+        goalsagainstpergame = response.data.teams[0].teamStats[0].splits[0].stat.goalsAgainstPerGame
+        goalspergame = response.data.teams[0].teamStats[0].splits[0].stat.goalsPerGame
+        faceoffwinpct = response.data.teams[0].teamStats[0].splits[0].stat.faceOffWinPercentage
+        document.getElementById('gamesplayed').innerHTML = games
+        document.getElementById('gameswon').innerHTML = win
+        document.getElementById('gameslost').innerHTML = lost
+        document.getElementById('winrate').innerHTML = `${winrate}%`
+        document.getElementById('gpg').innerHTML = goalsagainstpergame.toFixed(2)
+        document.getElementById('gapg').innerHTML = goalspergame.toFixed(2)
+        document.getElementById('fowp').innerHTML = `${faceoffwinpct}%`
     }).catch(function (error) {
         console.error(error);
     });
-
 }
 
 async function favorite() {
     username = window.localStorage.getItem('user');
     if (username != "" && username != null) {
-        fav = `1${teamid}#${teamname}`
+        fav = `3${teamid}#${teamname}`
         //axios.post("https://csi4999-server.herokuapp.com/api/favoriteteam", {
         axios.post("http://localhost:3001/api/favoriteteam", {
             username: username,

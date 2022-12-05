@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Team Stats</title>
-    <link rel="stylesheet" type="text/css" href="accstyle.css" />
+    <title>NFL Team Stats</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body onload="keeplive()">
     <header>
-      <nav>
+      <h1 class="sportstitle">Sports Mania</h1>
         <ul class="navigation">
           <li><a href="index.html">Home</a></li>
           <li><a href="teamsearch.html">Teams</a></li>
           <li><a href="playersearch.html">Players</a></li>
-          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">About</a></li>
         </ul>
-      </nav>
       <a id="loginstatus" class="login" href="login.html"
-        ><button>Login</button></a
+        ><button id="navbutton" class="navbutton">Login</button></a
       >
     </header>
 
     <p id="teamname">Team Name</p>
-    <img src="pics/no-image.jpg" id="teampic" alt="team img" />
+    <img src="pics/no-image.jpg" class="tpic" id="teampic" alt="team img" />
+    <button class="profile-btn" onclick="favorite()">Favorite</button>
+    <p id="favmessage"></p>
     <p>2022 Season Stats:</p>
     <p>-Win Stats-</p>
     <p id="gamesplayed"></p>

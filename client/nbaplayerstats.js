@@ -4,8 +4,8 @@ async function keeplive() {
     //load user login information
     user = window.localStorage.getItem('user');
     var userelement = document.getElementById('loginstatus');
-    if (user != "") {
-        document.getElementById('loginstatus').innerHTML = user;
+    if (user != "" && user != null) {
+        document.getElementById('navbutton').innerHTML = `${user}'s profile`;
         userelement.setAttribute('href', 'profile.html');
     }
     else {
@@ -95,9 +95,9 @@ async function keeplive() {
             gp[0] = response.data.data[0].games_played
             pts[0] = response.data.data[0].pts
             min[0] = response.data.data[0].min.replace(/:/g, ".");
-            fg[0] = response.data.data[0].fg_pct
-            p3[0] = response.data.data[0].fg3_pct
-            ft[0] = response.data.data[0].ft_pct
+            fg[0] = (response.data.data[0].fg_pct * 100).toFixed(2)
+            p3[0] = (response.data.data[0].fg3_pct * 100).toFixed(2)
+            ft[0] = (response.data.data[0].ft_pct * 100).toFixed(2)
             reb[0] = response.data.data[0].reb
             ast[0] = response.data.data[0].ast
             blk[0] = response.data.data[0].blk
@@ -146,7 +146,7 @@ async function keeplive() {
             document.getElementById('playerstatTO').innerHTML = ""
 
         }
-        seasons = [2021, 2020, 2019, 2018, 2017]
+        seasons = [2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014]
         index = 0
         end = 0
         while (index < seasons.length) {
@@ -162,9 +162,9 @@ async function keeplive() {
                     iseason = seasons[end]
                     ipoints = response.data.data[0].pts
                     imin = response.data.data[0].min.replace(/:/g, ".");
-                    ifg = response.data.data[0].fg_pct
-                    ip3 = response.data.data[0].fg3_pct
-                    ift = response.data.data[0].ft_pct
+                    ifg = (response.data.data[0].fg_pct * 100).toFixed(2)
+                    ip3 = (response.data.data[0].fg3_pct * 100).toFixed(2)
+                    ift = (response.data.data[0].ft_pct * 100).toFixed(2)
                     ireb = response.data.data[0].reb
                     iast = response.data.data[0].ast
                     iblk = response.data.data[0].blk
@@ -188,14 +188,12 @@ async function keeplive() {
                 seasoni = seasons[end]
                 end = end + 1
                 if (end == seasons.length) {
-                    console.log(xseasons)
-                    console.log(yPoints)
                     new Chart("ChartPTS", {
                         type: "line",
                         data: {
                             labels: xseasons,
                             datasets: [{
-                                label: 'Average Points per seasons',
+                                label: 'Average Points per Season',
                                 pointRadius: 4,
                                 pointBackgroundColor: "rgba(0,0,255,1)",
                                 data: yPoints
