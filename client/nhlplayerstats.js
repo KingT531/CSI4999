@@ -80,12 +80,14 @@ async function keeplive() {
             else {
                 try {
                     if (response.data.people[0].stats[0].splits[isearching].stat.shots != null && response.data.people[0].stats[0].splits[isearching].season != response.data.people[0].stats[0].splits[isearching - 1].season) {
+                        position = 1
                         xSeasons.push(response.data.people[0].stats[0].splits[isearching].season.substring(0, 4))
                         yShots.push(response.data.people[0].stats[0].splits[isearching].stat.shots)
                         yGoals.push(response.data.people[0].stats[0].splits[isearching].stat.goals)
                         yAssists.push(response.data.people[0].stats[0].splits[isearching].stat.assists)
                     }
                     else if (response.data.people[0].stats[0].splits[isearching].stat.shotsAgainst != null && response.data.people[0].stats[0].splits[isearching].season != response.data.people[0].stats[0].splits[isearching - 1].season) {
+                        position = 2
                         xSeasons.push(response.data.people[0].stats[0].splits[isearching].season.substring(0, 4))
                         ySaves.push(response.data.people[0].stats[0].splits[isearching].stat.saves)
                         yShotsAgainst.push(response.data.people[0].stats[0].splits[isearching].stat.shotsAgainst)

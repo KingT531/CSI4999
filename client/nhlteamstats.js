@@ -15,6 +15,8 @@ async function keeplive() {
 
     //fill html elements with data
     document.getElementById('teamname').innerHTML = teamname
+    picurlfull = `pics/nhlteam/${teamname}.png`
+    document.getElementById('teampic').src = picurlfull;
 
     //call nhl api
     const searchteams = {
@@ -31,6 +33,7 @@ async function keeplive() {
         goalsagainstpergame = response.data.teams[0].teamStats[0].splits[0].stat.goalsAgainstPerGame
         goalspergame = response.data.teams[0].teamStats[0].splits[0].stat.goalsPerGame
         faceoffwinpct = response.data.teams[0].teamStats[0].splits[0].stat.faceOffWinPercentage
+        document.getElementById('gamesplayed').innerHTML = games
         document.getElementById('gamesplayed').innerHTML = games
         document.getElementById('gameswon').innerHTML = win
         document.getElementById('gameslost').innerHTML = lost
