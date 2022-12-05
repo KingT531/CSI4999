@@ -2,8 +2,8 @@
 
 
 
-
-/* beginning for navigation bar 
+/*
+ beginning for navigation bar 
 
 li,
 a,
@@ -15,7 +15,7 @@ button {
 	text-decoration: none;
 	font-weight: bold;
 }
-}
+
 body{
 	
 	background-image: linear-gradient(to bottom right, red, yellow);

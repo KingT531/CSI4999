@@ -339,9 +339,10 @@ async function keeplive() {
         })
 
     }
-    else {
+    /*else {
         window.location.href = "login.html";
     }
+    */
 }
 
 function removeplayerfav1link() {

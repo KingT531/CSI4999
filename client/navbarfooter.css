@@ -227,7 +227,34 @@
   #menuToggle input:checked~ul {
     transform: none;
   }
-
+  button.navbutton {
+    margin-left: 1500px;
+    padding: 9px 25px;
+    background-color: rgb(223, 83, 48);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+  }
+  
+  button:hover {
+    background-color: rgba(0, 136, 169, 0.9);
+  }
+  
+  button.login {
+    font-size: 16px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    padding: 13px 20px 13px;
+    outline: 0;
+    border: 1px solid black;
+    cursor: pointer;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
 
 
 
