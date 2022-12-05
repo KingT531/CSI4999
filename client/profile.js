@@ -340,6 +340,7 @@ async function keeplive() {
 
     }
     else {
+        window.location.href = "login.html";
     }
 }
 
