@@ -373,7 +373,7 @@ button.favbutton {
 	justify-content: center;
 }
 
-/* beginning for nba-team-stat page */
+/* beginning Basketball-NBA team-stat page */
 
 .team-profile {
 	position: absolute;
@@ -391,7 +391,7 @@ button.favbutton {
 	width: 100%;
 	text-align: center;
 	padding 30px 25px;
-	background-color: yellow;
+	background: gray;
 	top: 50%;
 	left: 50%;
 	transform: ;
@@ -429,7 +429,7 @@ button.favbutton {
 
 .form {
 	width: 600px;
-	height: 55px;
+	height: 60px;
 	display: flex;
 	padding: 10px 50px;
 }
@@ -546,7 +546,7 @@ button.favbutton {
 	text-align: center;
 	padding: 20px;
 	border: 2px solid;
-	background: yellow;
+	background: gray;
 	flex-direction: row;
 }
 
@@ -569,4 +569,57 @@ button.favbutton {
 	font-weight: bold;
 	font-size: 25px;
 	text-align: center;
+}
+
+/* beginning of football-NFL team-stat page */
+
+.fteam-profile {
+	padding-top: 50px;
+	position: absolute;
+	text-align: center;
+	display: flex;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 900px;
+
+}
+
+.football-L {
+	float: left;
+	width: 40%;
+	background-color: gray;
+	padding-top: 30px;
+}
+
+.football-R {
+	float: right;
+	width: 60%;
+	background-color: rgb(255, 255, 255);
+	border-style: ridge;
+	border-color: black;
+}
+
+.fb-game-stat,
+.fb-position-stat {
+	border-collapse: collapse;
+	width: 90%;
+	background-color: white;
+	border-radius: 5px;
+	box-shadow: 0px 10px 30px 5px rgba(0, 0, 0, .15);
+	margin: 50px auto;
+	letter-spacing: 1px;
+	padding: 1px;
+}
+
+.fb-position-stat tr td {
+	padding: 5px;
+}
+
+.fb-game-stat tr td {
+	padding: 5px;
+}
+
+.teamname {
+	font-size: 25px;
 }

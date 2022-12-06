@@ -97,32 +97,109 @@
 <!--END OF MENU CODE-->
   <!-- #endregion -->
 
-    <p id="teamname">Team Name</p>
-    <img src="pics/no-image.jpg" class="tpic" id="teampic" alt="team img" />
-    <button class="profile-btn" onclick="favorite()">Favorite</button>
-    <p id="favmessage"></p>
-    <p>2022 Season Stats:</p>
-    <p>-Win Stats-</p>
-    <p id="gamesplayed"></p>
-    <p id="gameswon"></p>
-    <p id="gameslost"></p>
-    <p id="winrate"></p>
-    <p>-Receiving Stats-</p>
-    <p id="receivesRec"></p>
-    <p id="touchdownsRec"></p>
-    <p id="yardsRec"></p>
-    <p>-Rushing Stats-</p>
-    <p id="touchdownsRush"></p>
-    <p id="yardsRush"></p>
-    <p>-Passing Stats-</p>
-    <p id="completions"></p>
-    <p id="touchdownsPass"></p>
-    <p id="yardsPass"></p>
+  <div class="fteam-profile">
+    <div class="football-L">
+      <table class="fteam-card">
+        <tr>
+          <td><div class="teamname" id="teamname">Team Name</div></td>
+          <td><button class="profile-btn" onclick="favorite()">Favorite</button></td>
+        </tr>
+        <tr>
+          <td colspan="2"> <img src="pics/no-image.jpg" class="tpic" id="teampic" alt="team img" /></td>
+          <p id="favmessage"></p>
+        </tr>
+      </table>
+            
+      <table class="fb-game-stat">
+        <thead>
+          <td colspan="2" class="season-num" align="center">2022 Season Stats:</td>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="stat-title">Games Played</span></td>
+            <td><span class="stat" id="gamesplayed">Games Played</span></td>
+          </tr>
+          <tr>
+            <td><span class="stat-title">Games Won</span></td>
+            <td><span class="stat" id="gameswon">Games Won</span></td>
+          </tr>
+          <tr>
+            <td><span class="stat-title">Games Lost</span></td>
+            <td><span class="stat" id="gameslost">Games Lost</span></td>
+          </tr>
+          <tr>
+            <td><span class="stat-title">Winrate</span></td>
+            <td><span class="stat" id="winrate">Winrate</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="football-R">
+      <table class="fb-position-stat">
+        <thead>
+          <td colspan="2" class="season-num" align="center">Recieving Stats:</td>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="stat-title">Recieves Recorded</span></td>
+            <td><span class="stat" id="receivesRec">receivesRec</span></td>
+          </tr>
+          <tr>
+            <td><span class="stat-title">Touchdowns Recorded</span></td>
+            <td><span class="stat" id="touchdownsRec">touchdownRec</span></td>
+          </tr>
+          <tr>
+            <td><span class="stat-title">Yards Recorded</span></td>
+            <td><span class="stat" id="yardsRec">yardsRec</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="fb-position-stat">
+        <thead>
+          <td colspan="2" class="season-num" align="center">Rushing Stats:</td>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="stat-title">Touchdowns Recorded</span></td>
+            <td><span class="stat" id="touchdownsRush">touchdownsRush</span></td>
+          </tr>
+          <tr>
+            <td><span class="stat-title">Yards Rushed</span></td>
+            <td><span class="stat" id="yardsRush">Yards Rushed</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="fb-position-stat">
+        <thead>
+          <tr>
+            <td colspan="2" class="season-num" align="center">Passing Stats:</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="stat-title">Completions</span></td>
+            <td><span class="stat" id="completions">Completions</span></td>
+          </tr>
+          <tr>
+            <td><span class="stat-title">Touchdowns Passed</span></td>
+            <td><span class="stat" id="touchdownsPass">Touchdowns Passed</span></td>
+          </tr>
+          <tr>
+            <td><span class="stat-title">Yards Passed</span></td>
+            <td><span class="stat" id="yardsPass">Yards Passed</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
 
     <script src="https://unpkg.com/axios@1.0.0/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="nflteamstats.js"></script>
- <!-- #region  -->
+ 
+ 
+    <!-- #region  -->
     <!-- FOOTER STARTS HERE-->
     <!DOCTYPE html>
     <html lang='en' class=''>
@@ -219,7 +296,7 @@
           <style>
             .footer {
     background-color: #24262b;
-    padding: 70px 0;
+    padding: 30px 0;
     position: fixed;
     width: 100%;
     bottom: 0;

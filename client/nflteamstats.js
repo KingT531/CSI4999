@@ -14,7 +14,7 @@ async function keeplive() {
     teamID = window.localStorage.getItem('nflTeamID');
     teamname = window.localStorage.getItem('nflTeamName');
     document.getElementById('teamname').innerHTML = teamname
-    picurlfull = `pics/nflteam/${teamID}.png`
+    picurlfull = `pics/nflteam/${teamname}.png`
     document.getElementById('teampic').src = picurlfull;
 
     const winsearch = {
@@ -32,10 +32,10 @@ async function keeplive() {
         gamesplayed = wins + losses
         winperc = ((wins * 1.0 / (wins * 1.0 + losses * 1.0)) * 100).toFixed(2)
 
-        document.getElementById('gamesplayed').innerHTML = `Games Played: ${gamesplayed}`
-        document.getElementById('gameswon').innerHTML = `Won: ${wins}`
-        document.getElementById('gameslost').innerHTML = `Lost: ${losses}`
-        document.getElementById('winrate').innerHTML = document.getElementById('winrate').innerHTML = `Winrate: ${winperc}%`
+        document.getElementById('gamesplayed').innerHTML = `${gamesplayed}`
+        document.getElementById('gameswon').innerHTML = `${wins}`
+        document.getElementById('gameslost').innerHTML = `${losses}`
+        document.getElementById('winrate').innerHTML = document.getElementById('winrate').innerHTML = `${winperc}%`
 
         const receivingsearch = {
             method: 'GET',
@@ -53,9 +53,9 @@ async function keeplive() {
                     receives = response.data._embedded.teamReceivingStatsList[index].receives
                     touchdowns = response.data._embedded.teamReceivingStatsList[index].touchdowns
                     yards = response.data._embedded.teamReceivingStatsList[index].yards
-                    document.getElementById('receivesRec').innerHTML = `Receives: ${receives}`
-                    document.getElementById('touchdownsRec').innerHTML = `Touchdowns: ${touchdowns}`
-                    document.getElementById('yardsRec').innerHTML = `Yards: ${yards}`
+                    document.getElementById('receivesRec').innerHTML = `${receives}`
+                    document.getElementById('touchdownsRec').innerHTML = `${touchdowns}`
+                    document.getElementById('yardsRec').innerHTML = `${yards}`
                     index = 100
                 }
                 index = index + 1
@@ -76,8 +76,8 @@ async function keeplive() {
                     if (teamname.includes(response.data._embedded.teamRushingStatsList[index].name)) {
                         touchdowns = response.data._embedded.teamRushingStatsList[index].touchdowns
                         yards = response.data._embedded.teamRushingStatsList[index].yards
-                        document.getElementById('touchdownsRush').innerHTML = `Touchdowns: ${touchdowns}`
-                        document.getElementById('yardsRush').innerHTML = `Yards: ${yards}`
+                        document.getElementById('touchdownsRush').innerHTML = `${touchdowns}`
+                        document.getElementById('yardsRush').innerHTML = `${yards}`
                         index = 100
                     }
                     index = index + 1
@@ -99,9 +99,9 @@ async function keeplive() {
                             completions = response.data._embedded.teamPassingStatsList[index].completions
                             touchdowns = response.data._embedded.teamPassingStatsList[index].touchdowns
                             yards = response.data._embedded.teamPassingStatsList[index].passYards
-                            document.getElementById('completions').innerHTML = `Completions: ${completions}`
-                            document.getElementById('touchdownsPass').innerHTML = `Touchdowns: ${touchdowns}`
-                            document.getElementById('yardsPass').innerHTML = `Yards: ${yards}`
+                            document.getElementById('completions').innerHTML = `${completions}`
+                            document.getElementById('touchdownsPass').innerHTML = `${touchdowns}`
+                            document.getElementById('yardsPass').innerHTML = `${yards}`
                             index = 100
                         }
                         index = index + 1
