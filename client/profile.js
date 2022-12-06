@@ -291,8 +291,8 @@ async function keeplive() {
                                 teamid = favcode.substring(1, divider1)
                                 teamname = favcode.substring(divider1 + 1)
                                 document.getElementById(`teamfav${i + 1}name`).innerHTML = teamname
-                                //picurlfull = `pics/nbateam/${teamid}.png`
-                                //document.getElementById(`teamfav${i + 1}pic`).src = picurlfull;
+                                picurlfull = `pics/nhlteam/${teamname}.png`
+                                document.getElementById(`teamfav${i + 1}pic`).src = picurlfull;
                                 teamfavsports[i] = 3
                                 teamfavids[i] = teamid
                                 teamfavnames[i] = teamname
@@ -314,8 +314,8 @@ async function keeplive() {
                                 teamid = favcode.substring(1, divider1)
                                 teamname = favcode.substring(divider1 + 1)
                                 document.getElementById(`teamfav${i + 1}name`).innerHTML = teamname
-                                //picurlfull = `pics/nbateam/${teamid}.png`
-                                //document.getElementById(`teamfav${i + 1}pic`).src = picurlfull;
+                                picurlfull = `pics/nflteam/${teamname}.png`
+                                document.getElementById(`teamfav${i + 1}pic`).src = picurlfull;
                                 teamfavsports[i] = 2
                                 teamfavids[i] = teamid
                                 teamfavnames[i] = teamname
